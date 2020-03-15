@@ -4,6 +4,11 @@
 	import { tracks } from './stores.js';
 	
 	let selectedTrack;
+
+	function addTrack() {
+		tracks.addNew();
+		selectedTrack = $tracks[$tracks.length -1];
+	}
 </script>
 
 <style>
@@ -26,6 +31,12 @@
 </style>
 
 <main>
+	<div>
+		<button on:click={addTrack}>
+			new track
+		</button>
+	</div>
+	
 	<div class="trackList">
 		{#each $tracks as track}
 			<TrackSummary on:click={() => selectedTrack = track} 

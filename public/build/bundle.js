@@ -70,6 +70,9 @@ var app = (function () {
     function space() {
         return text(' ');
     }
+    function empty() {
+        return text('');
+    }
     function listen(node, event, handler, options) {
         node.addEventListener(event, handler, options);
         return () => node.removeEventListener(event, handler, options);
@@ -439,7 +442,75 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (10:3) {#each links as link}
+    // (10:3) {#if links}
+    function create_if_block(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*links*/ ctx[2];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*links*/ 4) {
+    				each_value = /*links*/ ctx[2];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(10:3) {#if links}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (11:4) {#each links as link}
     function create_each_block(ctx) {
     	let li;
     	let a;
@@ -455,8 +526,8 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			attr_dev(a, "href", a_href_value = /*link*/ ctx[4].href);
-    			add_location(a, file, 11, 5, 181);
-    			add_location(li, file, 10, 4, 171);
+    			add_location(a, file, 12, 6, 199);
+    			add_location(li, file, 11, 5, 188);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -480,7 +551,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(10:3) {#each links as link}",
+    		source: "(11:4) {#each links as link}",
     		ctx
     	});
 
@@ -497,13 +568,7 @@ var app = (function () {
     	let t4;
     	let ul;
     	let dispose;
-    	let each_value = /*links*/ ctx[2];
-    	validate_each_argument(each_value);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
-    	}
+    	let if_block = /*links*/ ctx[2] && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
@@ -515,11 +580,7 @@ var app = (function () {
     			t3 = text(")");
     			t4 = space();
     			ul = element("ul");
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
+    			if (if_block) if_block.c();
     			add_location(span, file, 7, 2, 99);
     			add_location(ul, file, 8, 2, 137);
     			add_location(div, file, 6, 0, 82);
@@ -536,46 +597,31 @@ var app = (function () {
     			append_dev(span, t3);
     			append_dev(div, t4);
     			append_dev(div, ul);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(ul, null);
-    			}
-
+    			if (if_block) if_block.m(ul, null);
     			dispose = listen_dev(div, "click", /*click_handler*/ ctx[3], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*name*/ 1) set_data_dev(t0, /*name*/ ctx[0]);
     			if (dirty & /*description*/ 2) set_data_dev(t2, /*description*/ ctx[1]);
 
-    			if (dirty & /*links*/ 4) {
-    				each_value = /*links*/ ctx[2];
-    				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(ul, null);
-    					}
+    			if (/*links*/ ctx[2]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					if_block.m(ul, null);
     				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value.length;
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			destroy_each(each_blocks, detaching);
+    			if (if_block) if_block.d();
     			dispose();
     		}
     	};
@@ -872,56 +918,68 @@ var app = (function () {
         return { set, update, subscribe };
     }
 
-    const tracks = writable(
-        [
-    		{
-    			name: 'Svelte',
-    			description: 'Learning svelte',
-    			links: [
-    				{
-    					name: 'Official tutorial',
-    					href: 'https://svelte.dev/tutorial/basics'
-    				},
-    				{
-    					name: 'Scotch IO',
-    					href: 'https://svelte.dev/tutorial/basics'
-    				}
-    			]
-    		},
-    		{
-    			name: 'Node',
-    			description: 'learning node',
-    			links: [
-    				{
-    					name: 'W3 Schools',
-    					href: 'https://www.w3schools.com/nodejs/'
-    				}
-    			]
-    		},	
-    	]
-    );
+    function createTracks() {
+    	const { subscribe, set, update } = writable(
+    		[
+    			{
+    				name: 'Svelte',
+    				description: 'Learning svelte',
+    				links: [
+    					{
+    						name: 'Official tutorial',
+    						href: 'https://svelte.dev/tutorial/basics'
+    					},
+    					{
+    						name: 'Scotch IO',
+    						href: 'https://svelte.dev/tutorial/basics'
+    					}
+    				]
+    			},
+    			{
+    				name: 'Node',
+    				description: 'learning node',
+    				links: [
+    					{
+    						name: 'W3 Schools',
+    						href: 'https://www.w3schools.com/nodejs/'
+    					}
+    				]
+    			},	
+    		]
+    	);
+
+    	return {
+    		subscribe,
+    		addNew: () => update(n => [...n, {
+    			name: 'New Track', 
+    			description: 'learn something new!', 
+    			links: []}]),
+    	}
+    }
+
+    const tracks = createTracks();
 
     /* src/App.svelte generated by Svelte v3.19.2 */
     const file$2 = "src/App.svelte";
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[4] = list[i];
     	return child_ctx;
     }
 
-    // (30:2) {#each $tracks as track}
+    // (41:2) {#each $tracks as track}
     function create_each_block$1(ctx) {
     	let current;
 
     	function click_handler(...args) {
-    		return /*click_handler*/ ctx[2](/*track*/ ctx[3], ...args);
+    		return /*click_handler*/ ctx[3](/*track*/ ctx[4], ...args);
     	}
 
     	const tracksummary = new TrackSummary({
     			props: {
-    				name: /*track*/ ctx[3].name,
-    				description: /*track*/ ctx[3].description
+    				name: /*track*/ ctx[4].name,
+    				description: /*track*/ ctx[4].description
     			},
     			$$inline: true
     		});
@@ -939,8 +997,8 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
     			const tracksummary_changes = {};
-    			if (dirty & /*$tracks*/ 2) tracksummary_changes.name = /*track*/ ctx[3].name;
-    			if (dirty & /*$tracks*/ 2) tracksummary_changes.description = /*track*/ ctx[3].description;
+    			if (dirty & /*$tracks*/ 2) tracksummary_changes.name = /*track*/ ctx[4].name;
+    			if (dirty & /*$tracks*/ 2) tracksummary_changes.description = /*track*/ ctx[4].description;
     			tracksummary.$set(tracksummary_changes);
     		},
     		i: function intro(local) {
@@ -961,15 +1019,15 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(30:2) {#each $tracks as track}",
+    		source: "(41:2) {#each $tracks as track}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (38:2) {#if selectedTrack}
-    function create_if_block(ctx) {
+    // (49:2) {#if selectedTrack}
+    function create_if_block$1(ctx) {
     	let current;
     	const track_spread_levels = [/*selectedTrack*/ ctx[0]];
     	let track_props = {};
@@ -1011,9 +1069,9 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block.name,
+    		id: create_if_block$1.name,
     		type: "if",
-    		source: "(38:2) {#if selectedTrack}",
+    		source: "(49:2) {#if selectedTrack}",
     		ctx
     	});
 
@@ -1023,9 +1081,13 @@ var app = (function () {
     function create_fragment$2(ctx) {
     	let main;
     	let div0;
-    	let t;
+    	let button;
+    	let t1;
     	let div1;
+    	let t2;
+    	let div2;
     	let current;
+    	let dispose;
     	let each_value = /*$tracks*/ ctx[1];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -1038,26 +1100,32 @@ var app = (function () {
     		each_blocks[i] = null;
     	});
 
-    	let if_block = /*selectedTrack*/ ctx[0] && create_if_block(ctx);
+    	let if_block = /*selectedTrack*/ ctx[0] && create_if_block$1(ctx);
 
     	const block = {
     		c: function create() {
     			main = element("main");
     			div0 = element("div");
+    			button = element("button");
+    			button.textContent = "new track";
+    			t1 = space();
+    			div1 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t = space();
-    			div1 = element("div");
+    			t2 = space();
+    			div2 = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div0, "class", "trackList svelte-1gk2mv7");
-    			add_location(div0, file$2, 28, 1, 443);
-    			attr_dev(div1, "class", "trackDetail svelte-1gk2mv7");
-    			add_location(div1, file$2, 36, 1, 635);
+    			add_location(button, file$2, 34, 2, 543);
+    			add_location(div0, file$2, 33, 1, 535);
+    			attr_dev(div1, "class", "trackList svelte-1gk2mv7");
+    			add_location(div1, file$2, 39, 1, 608);
+    			attr_dev(div2, "class", "trackDetail svelte-1gk2mv7");
+    			add_location(div2, file$2, 47, 1, 800);
     			attr_dev(main, "class", "svelte-1gk2mv7");
-    			add_location(main, file$2, 27, 0, 435);
+    			add_location(main, file$2, 32, 0, 527);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1065,15 +1133,19 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
     			append_dev(main, div0);
+    			append_dev(div0, button);
+    			append_dev(main, t1);
+    			append_dev(main, div1);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div0, null);
+    				each_blocks[i].m(div1, null);
     			}
 
-    			append_dev(main, t);
-    			append_dev(main, div1);
-    			if (if_block) if_block.m(div1, null);
+    			append_dev(main, t2);
+    			append_dev(main, div2);
+    			if (if_block) if_block.m(div2, null);
     			current = true;
+    			dispose = listen_dev(button, "click", /*addTrack*/ ctx[2], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*$tracks, selectedTrack*/ 3) {
@@ -1091,7 +1163,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div0, null);
+    						each_blocks[i].m(div1, null);
     					}
     				}
 
@@ -1109,10 +1181,10 @@ var app = (function () {
     					if_block.p(ctx, dirty);
     					transition_in(if_block, 1);
     				} else {
-    					if_block = create_if_block(ctx);
+    					if_block = create_if_block$1(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
-    					if_block.m(div1, null);
+    					if_block.m(div2, null);
     				}
     			} else if (if_block) {
     				group_outros();
@@ -1148,6 +1220,7 @@ var app = (function () {
     			if (detaching) detach_dev(main);
     			destroy_each(each_blocks, detaching);
     			if (if_block) if_block.d();
+    			dispose();
     		}
     	};
 
@@ -1167,6 +1240,12 @@ var app = (function () {
     	validate_store(tracks, "tracks");
     	component_subscribe($$self, tracks, $$value => $$invalidate(1, $tracks = $$value));
     	let selectedTrack;
+
+    	function addTrack() {
+    		tracks.addNew();
+    		$$invalidate(0, selectedTrack = $tracks[$tracks.length - 1]);
+    	}
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -1182,6 +1261,7 @@ var app = (function () {
     		TrackSummary,
     		tracks,
     		selectedTrack,
+    		addTrack,
     		$tracks
     	});
 
@@ -1193,7 +1273,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [selectedTrack, $tracks, click_handler];
+    	return [selectedTrack, $tracks, addTrack, click_handler];
     }
 
     class App extends SvelteComponentDev {

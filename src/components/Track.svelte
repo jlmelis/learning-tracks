@@ -7,10 +7,12 @@
 <div on:click>
 		<span>{name} ({description})</span>
 		<ul>
-			{#each links as link}
-				<li>
-					<a href='{link.href}'>{link.name}</a>
-				</li>
-			{/each}
+			{#if links}
+				{#each links as link}
+					<li>
+						<a href='{link.href}'>{link.name}</a>
+					</li>
+				{/each}
+			{/if}
 		</ul>
 	</div>
