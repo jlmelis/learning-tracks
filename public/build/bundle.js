@@ -968,7 +968,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (41:2) {#each $tracks as track}
+    // (52:2) {#each $tracks as track}
     function create_each_block$1(ctx) {
     	let current;
 
@@ -1019,14 +1019,14 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(41:2) {#each $tracks as track}",
+    		source: "(52:2) {#each $tracks as track}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:2) {#if selectedTrack}
+    // (60:2) {#if selectedTrack}
     function create_if_block$1(ctx) {
     	let current;
     	const track_spread_levels = [/*selectedTrack*/ ctx[0]];
@@ -1071,7 +1071,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(49:2) {#if selectedTrack}",
+    		source: "(60:2) {#if selectedTrack}",
     		ctx
     	});
 
@@ -1082,9 +1082,10 @@ var app = (function () {
     	let main;
     	let div0;
     	let button;
-    	let t1;
+    	let span;
+    	let t0;
     	let div1;
-    	let t2;
+    	let t1;
     	let div2;
     	let current;
     	let dispose;
@@ -1107,25 +1108,30 @@ var app = (function () {
     			main = element("main");
     			div0 = element("div");
     			button = element("button");
-    			button.textContent = "new track";
-    			t1 = space();
+    			span = element("span");
+    			t0 = space();
     			div1 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t2 = space();
+    			t1 = space();
     			div2 = element("div");
     			if (if_block) if_block.c();
-    			add_location(button, file$2, 34, 2, 543);
-    			add_location(div0, file$2, 33, 1, 535);
-    			attr_dev(div1, "class", "trackList svelte-1gk2mv7");
-    			add_location(div1, file$2, 39, 1, 608);
-    			attr_dev(div2, "class", "trackDetail svelte-1gk2mv7");
-    			add_location(div2, file$2, 47, 1, 800);
-    			attr_dev(main, "class", "svelte-1gk2mv7");
-    			add_location(main, file$2, 32, 0, 527);
+    			attr_dev(span, "class", "iconify");
+    			attr_dev(span, "data-icon", "ic:baseline-add-circle");
+    			attr_dev(span, "data-inline", "false");
+    			add_location(span, file$2, 44, 3, 677);
+    			attr_dev(button, "class", "svelte-9xi730");
+    			add_location(button, file$2, 43, 2, 645);
+    			add_location(div0, file$2, 41, 1, 634);
+    			attr_dev(div1, "class", "trackList svelte-9xi730");
+    			add_location(div1, file$2, 50, 1, 797);
+    			attr_dev(div2, "class", "trackDetail svelte-9xi730");
+    			add_location(div2, file$2, 58, 1, 989);
+    			attr_dev(main, "class", "svelte-9xi730");
+    			add_location(main, file$2, 40, 0, 626);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1134,14 +1140,15 @@ var app = (function () {
     			insert_dev(target, main, anchor);
     			append_dev(main, div0);
     			append_dev(div0, button);
-    			append_dev(main, t1);
+    			append_dev(button, span);
+    			append_dev(main, t0);
     			append_dev(main, div1);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(div1, null);
     			}
 
-    			append_dev(main, t2);
+    			append_dev(main, t1);
     			append_dev(main, div2);
     			if (if_block) if_block.m(div2, null);
     			current = true;

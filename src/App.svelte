@@ -28,12 +28,23 @@
 		justify-content: right;
 		width: 75%;
 	}
+
+	button {
+		margin: 5px;
+		font-size: 100%;
+		font-family: inherit;
+		border: 0;
+		padding: 0;
+	}
 </style>
 
 <main>
 	<div>
+		
 		<button on:click={addTrack}>
-			new track
+			<span class="iconify" 
+			  data-icon="ic:baseline-add-circle" 
+			  data-inline="false"></span>
 		</button>
 	</div>
 	
