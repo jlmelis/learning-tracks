@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "../../App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n\timport Track from './components/Track.svelte';\n\timport TrackSummary from './components/TrackSummary.svelte';\n\timport { tracks } from './stores.js';\n\t\n\tlet selectedTrack;\n</script>\n\n<style>\n\tmain {\n\t\tfont-family: sans-serif;\n    \tdisplay: flex;\n\t\talign-items: flex-start;\n\t\tjustify-content: left;\n    \tborder: 1px solid black;\n\t}\n\n\t.trackList {\n\t\tjustify-content:left;\n\t\twidth: 25%;\n\t\tborder: 1px solid black;\n\t}\n\n\t.trackDetail {\n\t\tjustify-content: right;\n\t\twidth: 75%;\n\t\tborder: 1px solid red;\n\t}\n</style>\n\n<main>\n\t<div class=\"trackList\">\n\t\t{#each $tracks as track}\n\t\t\t<TrackSummary on:click={() => selectedTrack = track} \n\t\t\t\tname={track.name} \n\t\t\t\tdescription={track.description} />\t\t\n\t\t{/each}\n\t</div>\n\n\t<div class=\"trackDetail\">\n\t\t{#if selectedTrack}\n\t\t\t<Track {...selectedTrack} />\n\t\t{/if}\n\t</div>\n\t\n</main>\n"
+  ],
+  "names": [],
+  "mappings": "AASC,IAAI,cAAC,CAAC,AACL,WAAW,CAAE,UAAU,CACpB,OAAO,CAAE,IAAI,CAChB,WAAW,CAAE,UAAU,CACvB,eAAe,CAAE,IAAI,CAClB,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,KAAK,AAC3B,CAAC,AAED,UAAU,cAAC,CAAC,AACX,gBAAgB,IAAI,CACpB,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,KAAK,AACxB,CAAC,AAED,YAAY,cAAC,CAAC,AACb,eAAe,CAAE,KAAK,CACtB,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,GAAG,AACtB,CAAC"
+}
