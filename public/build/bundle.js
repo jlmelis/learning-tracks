@@ -703,9 +703,11 @@ var app = (function () {
     			t1 = space();
     			div0 = element("div");
     			t2 = text(/*description*/ ctx[1]);
-    			add_location(span, file$1, 6, 4, 89);
-    			add_location(div0, file$1, 7, 4, 113);
-    			add_location(div1, file$1, 5, 0, 69);
+    			add_location(span, file$1, 17, 4, 250);
+    			attr_dev(div0, "class", "desription svelte-14f3stg");
+    			add_location(div0, file$1, 18, 4, 274);
+    			attr_dev(div1, "class", "summary svelte-14f3stg");
+    			add_location(div1, file$1, 16, 0, 214);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -908,7 +910,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (33:2) {#each $tracks as track}
+    // (30:2) {#each $tracks as track}
     function create_each_block$1(ctx) {
     	let current;
 
@@ -959,14 +961,14 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(33:2) {#each $tracks as track}",
+    		source: "(30:2) {#each $tracks as track}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (41:2) {#if selectedTrack}
+    // (38:2) {#if selectedTrack}
     function create_if_block(ctx) {
     	let current;
     	const track_spread_levels = [/*selectedTrack*/ ctx[0]];
@@ -1011,7 +1013,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(41:2) {#if selectedTrack}",
+    		source: "(38:2) {#if selectedTrack}",
     		ctx
     	});
 
@@ -1050,12 +1052,12 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div0, "class", "trackList svelte-nvkp7a");
-    			add_location(div0, file$2, 31, 1, 525);
-    			attr_dev(div1, "class", "trackDetail svelte-nvkp7a");
-    			add_location(div1, file$2, 39, 1, 717);
-    			attr_dev(main, "class", "svelte-nvkp7a");
-    			add_location(main, file$2, 30, 0, 517);
+    			attr_dev(div0, "class", "trackList svelte-1gk2mv7");
+    			add_location(div0, file$2, 28, 1, 443);
+    			attr_dev(div1, "class", "trackDetail svelte-1gk2mv7");
+    			add_location(div1, file$2, 36, 1, 635);
+    			attr_dev(main, "class", "svelte-1gk2mv7");
+    			add_location(main, file$2, 27, 0, 435);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");

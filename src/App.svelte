@@ -12,19 +12,16 @@
     	display: flex;
 		align-items: flex-start;
 		justify-content: left;
-    	border: 1px solid black;
 	}
 
 	.trackList {
 		justify-content:left;
 		width: 25%;
-		border: 1px solid black;
 	}
 
 	.trackDetail {
 		justify-content: right;
 		width: 75%;
-		border: 1px solid red;
 	}
 </style>
 

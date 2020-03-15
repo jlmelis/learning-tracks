@@ -3,9 +3,20 @@
     export let description;
 </script>
 
-<div on:click> 
+<style>
+    .summary {
+        margin-top: 10px;
+    }
+
+    .desription {
+        margin-left: 10px;
+        font-style: italic;
+    }
+</style>
+
+<div class="summary" on:click> 
     <span>{name}</span>
-    <div>
+    <div class="desription">
         {description}
     </div>
     
