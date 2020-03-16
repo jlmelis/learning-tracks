@@ -41,6 +41,7 @@ function createTracks() {
 			description: 'learn something new!', 
 			links: []}]),
 		removeTrack: (id) => update(n => n.filter(t => t.id !== id)),
+		updateTrack: (track) => update(n => n.map(t => t.id === track.id ? track : t))
 	}
 }
 

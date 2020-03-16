@@ -61,7 +61,7 @@
 			<span>My Tracks</span>
 			<button on:click={addTrack}>
 				<span class="iconify" 
-				  data-icon="ic:baseline-add-circle" 
+				  data-icon="ic:twotone-add-circle" 
 				  data-inline="false"></span>
 			</button>
 		</div>
@@ -78,7 +78,7 @@
 
 	<div class="trackDetail">
 		{#if selectedTrack}
-			<Track {...selectedTrack} />
+			<Track track={selectedTrack} />
 		{/if}
 	</div>
 	
