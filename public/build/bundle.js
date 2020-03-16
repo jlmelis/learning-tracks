@@ -86,6 +86,9 @@ var app = (function () {
     function children(element) {
         return Array.from(element.childNodes);
     }
+    function toggle_class(element, name, toggle) {
+        element.classList[toggle ? 'add' : 'remove'](name);
+    }
     function custom_event(type, detail) {
         const e = document.createEvent('CustomEvent');
         e.initCustomEvent(type, false, false, detail);
@@ -95,6 +98,25 @@ var app = (function () {
     let current_component;
     function set_current_component(component) {
         current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error(`Function called outside component initialization`);
+        return current_component;
+    }
+    function createEventDispatcher() {
+        const component = get_current_component();
+        return (type, detail) => {
+            const callbacks = component.$$.callbacks[type];
+            if (callbacks) {
+                // TODO are there situations where events could be dispatched
+                // in a server (non-DOM) environment?
+                const event = custom_event(type, detail);
+                callbacks.slice().forEach(fn => {
+                    fn.call(component, event);
+                });
+            }
+        };
     }
     // TODO figure out if we still want to support
     // shorthand events, or if we want to implement
@@ -438,11 +460,11 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i];
+    	child_ctx[5] = list[i];
     	return child_ctx;
     }
 
-    // (10:3) {#if links}
+    // (11:3) {#if links}
     function create_if_block(ctx) {
     	let each_1_anchor;
     	let each_value = /*links*/ ctx[2];
@@ -503,18 +525,18 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(10:3) {#if links}",
+    		source: "(11:3) {#if links}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (11:4) {#each links as link}
+    // (12:4) {#each links as link}
     function create_each_block(ctx) {
     	let li;
     	let a;
-    	let t0_value = /*link*/ ctx[4].name + "";
+    	let t0_value = /*link*/ ctx[5].name + "";
     	let t0;
     	let a_href_value;
     	let t1;
@@ -525,9 +547,9 @@ var app = (function () {
     			a = element("a");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(a, "href", a_href_value = /*link*/ ctx[4].href);
-    			add_location(a, file, 12, 6, 199);
-    			add_location(li, file, 11, 5, 188);
+    			attr_dev(a, "href", a_href_value = /*link*/ ctx[5].href);
+    			add_location(a, file, 13, 6, 215);
+    			add_location(li, file, 12, 5, 204);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -536,9 +558,9 @@ var app = (function () {
     			append_dev(li, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*links*/ 4 && t0_value !== (t0_value = /*link*/ ctx[4].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*links*/ 4 && t0_value !== (t0_value = /*link*/ ctx[5].name + "")) set_data_dev(t0, t0_value);
 
-    			if (dirty & /*links*/ 4 && a_href_value !== (a_href_value = /*link*/ ctx[4].href)) {
+    			if (dirty & /*links*/ 4 && a_href_value !== (a_href_value = /*link*/ ctx[5].href)) {
     				attr_dev(a, "href", a_href_value);
     			}
     		},
@@ -551,7 +573,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(11:4) {#each links as link}",
+    		source: "(12:4) {#each links as link}",
     		ctx
     	});
 
@@ -581,9 +603,9 @@ var app = (function () {
     			t4 = space();
     			ul = element("ul");
     			if (if_block) if_block.c();
-    			add_location(span, file, 7, 2, 99);
-    			add_location(ul, file, 8, 2, 137);
-    			add_location(div, file, 6, 0, 82);
+    			add_location(span, file, 8, 2, 115);
+    			add_location(ul, file, 9, 2, 153);
+    			add_location(div, file, 7, 0, 98);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -598,7 +620,7 @@ var app = (function () {
     			append_dev(div, t4);
     			append_dev(div, ul);
     			if (if_block) if_block.m(ul, null);
-    			dispose = listen_dev(div, "click", /*click_handler*/ ctx[3], false, false, false);
+    			dispose = listen_dev(div, "click", /*click_handler*/ ctx[4], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*name*/ 1) set_data_dev(t0, /*name*/ ctx[0]);
@@ -638,10 +660,11 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
+    	let { id } = $$props;
     	let { name } = $$props;
     	let { description } = $$props;
     	let { links } = $$props;
-    	const writable_props = ["name", "description", "links"];
+    	const writable_props = ["id", "name", "description", "links"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Track> was created with unknown prop '${key}'`);
@@ -655,14 +678,16 @@ var app = (function () {
     	}
 
     	$$self.$set = $$props => {
+    		if ("id" in $$props) $$invalidate(3, id = $$props.id);
     		if ("name" in $$props) $$invalidate(0, name = $$props.name);
     		if ("description" in $$props) $$invalidate(1, description = $$props.description);
     		if ("links" in $$props) $$invalidate(2, links = $$props.links);
     	};
 
-    	$$self.$capture_state = () => ({ name, description, links });
+    	$$self.$capture_state = () => ({ id, name, description, links });
 
     	$$self.$inject_state = $$props => {
+    		if ("id" in $$props) $$invalidate(3, id = $$props.id);
     		if ("name" in $$props) $$invalidate(0, name = $$props.name);
     		if ("description" in $$props) $$invalidate(1, description = $$props.description);
     		if ("links" in $$props) $$invalidate(2, links = $$props.links);
@@ -672,13 +697,13 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [name, description, links, click_handler];
+    	return [name, description, links, id, click_handler];
     }
 
     class Track extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { name: 0, description: 1, links: 2 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { id: 3, name: 0, description: 1, links: 2 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -689,6 +714,10 @@ var app = (function () {
 
     		const { ctx } = this.$$;
     		const props = options.props || {};
+
+    		if (/*id*/ ctx[3] === undefined && !("id" in props)) {
+    			console.warn("<Track> was created without expected prop 'id'");
+    		}
 
     		if (/*name*/ ctx[0] === undefined && !("name" in props)) {
     			console.warn("<Track> was created without expected prop 'name'");
@@ -701,6 +730,14 @@ var app = (function () {
     		if (/*links*/ ctx[2] === undefined && !("links" in props)) {
     			console.warn("<Track> was created without expected prop 'links'");
     		}
+    	}
+
+    	get id() {
+    		throw new Error("<Track>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set id(value) {
+    		throw new Error("<Track>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get name() {
@@ -729,53 +766,80 @@ var app = (function () {
     }
 
     /* src/components/TrackSummary.svelte generated by Svelte v3.19.2 */
-
     const file$1 = "src/components/TrackSummary.svelte";
 
     function create_fragment$1(ctx) {
-    	let div1;
-    	let span;
+    	let div2;
+    	let div0;
+    	let span0;
     	let t0;
     	let t1;
-    	let div0;
+    	let button;
+    	let span1;
     	let t2;
+    	let div1;
+    	let t3;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			div1 = element("div");
-    			span = element("span");
+    			div2 = element("div");
+    			div0 = element("div");
+    			span0 = element("span");
     			t0 = text(/*name*/ ctx[0]);
     			t1 = space();
-    			div0 = element("div");
-    			t2 = text(/*description*/ ctx[1]);
-    			add_location(span, file$1, 17, 4, 250);
-    			attr_dev(div0, "class", "desription svelte-14f3stg");
-    			add_location(div0, file$1, 18, 4, 274);
-    			attr_dev(div1, "class", "summary svelte-14f3stg");
-    			add_location(div1, file$1, 16, 0, 214);
+    			button = element("button");
+    			span1 = element("span");
+    			t2 = space();
+    			div1 = element("div");
+    			t3 = text(/*description*/ ctx[1]);
+    			add_location(span0, file$1, 50, 8, 774);
+    			attr_dev(span1, "class", "iconify svelte-1myshxt");
+    			attr_dev(span1, "data-icon", "ic:twotone-delete");
+    			attr_dev(span1, "data-inline", "false");
+    			add_location(span1, file$1, 52, 12, 846);
+    			attr_dev(button, "class", "svelte-1myshxt");
+    			add_location(button, file$1, 51, 8, 802);
+    			add_location(div0, file$1, 49, 4, 760);
+    			attr_dev(div1, "class", "desription svelte-1myshxt");
+    			add_location(div1, file$1, 57, 4, 993);
+    			attr_dev(div2, "class", "summary svelte-1myshxt");
+    			toggle_class(div2, "active", /*active*/ ctx[2]);
+    			add_location(div2, file$1, 48, 0, 711);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, span);
-    			append_dev(span, t0);
-    			append_dev(div1, t1);
-    			append_dev(div1, div0);
-    			append_dev(div0, t2);
-    			dispose = listen_dev(div1, "click", /*click_handler*/ ctx[2], false, false, false);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div0, span0);
+    			append_dev(span0, t0);
+    			append_dev(div0, t1);
+    			append_dev(div0, button);
+    			append_dev(button, span1);
+    			append_dev(div2, t2);
+    			append_dev(div2, div1);
+    			append_dev(div1, t3);
+
+    			dispose = [
+    				listen_dev(button, "click", /*removeTrack*/ ctx[3], false, false, false),
+    				listen_dev(div2, "click", /*click_handler*/ ctx[6], false, false, false)
+    			];
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*name*/ 1) set_data_dev(t0, /*name*/ ctx[0]);
-    			if (dirty & /*description*/ 2) set_data_dev(t2, /*description*/ ctx[1]);
+    			if (dirty & /*description*/ 2) set_data_dev(t3, /*description*/ ctx[1]);
+
+    			if (dirty & /*active*/ 4) {
+    				toggle_class(div2, "active", /*active*/ ctx[2]);
+    			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
-    			dispose();
+    			if (detaching) detach_dev(div2);
+    			run_all(dispose);
     		}
     	};
 
@@ -791,9 +855,17 @@ var app = (function () {
     }
 
     function instance$1($$self, $$props, $$invalidate) {
+    	let { id } = $$props;
     	let { name } = $$props;
     	let { description } = $$props;
-    	const writable_props = ["name", "description"];
+    	let { active } = $$props;
+    	const dispatch = createEventDispatcher();
+
+    	function removeTrack() {
+    		dispatch("removeTrack", { id });
+    	}
+
+    	const writable_props = ["id", "name", "description", "active"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<TrackSummary> was created with unknown prop '${key}'`);
@@ -807,28 +879,46 @@ var app = (function () {
     	}
 
     	$$self.$set = $$props => {
+    		if ("id" in $$props) $$invalidate(4, id = $$props.id);
     		if ("name" in $$props) $$invalidate(0, name = $$props.name);
     		if ("description" in $$props) $$invalidate(1, description = $$props.description);
+    		if ("active" in $$props) $$invalidate(2, active = $$props.active);
     	};
 
-    	$$self.$capture_state = () => ({ name, description });
+    	$$self.$capture_state = () => ({
+    		createEventDispatcher,
+    		id,
+    		name,
+    		description,
+    		active,
+    		dispatch,
+    		removeTrack
+    	});
 
     	$$self.$inject_state = $$props => {
+    		if ("id" in $$props) $$invalidate(4, id = $$props.id);
     		if ("name" in $$props) $$invalidate(0, name = $$props.name);
     		if ("description" in $$props) $$invalidate(1, description = $$props.description);
+    		if ("active" in $$props) $$invalidate(2, active = $$props.active);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [name, description, click_handler];
+    	return [name, description, active, removeTrack, id, dispatch, click_handler];
     }
 
     class TrackSummary extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { name: 0, description: 1 });
+
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
+    			id: 4,
+    			name: 0,
+    			description: 1,
+    			active: 2
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -840,6 +930,10 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
+    		if (/*id*/ ctx[4] === undefined && !("id" in props)) {
+    			console.warn("<TrackSummary> was created without expected prop 'id'");
+    		}
+
     		if (/*name*/ ctx[0] === undefined && !("name" in props)) {
     			console.warn("<TrackSummary> was created without expected prop 'name'");
     		}
@@ -847,6 +941,18 @@ var app = (function () {
     		if (/*description*/ ctx[1] === undefined && !("description" in props)) {
     			console.warn("<TrackSummary> was created without expected prop 'description'");
     		}
+
+    		if (/*active*/ ctx[2] === undefined && !("active" in props)) {
+    			console.warn("<TrackSummary> was created without expected prop 'active'");
+    		}
+    	}
+
+    	get id() {
+    		throw new Error("<TrackSummary>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set id(value) {
+    		throw new Error("<TrackSummary>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get name() {
@@ -862,6 +968,14 @@ var app = (function () {
     	}
 
     	set description(value) {
+    		throw new Error("<TrackSummary>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get active() {
+    		throw new Error("<TrackSummary>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set active(value) {
     		throw new Error("<TrackSummary>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -922,6 +1036,7 @@ var app = (function () {
     	const { subscribe, set, update } = writable(
     		[
     			{
+    				id: 0,
     				name: 'Svelte',
     				description: 'Learning svelte',
     				links: [
@@ -936,6 +1051,7 @@ var app = (function () {
     				]
     			},
     			{
+    				id: 1,
     				name: 'Node',
     				description: 'learning node',
     				links: [
@@ -951,9 +1067,11 @@ var app = (function () {
     	return {
     		subscribe,
     		addNew: () => update(n => [...n, {
+    			id: n.length,
     			name: 'New Track', 
     			description: 'learn something new!', 
     			links: []}]),
+    		removeTrack: (id) => update(n => n.filter(t => t.id !== id)),
     	}
     }
 
@@ -968,7 +1086,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (52:2) {#each $tracks as track}
+    // (69:2) {#each $tracks as track}
     function create_each_block$1(ctx) {
     	let current;
 
@@ -978,6 +1096,8 @@ var app = (function () {
 
     	const tracksummary = new TrackSummary({
     			props: {
+    				id: /*track*/ ctx[4].id,
+    				active: /*selectedTrack*/ ctx[0] === /*track*/ ctx[4],
     				name: /*track*/ ctx[4].name,
     				description: /*track*/ ctx[4].description
     			},
@@ -985,6 +1105,7 @@ var app = (function () {
     		});
 
     	tracksummary.$on("click", click_handler);
+    	tracksummary.$on("removeTrack", removeTrack);
 
     	const block = {
     		c: function create() {
@@ -997,6 +1118,8 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
     			const tracksummary_changes = {};
+    			if (dirty & /*$tracks*/ 2) tracksummary_changes.id = /*track*/ ctx[4].id;
+    			if (dirty & /*selectedTrack, $tracks*/ 3) tracksummary_changes.active = /*selectedTrack*/ ctx[0] === /*track*/ ctx[4];
     			if (dirty & /*$tracks*/ 2) tracksummary_changes.name = /*track*/ ctx[4].name;
     			if (dirty & /*$tracks*/ 2) tracksummary_changes.description = /*track*/ ctx[4].description;
     			tracksummary.$set(tracksummary_changes);
@@ -1019,14 +1142,14 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(52:2) {#each $tracks as track}",
+    		source: "(69:2) {#each $tracks as track}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (60:2) {#if selectedTrack}
+    // (80:2) {#if selectedTrack}
     function create_if_block$1(ctx) {
     	let current;
     	const track_spread_levels = [/*selectedTrack*/ ctx[0]];
@@ -1071,7 +1194,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(60:2) {#if selectedTrack}",
+    		source: "(80:2) {#if selectedTrack}",
     		ctx
     	});
 
@@ -1080,12 +1203,14 @@ var app = (function () {
 
     function create_fragment$2(ctx) {
     	let main;
-    	let div0;
-    	let button;
-    	let span;
-    	let t0;
     	let div1;
+    	let div0;
+    	let span0;
     	let t1;
+    	let button;
+    	let span1;
+    	let t2;
+    	let t3;
     	let div2;
     	let current;
     	let dispose;
@@ -1106,56 +1231,62 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			main = element("main");
-    			div0 = element("div");
-    			button = element("button");
-    			span = element("span");
-    			t0 = space();
     			div1 = element("div");
+    			div0 = element("div");
+    			span0 = element("span");
+    			span0.textContent = "My Tracks";
+    			t1 = space();
+    			button = element("button");
+    			span1 = element("span");
+    			t2 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t1 = space();
+    			t3 = space();
     			div2 = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(span, "class", "iconify");
-    			attr_dev(span, "data-icon", "ic:baseline-add-circle");
-    			attr_dev(span, "data-inline", "false");
-    			add_location(span, file$2, 44, 3, 677);
-    			attr_dev(button, "class", "svelte-9xi730");
-    			add_location(button, file$2, 43, 2, 645);
-    			add_location(div0, file$2, 41, 1, 634);
-    			attr_dev(div1, "class", "trackList svelte-9xi730");
-    			add_location(div1, file$2, 50, 1, 797);
-    			attr_dev(div2, "class", "trackDetail svelte-9xi730");
-    			add_location(div2, file$2, 58, 1, 989);
-    			attr_dev(main, "class", "svelte-9xi730");
-    			add_location(main, file$2, 40, 0, 626);
+    			add_location(span0, file$2, 60, 3, 889);
+    			attr_dev(span1, "class", "iconify svelte-1h7rmna");
+    			attr_dev(span1, "data-icon", "ic:baseline-add-circle");
+    			attr_dev(span1, "data-inline", "false");
+    			add_location(span1, file$2, 62, 4, 948);
+    			attr_dev(button, "class", "svelte-1h7rmna");
+    			add_location(button, file$2, 61, 3, 915);
+    			add_location(div0, file$2, 59, 2, 880);
+    			attr_dev(div1, "class", "trackList svelte-1h7rmna");
+    			add_location(div1, file$2, 58, 1, 854);
+    			attr_dev(div2, "class", "trackDetail svelte-1h7rmna");
+    			add_location(div2, file$2, 78, 1, 1326);
+    			attr_dev(main, "class", "svelte-1h7rmna");
+    			add_location(main, file$2, 57, 0, 845);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			append_dev(main, div0);
-    			append_dev(div0, button);
-    			append_dev(button, span);
-    			append_dev(main, t0);
     			append_dev(main, div1);
+    			append_dev(div1, div0);
+    			append_dev(div0, span0);
+    			append_dev(div0, t1);
+    			append_dev(div0, button);
+    			append_dev(button, span1);
+    			append_dev(div1, t2);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(div1, null);
     			}
 
-    			append_dev(main, t1);
+    			append_dev(main, t3);
     			append_dev(main, div2);
     			if (if_block) if_block.m(div2, null);
     			current = true;
     			dispose = listen_dev(button, "click", /*addTrack*/ ctx[2], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*$tracks, selectedTrack*/ 3) {
+    			if (dirty & /*$tracks, selectedTrack, removeTrack*/ 3) {
     				each_value = /*$tracks*/ ctx[1];
     				validate_each_argument(each_value);
     				let i;
@@ -1242,6 +1373,10 @@ var app = (function () {
     	return block;
     }
 
+    function removeTrack(event) {
+    	tracks.removeTrack(event.detail.id);
+    }
+
     function instance$2($$self, $$props, $$invalidate) {
     	let $tracks;
     	validate_store(tracks, "tracks");
@@ -1269,6 +1404,7 @@ var app = (function () {
     		tracks,
     		selectedTrack,
     		addTrack,
+    		removeTrack,
     		$tracks
     	});
 

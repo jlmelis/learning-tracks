@@ -9,6 +9,10 @@
 		tracks.addNew();
 		selectedTrack = $tracks[$tracks.length -1];
 	}
+
+	function removeTrack(event) {
+		tracks.removeTrack(event.detail.id);
+	}
 </script>
 
 <style>
@@ -21,6 +25,7 @@
 
 	.trackList {
 		justify-content:left;
+		margin-top: 10px;
 		width: 25%;
 	}
 
@@ -30,27 +35,42 @@
 	}
 
 	button {
-		margin: 5px;
 		font-size: 100%;
 		font-family: inherit;
 		border: 0;
 		padding: 0;
+		background: none;
 	}
+
+	.iconify {
+		cursor: pointer;
+		height: 1.5em;
+		width: 2em;
+		color: grey;
+	}
+
+	.iconify:hover {
+		color: black;
+	}
+
 </style>
 
-<main>
-	<div>
-		
-		<button on:click={addTrack}>
-			<span class="iconify" 
-			  data-icon="ic:baseline-add-circle" 
-			  data-inline="false"></span>
-		</button>
-	</div>
-	
+<main>	
 	<div class="trackList">
+		<div>
+			<span>My Tracks</span>
+			<button on:click={addTrack}>
+				<span class="iconify" 
+				  data-icon="ic:baseline-add-circle" 
+				  data-inline="false"></span>
+			</button>
+		</div>
+
 		{#each $tracks as track}
 			<TrackSummary on:click={() => selectedTrack = track} 
+				on:removeTrack={removeTrack}
+				id={track.id}
+				active={selectedTrack === track}
 				name={track.name} 
 				description={track.description} />		
 		{/each}

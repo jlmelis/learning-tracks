@@ -5,6 +5,7 @@ function createTracks() {
 	const { subscribe, set, update } = writable(
 		[
 			{
+				id: 0,
 				name: 'Svelte',
 				description: 'Learning svelte',
 				links: [
@@ -19,6 +20,7 @@ function createTracks() {
 				]
 			},
 			{
+				id: 1,
 				name: 'Node',
 				description: 'learning node',
 				links: [
@@ -34,9 +36,11 @@ function createTracks() {
 	return {
 		subscribe,
 		addNew: () => update(n => [...n, {
+			id: n.length,
 			name: 'New Track', 
 			description: 'learn something new!', 
 			links: []}]),
+		removeTrack: (id) => update(n => n.filter(t => t.id !== id)),
 	}
 }
 
