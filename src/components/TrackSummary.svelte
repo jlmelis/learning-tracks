@@ -36,24 +36,16 @@
 		background: none;
 	}
 
-    .iconify {
-		cursor: pointer;
-		color: grey;
-	}
-
-	.iconify:hover {
-		color: black;
-	}
 </style>
 
 <div class="summary" class:active on:click> 
     <div>
         <span>{name}</span>
-        <button on:click={removeTrack}>
-            <span class="iconify" 
-                data-icon="ic:twotone-delete" 
-                data-inline="false"></span>
-        </button>
+        <a href="#" class="button is-small" on:click={removeTrack}>
+            <i class="iconify" 
+                data-icon="fa-solid:trash" 
+                data-inline="false"></i>
+        </a>
     </div>
     <div class="desription">
         {description}

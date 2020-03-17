@@ -30,22 +30,7 @@
 </script>
 
 <style>
-	button {
-		font-size: 100%;
-		font-family: inherit;
-		border: 0;
-		padding: 0;
-		background: none;
-	}
-
-    .iconify {
-		cursor: pointer;
-		color: grey;
-	}
-
-	.iconify:hover {
-		color: black;
-	}
+	
 </style>
 
 <div on:click>
@@ -60,20 +45,20 @@
 					bind:value={track.description} 
 					on:keydown={onEnter} 
 					use:selectTextOnFocus/>
-				<button on:click="{updateTrack}">
-					<span class="iconify" 
-						data-icon="ic:twotone-check-circle" 
-						data-inline="false"></span>
-				</button>
+				<a href="#" class="button" on:click="{updateTrack}">
+					<i class="iconify" 
+						data-icon="fa-solid:check" 
+						data-inline="false"></i>
+				</a>
 			</div>			
 		{:else}
 			<span>{track.name}</span>
 			<span> ({track.description})</span>
-			<button on:click="{editTrack}">
-				<span class="iconify" 
-					data-icon="ic:twotone-edit" 
-					data-inline="false"></span>
-			</button>
+			<a href="#" class="button is-small" on:click="{editTrack}">
+				<i class="iconify" 
+					data-icon="fa-solid:pencil-alt" 
+					data-inline="false"></i>
+			</a>
 		{/if}
 	</div>
 		

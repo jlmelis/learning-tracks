@@ -1,11 +1,17 @@
 <script>
+	import { onMount } from 'svelte';
 	import Track from './components/Track.svelte';
 	import TrackSummary from './components/TrackSummary.svelte';
 	import { tracks } from './stores.js';
 	
+	
+	tracks.useLocalStorage();
+	
+
 	let selectedTrack;
 
 	function addTrack() {
+		console.log('changes are working');
 		tracks.addNew();
 		selectedTrack = $tracks[$tracks.length -1];
 	}
@@ -16,12 +22,7 @@
 </script>
 
 <style>
-	main {
-		font-family: sans-serif;
-    	display: flex;
-		align-items: flex-start;
-		justify-content: left;
-	}
+	
 
 	.trackList {
 		justify-content:left;
@@ -42,7 +43,7 @@
 		background: none;
 	}
 
-	.iconify {
+	/* .iconify {
 		cursor: pointer;
 		height: 1.5em;
 		width: 2em;
@@ -51,19 +52,19 @@
 
 	.iconify:hover {
 		color: black;
-	}
+	} */
 
 </style>
 
-<main>	
-	<div class="trackList">
+<main class="columns">	
+	<div class="column is-one-quarter">
 		<div>
 			<span>My Tracks</span>
-			<button on:click={addTrack}>
-				<span class="iconify" 
-				  data-icon="ic:twotone-add-circle" 
-				  data-inline="false"></span>
-			</button>
+			<a href="#" class="button is-small" on:click={addTrack}>
+				<i class="iconify" 
+				  data-icon="fa-solid:plus" 
+				  data-inline="false"></i>
+			</a>
 		</div>
 
 		{#each $tracks as track}
@@ -76,7 +77,7 @@
 		{/each}
 	</div>
 
-	<div class="trackDetail">
+	<div class="column">
 		{#if selectedTrack}
 			<Track track={selectedTrack} />
 		{/if}

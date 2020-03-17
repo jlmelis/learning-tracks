@@ -35,6 +35,18 @@ function createTracks() {
 
 	return {
 		subscribe,
+		set,
+		useLocalStorage: () => {
+			const json = localStorage.getItem('tracks');
+			
+			if (json) {
+				set(JSON.parse(json));
+			}
+
+			subscribe(current => {
+				localStorage.setItem('tracks', JSON.stringify(current));
+			});
+		},
 		addNew: () => update(n => [...n, {
 			id: n.length,
 			name: 'New Track', 
