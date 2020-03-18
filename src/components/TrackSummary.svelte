@@ -1,16 +1,10 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
-
+    
     export let id; 
     export let name;
     export let description;
     export let active;
 
-    const dispatch = createEventDispatcher();
-
-    function removeTrack() {
-        dispatch('removeTrack', {id: id});
-    }
 </script>
 
 <style>
@@ -41,11 +35,6 @@
 <div class="summary" class:active on:click> 
     <div>
         <span>{name}</span>
-        <a href="#" class="button is-small" on:click={removeTrack}>
-            <i class="iconify" 
-                data-icon="fa-solid:trash" 
-                data-inline="false"></i>
-        </a>
     </div>
     <div class="desription">
         {description}

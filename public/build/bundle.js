@@ -558,12 +558,13 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[11] = list[i];
+    	child_ctx[13] = list[i];
     	return child_ctx;
     }
 
-    // (54:2) {:else}
+    // (59:2) {:else}
     function create_else_block(ctx) {
+    	let div;
     	let span0;
     	let t0_value = /*track*/ ctx[0].name + "";
     	let t0;
@@ -574,12 +575,16 @@ var app = (function () {
     	let t3;
     	let t4;
     	let t5;
-    	let a;
-    	let i;
+    	let a0;
+    	let i0;
+    	let t6;
+    	let a1;
+    	let i1;
     	let dispose;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			span0 = element("span");
     			t0 = text(t0_value);
     			t1 = space();
@@ -588,42 +593,57 @@ var app = (function () {
     			t3 = text(t3_value);
     			t4 = text(")");
     			t5 = space();
-    			a = element("a");
-    			i = element("i");
-    			add_location(span0, file, 54, 3, 995);
-    			add_location(span1, file, 55, 3, 1024);
-    			attr_dev(i, "class", "iconify");
-    			attr_dev(i, "data-icon", "fa-solid:pencil-alt");
-    			attr_dev(i, "data-inline", "false");
-    			add_location(i, file, 57, 4, 1127);
-    			attr_dev(a, "href", "#");
-    			attr_dev(a, "class", "button is-small");
-    			add_location(a, file, 56, 3, 1063);
+    			a0 = element("a");
+    			i0 = element("i");
+    			t6 = space();
+    			a1 = element("a");
+    			i1 = element("i");
+    			add_location(span0, file, 60, 4, 1208);
+    			add_location(span1, file, 61, 4, 1238);
+    			attr_dev(i0, "class", "iconify");
+    			attr_dev(i0, "data-icon", "fa-solid:pencil-alt");
+    			attr_dev(i0, "data-inline", "false");
+    			add_location(i0, file, 63, 5, 1343);
+    			attr_dev(a0, "href", "#");
+    			attr_dev(a0, "class", "button is-small");
+    			add_location(a0, file, 62, 4, 1278);
+    			attr_dev(i1, "class", "iconify");
+    			attr_dev(i1, "data-icon", "fa-solid:trash");
+    			attr_dev(i1, "data-inline", "false");
+    			add_location(i1, file, 68, 5, 1511);
+    			attr_dev(a1, "href", "#");
+    			attr_dev(a1, "class", "button is-small");
+    			add_location(a1, file, 67, 4, 1446);
+    			add_location(div, file, 59, 3, 1198);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, span0, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, span0);
     			append_dev(span0, t0);
-    			insert_dev(target, t1, anchor);
-    			insert_dev(target, span1, anchor);
+    			append_dev(div, t1);
+    			append_dev(div, span1);
     			append_dev(span1, t2);
     			append_dev(span1, t3);
     			append_dev(span1, t4);
-    			insert_dev(target, t5, anchor);
-    			insert_dev(target, a, anchor);
-    			append_dev(a, i);
-    			dispose = listen_dev(a, "click", /*editTrack*/ ctx[3], false, false, false);
+    			append_dev(div, t5);
+    			append_dev(div, a0);
+    			append_dev(a0, i0);
+    			append_dev(div, t6);
+    			append_dev(div, a1);
+    			append_dev(a1, i1);
+
+    			dispose = [
+    				listen_dev(a0, "click", /*editTrack*/ ctx[4], false, false, false),
+    				listen_dev(a1, "click", /*removeTrack*/ ctx[3], false, false, false)
+    			];
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*track*/ 1 && t0_value !== (t0_value = /*track*/ ctx[0].name + "")) set_data_dev(t0, t0_value);
     			if (dirty & /*track*/ 1 && t3_value !== (t3_value = /*track*/ ctx[0].description + "")) set_data_dev(t3, t3_value);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(span0);
-    			if (detaching) detach_dev(t1);
-    			if (detaching) detach_dev(span1);
-    			if (detaching) detach_dev(t5);
-    			if (detaching) detach_dev(a);
-    			dispose();
+    			if (detaching) detach_dev(div);
+    			run_all(dispose);
     		}
     	};
 
@@ -631,14 +651,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(54:2) {:else}",
+    		source: "(59:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (38:2) {#if edit}
+    // (43:2) {#if edit}
     function create_if_block_1(ctx) {
     	let div;
     	let input0;
@@ -660,38 +680,40 @@ var app = (function () {
     			t1 = space();
     			a = element("a");
     			i = element("i");
-    			add_location(input0, file, 39, 4, 570);
-    			add_location(input1, file, 43, 4, 690);
+    			attr_dev(input0, "class", "input");
+    			add_location(input0, file, 44, 4, 745);
+    			attr_dev(input1, "class", "input");
+    			add_location(input1, file, 48, 4, 879);
     			attr_dev(i, "class", "iconify");
     			attr_dev(i, "data-icon", "fa-solid:check");
     			attr_dev(i, "data-inline", "false");
-    			add_location(i, file, 48, 5, 875);
+    			add_location(i, file, 53, 5, 1078);
     			attr_dev(a, "href", "#");
     			attr_dev(a, "class", "button");
-    			add_location(a, file, 47, 4, 817);
-    			add_location(div, file, 38, 3, 560);
+    			add_location(a, file, 52, 4, 1020);
+    			add_location(div, file, 43, 3, 735);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, input0);
-    			/*input0_binding*/ ctx[7](input0);
+    			/*input0_binding*/ ctx[9](input0);
     			set_input_value(input0, /*track*/ ctx[0].name);
     			append_dev(div, t0);
     			append_dev(div, input1);
-    			/*input1_binding*/ ctx[9](input1);
+    			/*input1_binding*/ ctx[11](input1);
     			set_input_value(input1, /*track*/ ctx[0].description);
     			append_dev(div, t1);
     			append_dev(div, a);
     			append_dev(a, i);
 
     			dispose = [
-    				listen_dev(input0, "input", /*input0_input_handler*/ ctx[8]),
-    				listen_dev(input0, "keydown", /*onEnter*/ ctx[5], false, false, false),
+    				listen_dev(input0, "input", /*input0_input_handler*/ ctx[10]),
+    				listen_dev(input0, "keydown", /*onEnter*/ ctx[6], false, false, false),
     				action_destroyer(selectTextOnFocus_action = selectTextOnFocus.call(null, input0)),
-    				listen_dev(input1, "input", /*input1_input_handler*/ ctx[10]),
-    				listen_dev(input1, "keydown", /*onEnter*/ ctx[5], false, false, false),
+    				listen_dev(input1, "input", /*input1_input_handler*/ ctx[12]),
+    				listen_dev(input1, "keydown", /*onEnter*/ ctx[6], false, false, false),
     				action_destroyer(selectTextOnFocus_action_1 = selectTextOnFocus.call(null, input1)),
-    				listen_dev(a, "click", /*updateTrack*/ ctx[4], false, false, false)
+    				listen_dev(a, "click", /*updateTrack*/ ctx[5], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
@@ -705,8 +727,8 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			/*input0_binding*/ ctx[7](null);
-    			/*input1_binding*/ ctx[9](null);
+    			/*input0_binding*/ ctx[9](null);
+    			/*input1_binding*/ ctx[11](null);
     			run_all(dispose);
     		}
     	};
@@ -715,14 +737,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(38:2) {#if edit}",
+    		source: "(43:2) {#if edit}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (66:2) {#if track.links}
+    // (105:2) {#if track.links}
     function create_if_block(ctx) {
     	let each_1_anchor;
     	let each_value = /*track*/ ctx[0].links;
@@ -783,47 +805,48 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(66:2) {#if track.links}",
+    		source: "(105:2) {#if track.links}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:3) {#each track.links as link}
+    // (106:3) {#each track.links as link}
     function create_each_block(ctx) {
-    	let li;
+    	let div;
     	let a;
-    	let t0_value = /*link*/ ctx[11].name + "";
+    	let t0_value = /*link*/ ctx[13].name + "";
     	let t0;
     	let a_href_value;
     	let t1;
 
     	const block = {
     		c: function create() {
-    			li = element("li");
+    			div = element("div");
     			a = element("a");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(a, "href", a_href_value = /*link*/ ctx[11].href);
-    			add_location(a, file, 68, 5, 1313);
-    			add_location(li, file, 67, 4, 1303);
+    			attr_dev(a, "href", a_href_value = /*link*/ ctx[13].href);
+    			add_location(a, file, 107, 5, 2463);
+    			attr_dev(div, "class", "panel-block");
+    			add_location(div, file, 106, 4, 2432);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, li, anchor);
-    			append_dev(li, a);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, a);
     			append_dev(a, t0);
-    			append_dev(li, t1);
+    			append_dev(div, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*track*/ 1 && t0_value !== (t0_value = /*link*/ ctx[11].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*track*/ 1 && t0_value !== (t0_value = /*link*/ ctx[13].name + "")) set_data_dev(t0, t0_value);
 
-    			if (dirty & /*track*/ 1 && a_href_value !== (a_href_value = /*link*/ ctx[11].href)) {
+    			if (dirty & /*track*/ 1 && a_href_value !== (a_href_value = /*link*/ ctx[13].href)) {
     				attr_dev(a, "href", a_href_value);
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(li);
+    			if (detaching) detach_dev(div);
     		}
     	};
 
@@ -831,7 +854,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(67:3) {#each track.links as link}",
+    		source: "(106:3) {#each track.links as link}",
     		ctx
     	});
 
@@ -842,7 +865,6 @@ var app = (function () {
     	let div1;
     	let div0;
     	let t;
-    	let ul;
     	let dispose;
 
     	function select_block_type(ctx, dirty) {
@@ -860,11 +882,11 @@ var app = (function () {
     			div0 = element("div");
     			if_block0.c();
     			t = space();
-    			ul = element("ul");
     			if (if_block1) if_block1.c();
-    			add_location(div0, file, 36, 1, 538);
-    			add_location(ul, file, 64, 1, 1243);
-    			add_location(div1, file, 35, 0, 522);
+    			attr_dev(div0, "class", "panel-heading");
+    			add_location(div0, file, 41, 1, 691);
+    			attr_dev(div1, "class", "panel");
+    			add_location(div1, file, 40, 0, 661);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -874,9 +896,8 @@ var app = (function () {
     			append_dev(div1, div0);
     			if_block0.m(div0, null);
     			append_dev(div1, t);
-    			append_dev(div1, ul);
-    			if (if_block1) if_block1.m(ul, null);
-    			dispose = listen_dev(div1, "click", /*click_handler*/ ctx[6], false, false, false);
+    			if (if_block1) if_block1.m(div1, null);
+    			dispose = listen_dev(div1, "click", /*click_handler*/ ctx[8], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
@@ -897,7 +918,7 @@ var app = (function () {
     				} else {
     					if_block1 = create_if_block(ctx);
     					if_block1.c();
-    					if_block1.m(ul, null);
+    					if_block1.m(div1, null);
     				}
     			} else if (if_block1) {
     				if_block1.d(1);
@@ -929,6 +950,11 @@ var app = (function () {
     	let { track } = $$props;
     	let edit;
     	let nameInput;
+    	const dispatch = createEventDispatcher();
+
+    	function removeTrack() {
+    		dispatch("removeTrack", { id: track.id });
+    	}
 
     	async function editTrack() {
     		$$invalidate(1, edit = true);
@@ -991,11 +1017,14 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		tick,
+    		createEventDispatcher,
     		tracks,
     		selectTextOnFocus,
     		track,
     		edit,
     		nameInput,
+    		dispatch,
+    		removeTrack,
     		editTrack,
     		updateTrack,
     		onEnter
@@ -1015,9 +1044,11 @@ var app = (function () {
     		track,
     		edit,
     		nameInput,
+    		removeTrack,
     		editTrack,
     		updateTrack,
     		onEnter,
+    		dispatch,
     		click_handler,
     		input0_binding,
     		input0_input_handler,
@@ -1056,6 +1087,7 @@ var app = (function () {
     }
 
     /* src/components/TrackSummary.svelte generated by Svelte v3.19.2 */
+
     const file$1 = "src/components/TrackSummary.svelte";
 
     function create_fragment$1(ctx) {
@@ -1064,11 +1096,8 @@ var app = (function () {
     	let span;
     	let t0;
     	let t1;
-    	let a;
-    	let i;
-    	let t2;
     	let div1;
-    	let t3;
+    	let t2;
     	let dispose;
 
     	const block = {
@@ -1078,25 +1107,15 @@ var app = (function () {
     			span = element("span");
     			t0 = text(/*name*/ ctx[0]);
     			t1 = space();
-    			a = element("a");
-    			i = element("i");
-    			t2 = space();
     			div1 = element("div");
-    			t3 = text(/*description*/ ctx[1]);
-    			add_location(span, file$1, 42, 8, 684);
-    			attr_dev(i, "class", "iconify");
-    			attr_dev(i, "data-icon", "fa-solid:trash");
-    			attr_dev(i, "data-inline", "false");
-    			add_location(i, file$1, 44, 12, 784);
-    			attr_dev(a, "href", "#");
-    			attr_dev(a, "class", "button is-small");
-    			add_location(a, file$1, 43, 8, 712);
-    			add_location(div0, file$1, 41, 4, 670);
+    			t2 = text(/*description*/ ctx[1]);
+    			add_location(span, file$1, 36, 8, 511);
+    			add_location(div0, file$1, 35, 4, 497);
     			attr_dev(div1, "class", "desription svelte-1adn88e");
-    			add_location(div1, file$1, 49, 4, 917);
+    			add_location(div1, file$1, 38, 4, 546);
     			attr_dev(div2, "class", "summary svelte-1adn88e");
     			toggle_class(div2, "active", /*active*/ ctx[2]);
-    			add_location(div2, file$1, 40, 0, 621);
+    			add_location(div2, file$1, 34, 0, 448);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1106,21 +1125,14 @@ var app = (function () {
     			append_dev(div2, div0);
     			append_dev(div0, span);
     			append_dev(span, t0);
-    			append_dev(div0, t1);
-    			append_dev(div0, a);
-    			append_dev(a, i);
-    			append_dev(div2, t2);
+    			append_dev(div2, t1);
     			append_dev(div2, div1);
-    			append_dev(div1, t3);
-
-    			dispose = [
-    				listen_dev(a, "click", /*removeTrack*/ ctx[3], false, false, false),
-    				listen_dev(div2, "click", /*click_handler*/ ctx[6], false, false, false)
-    			];
+    			append_dev(div1, t2);
+    			dispose = listen_dev(div2, "click", /*click_handler*/ ctx[4], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*name*/ 1) set_data_dev(t0, /*name*/ ctx[0]);
-    			if (dirty & /*description*/ 2) set_data_dev(t3, /*description*/ ctx[1]);
+    			if (dirty & /*description*/ 2) set_data_dev(t2, /*description*/ ctx[1]);
 
     			if (dirty & /*active*/ 4) {
     				toggle_class(div2, "active", /*active*/ ctx[2]);
@@ -1130,7 +1142,7 @@ var app = (function () {
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div2);
-    			run_all(dispose);
+    			dispose();
     		}
     	};
 
@@ -1150,12 +1162,6 @@ var app = (function () {
     	let { name } = $$props;
     	let { description } = $$props;
     	let { active } = $$props;
-    	const dispatch = createEventDispatcher();
-
-    	function removeTrack() {
-    		dispatch("removeTrack", { id });
-    	}
-
     	const writable_props = ["id", "name", "description", "active"];
 
     	Object.keys($$props).forEach(key => {
@@ -1170,24 +1176,16 @@ var app = (function () {
     	}
 
     	$$self.$set = $$props => {
-    		if ("id" in $$props) $$invalidate(4, id = $$props.id);
+    		if ("id" in $$props) $$invalidate(3, id = $$props.id);
     		if ("name" in $$props) $$invalidate(0, name = $$props.name);
     		if ("description" in $$props) $$invalidate(1, description = $$props.description);
     		if ("active" in $$props) $$invalidate(2, active = $$props.active);
     	};
 
-    	$$self.$capture_state = () => ({
-    		createEventDispatcher,
-    		id,
-    		name,
-    		description,
-    		active,
-    		dispatch,
-    		removeTrack
-    	});
+    	$$self.$capture_state = () => ({ id, name, description, active });
 
     	$$self.$inject_state = $$props => {
-    		if ("id" in $$props) $$invalidate(4, id = $$props.id);
+    		if ("id" in $$props) $$invalidate(3, id = $$props.id);
     		if ("name" in $$props) $$invalidate(0, name = $$props.name);
     		if ("description" in $$props) $$invalidate(1, description = $$props.description);
     		if ("active" in $$props) $$invalidate(2, active = $$props.active);
@@ -1197,7 +1195,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [name, description, active, removeTrack, id, dispatch, click_handler];
+    	return [name, description, active, id, click_handler];
     }
 
     class TrackSummary extends SvelteComponentDev {
@@ -1205,7 +1203,7 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
-    			id: 4,
+    			id: 3,
     			name: 0,
     			description: 1,
     			active: 2
@@ -1221,7 +1219,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*id*/ ctx[4] === undefined && !("id" in props)) {
+    		if (/*id*/ ctx[3] === undefined && !("id" in props)) {
     			console.warn("<TrackSummary> was created without expected prop 'id'");
     		}
 
@@ -1278,89 +1276,213 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i];
+    	child_ctx[7] = list[i];
     	return child_ctx;
     }
 
-    // (40:3) {#each $tracks as track}
-    function create_each_block$1(ctx) {
+    // (45:1) {:else}
+    function create_else_block$1(ctx) {
+    	let div2;
+    	let div0;
+    	let span0;
+    	let t1;
+    	let a;
+    	let i0;
+    	let t2;
+    	let div1;
+    	let p;
+    	let input;
+    	let t3;
+    	let span1;
+    	let i1;
+    	let t4;
     	let current;
+    	let dispose;
+    	let each_value = /*$tracks*/ ctx[2];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
 
-    	function click_handler(...args) {
-    		return /*click_handler*/ ctx[3](/*track*/ ctx[4], ...args);
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
     	}
 
-    	const tracksummary = new TrackSummary({
-    			props: {
-    				id: /*track*/ ctx[4].id,
-    				active: /*selectedTrack*/ ctx[0] === /*track*/ ctx[4],
-    				name: /*track*/ ctx[4].name,
-    				description: /*track*/ ctx[4].description
-    			},
-    			$$inline: true
-    		});
-
-    	tracksummary.$on("click", click_handler);
-    	tracksummary.$on("removeTrack", removeTrack);
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
 
     	const block = {
     		c: function create() {
-    			create_component(tracksummary.$$.fragment);
+    			div2 = element("div");
+    			div0 = element("div");
+    			span0 = element("span");
+    			span0.textContent = "Tracks";
+    			t1 = space();
+    			a = element("a");
+    			i0 = element("i");
+    			t2 = space();
+    			div1 = element("div");
+    			p = element("p");
+    			input = element("input");
+    			t3 = space();
+    			span1 = element("span");
+    			i1 = element("i");
+    			t4 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			add_location(span0, file$2, 47, 4, 952);
+    			attr_dev(i0, "class", "iconify");
+    			attr_dev(i0, "data-icon", "fa-solid:plus");
+    			attr_dev(i0, "data-inline", "false");
+    			attr_dev(i0, "aria-hidden", "true");
+    			add_location(i0, file$2, 49, 5, 1038);
+    			attr_dev(a, "href", "#");
+    			attr_dev(a, "class", "button is-small");
+    			add_location(a, file$2, 48, 4, 976);
+    			attr_dev(div0, "class", "panel-heading");
+    			add_location(div0, file$2, 46, 3, 920);
+    			attr_dev(input, "class", "input");
+    			attr_dev(input, "type", "text");
+    			attr_dev(input, "placeholder", "Search");
+    			add_location(input, file$2, 58, 5, 1244);
+    			attr_dev(i1, "class", "iconify");
+    			attr_dev(i1, "data-icon", "fa-solid:search");
+    			attr_dev(i1, "data-inline", "false");
+    			attr_dev(i1, "aria-hidden", "true");
+    			add_location(i1, file$2, 60, 6, 1338);
+    			attr_dev(span1, "class", "icon is-left");
+    			add_location(span1, file$2, 59, 5, 1304);
+    			attr_dev(p, "class", "control has-icons-left");
+    			add_location(p, file$2, 57, 4, 1204);
+    			attr_dev(div1, "class", "panel-block");
+    			add_location(div1, file$2, 56, 3, 1174);
+    			attr_dev(div2, "class", "panel");
+    			add_location(div2, file$2, 45, 2, 897);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(tracksummary, target, anchor);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div0, span0);
+    			append_dev(div0, t1);
+    			append_dev(div0, a);
+    			append_dev(a, i0);
+    			append_dev(div2, t2);
+    			append_dev(div2, div1);
+    			append_dev(div1, p);
+    			append_dev(p, input);
+    			append_dev(p, t3);
+    			append_dev(p, span1);
+    			append_dev(span1, i1);
+    			append_dev(div2, t4);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div2, null);
+    			}
+
     			current = true;
+    			dispose = listen_dev(a, "click", /*addTrack*/ ctx[3], false, false, false);
     		},
-    		p: function update(new_ctx, dirty) {
-    			ctx = new_ctx;
-    			const tracksummary_changes = {};
-    			if (dirty & /*$tracks*/ 2) tracksummary_changes.id = /*track*/ ctx[4].id;
-    			if (dirty & /*selectedTrack, $tracks*/ 3) tracksummary_changes.active = /*selectedTrack*/ ctx[0] === /*track*/ ctx[4];
-    			if (dirty & /*$tracks*/ 2) tracksummary_changes.name = /*track*/ ctx[4].name;
-    			if (dirty & /*$tracks*/ 2) tracksummary_changes.description = /*track*/ ctx[4].description;
-    			tracksummary.$set(tracksummary_changes);
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*$tracks, selectedTrack, selectTrack*/ 37) {
+    				each_value = /*$tracks*/ ctx[2];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div2, null);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(tracksummary.$$.fragment, local);
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(tracksummary.$$.fragment, local);
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(tracksummary, detaching);
+    			if (detaching) detach_dev(div2);
+    			destroy_each(each_blocks, detaching);
+    			dispose();
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block$1.name,
-    		type: "each",
-    		source: "(40:3) {#each $tracks as track}",
+    		id: create_else_block$1.name,
+    		type: "else",
+    		source: "(45:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (51:3) {#if selectedTrack}
+    // (37:1) {#if !showTracksPanel}
     function create_if_block$1(ctx) {
+    	let div;
+    	let a;
+    	let t1;
     	let current;
+    	let dispose;
 
     	const track = new Track({
     			props: { track: /*selectedTrack*/ ctx[0] },
     			$$inline: true
     		});
 
+    	track.$on("removeTrack", /*removeTrack*/ ctx[4]);
+
     	const block = {
     		c: function create() {
+    			div = element("div");
+    			a = element("a");
+    			a.textContent = "Pick track";
+    			t1 = space();
     			create_component(track.$$.fragment);
+    			attr_dev(a, "href", "#");
+    			attr_dev(a, "class", "button");
+    			add_location(a, file$2, 38, 3, 715);
+    			add_location(div, file$2, 37, 2, 706);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(track, target, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, a);
+    			append_dev(div, t1);
+    			mount_component(track, div, null);
     			current = true;
+    			dispose = listen_dev(a, "click", /*click_handler*/ ctx[6], false, false, false);
     		},
     		p: function update(ctx, dirty) {
     			const track_changes = {};
@@ -1377,7 +1499,9 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(track, detaching);
+    			if (detaching) detach_dev(div);
+    			destroy_component(track);
+    			dispose();
     		}
     	};
 
@@ -1385,7 +1509,76 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(51:3) {#if selectedTrack}",
+    		source: "(37:1) {#if !showTracksPanel}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (69:3) {#each $tracks as track}
+    function create_each_block$1(ctx) {
+    	let div;
+    	let t;
+    	let current;
+
+    	const tracksummary = new TrackSummary({
+    			props: {
+    				id: /*track*/ ctx[7].id,
+    				active: /*selectedTrack*/ ctx[0] === /*track*/ ctx[7],
+    				name: /*track*/ ctx[7].name,
+    				description: /*track*/ ctx[7].description
+    			},
+    			$$inline: true
+    		});
+
+    	tracksummary.$on("click", function () {
+    		if (is_function(/*selectTrack*/ ctx[5](/*track*/ ctx[7]))) /*selectTrack*/ ctx[5](/*track*/ ctx[7]).apply(this, arguments);
+    	});
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(tracksummary.$$.fragment);
+    			t = space();
+    			attr_dev(div, "class", "panel-block");
+    			add_location(div, file$2, 69, 4, 1515);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(tracksummary, div, null);
+    			append_dev(div, t);
+    			current = true;
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			const tracksummary_changes = {};
+    			if (dirty & /*$tracks*/ 4) tracksummary_changes.id = /*track*/ ctx[7].id;
+    			if (dirty & /*selectedTrack, $tracks*/ 5) tracksummary_changes.active = /*selectedTrack*/ ctx[0] === /*track*/ ctx[7];
+    			if (dirty & /*$tracks*/ 4) tracksummary_changes.name = /*track*/ ctx[7].name;
+    			if (dirty & /*$tracks*/ 4) tracksummary_changes.description = /*track*/ ctx[7].description;
+    			tracksummary.$set(tracksummary_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(tracksummary.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(tracksummary.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(tracksummary);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(69:3) {#each $tracks as track}",
     		ctx
     	});
 
@@ -1393,169 +1586,73 @@ var app = (function () {
     }
 
     function create_fragment$2(ctx) {
-    	let section;
-    	let div3;
-    	let div1;
-    	let div0;
-    	let span;
-    	let t1;
-    	let a;
-    	let i;
-    	let t2;
-    	let t3;
-    	let div2;
+    	let div;
+    	let current_block_type_index;
+    	let if_block;
     	let current;
-    	let dispose;
-    	let each_value = /*$tracks*/ ctx[1];
-    	validate_each_argument(each_value);
-    	let each_blocks = [];
+    	const if_block_creators = [create_if_block$1, create_else_block$1];
+    	const if_blocks = [];
 
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	function select_block_type(ctx, dirty) {
+    		if (!/*showTracksPanel*/ ctx[1]) return 0;
+    		return 1;
     	}
 
-    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
-    		each_blocks[i] = null;
-    	});
-
-    	let if_block = /*selectedTrack*/ ctx[0] && create_if_block$1(ctx);
+    	current_block_type_index = select_block_type(ctx);
+    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
     	const block = {
     		c: function create() {
-    			section = element("section");
-    			div3 = element("div");
-    			div1 = element("div");
-    			div0 = element("div");
-    			span = element("span");
-    			span.textContent = "My Tracks";
-    			t1 = space();
-    			a = element("a");
-    			i = element("i");
-    			t2 = space();
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			t3 = space();
-    			div2 = element("div");
-    			if (if_block) if_block.c();
-    			add_location(span, file$2, 31, 4, 583);
-    			attr_dev(i, "class", "iconify");
-    			attr_dev(i, "data-icon", "fa-solid:plus");
-    			attr_dev(i, "data-inline", "false");
-    			add_location(i, file$2, 33, 5, 672);
-    			attr_dev(a, "href", "#");
-    			attr_dev(a, "class", "button is-small");
-    			add_location(a, file$2, 32, 4, 610);
-    			add_location(div0, file$2, 30, 3, 573);
-    			attr_dev(div1, "class", "column is-one-quarter");
-    			add_location(div1, file$2, 29, 2, 534);
-    			attr_dev(div2, "class", "column");
-    			add_location(div2, file$2, 49, 2, 1046);
-    			attr_dev(div3, "class", "columns");
-    			add_location(div3, file$2, 28, 1, 509);
-    			attr_dev(section, "class", "section");
-    			add_location(section, file$2, 27, 0, 482);
+    			div = element("div");
+    			if_block.c();
+    			attr_dev(div, "class", "container is-fluid");
+    			add_location(div, file$2, 35, 0, 647);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, section, anchor);
-    			append_dev(section, div3);
-    			append_dev(div3, div1);
-    			append_dev(div1, div0);
-    			append_dev(div0, span);
-    			append_dev(div0, t1);
-    			append_dev(div0, a);
-    			append_dev(a, i);
-    			append_dev(div1, t2);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div1, null);
-    			}
-
-    			append_dev(div3, t3);
-    			append_dev(div3, div2);
-    			if (if_block) if_block.m(div2, null);
+    			insert_dev(target, div, anchor);
+    			if_blocks[current_block_type_index].m(div, null);
     			current = true;
-    			dispose = listen_dev(a, "click", /*addTrack*/ ctx[2], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*$tracks, selectedTrack, removeTrack*/ 3) {
-    				each_value = /*$tracks*/ ctx[1];
-    				validate_each_argument(each_value);
-    				let i;
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(ctx);
 
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context$1(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    						transition_in(each_blocks[i], 1);
-    					} else {
-    						each_blocks[i] = create_each_block$1(child_ctx);
-    						each_blocks[i].c();
-    						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div1, null);
-    					}
-    				}
-
+    			if (current_block_type_index === previous_block_index) {
+    				if_blocks[current_block_type_index].p(ctx, dirty);
+    			} else {
     				group_outros();
 
-    				for (i = each_value.length; i < each_blocks.length; i += 1) {
-    					out(i);
-    				}
-
-    				check_outros();
-    			}
-
-    			if (/*selectedTrack*/ ctx[0]) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
-    					transition_in(if_block, 1);
-    				} else {
-    					if_block = create_if_block$1(ctx);
-    					if_block.c();
-    					transition_in(if_block, 1);
-    					if_block.m(div2, null);
-    				}
-    			} else if (if_block) {
-    				group_outros();
-
-    				transition_out(if_block, 1, 1, () => {
-    					if_block = null;
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
     				});
 
     				check_outros();
+    				if_block = if_blocks[current_block_type_index];
+
+    				if (!if_block) {
+    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block.c();
+    				}
+
+    				transition_in(if_block, 1);
+    				if_block.m(div, null);
     			}
     		},
     		i: function intro(local) {
     			if (current) return;
-
-    			for (let i = 0; i < each_value.length; i += 1) {
-    				transition_in(each_blocks[i]);
-    			}
-
     			transition_in(if_block);
     			current = true;
     		},
     		o: function outro(local) {
-    			each_blocks = each_blocks.filter(Boolean);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				transition_out(each_blocks[i]);
-    			}
-
     			transition_out(if_block);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(section);
-    			destroy_each(each_blocks, detaching);
-    			if (if_block) if_block.d();
-    			dispose();
+    			if (detaching) detach_dev(div);
+    			if_blocks[current_block_type_index].d();
     		}
     	};
 
@@ -1570,21 +1667,29 @@ var app = (function () {
     	return block;
     }
 
-    function removeTrack(event) {
-    	tracks.removeTrack(event.detail.id);
-    }
-
     function instance$2($$self, $$props, $$invalidate) {
     	let $tracks;
     	validate_store(tracks, "tracks");
-    	component_subscribe($$self, tracks, $$value => $$invalidate(1, $tracks = $$value));
+    	component_subscribe($$self, tracks, $$value => $$invalidate(2, $tracks = $$value));
     	tracks.useLocalStorage();
     	let selectedTrack;
+    	let showTracksPanel = true;
 
     	function addTrack() {
     		console.log("changes are working");
     		tracks.addNew();
     		$$invalidate(0, selectedTrack = $tracks[$tracks.length - 1]);
+    	}
+
+    	function removeTrack(event) {
+    		$$invalidate(0, selectedTrack = {});
+    		tracks.removeTrack(event.detail.id);
+    		$$invalidate(1, showTracksPanel = true);
+    	}
+
+    	function selectTrack(track) {
+    		$$invalidate(0, selectedTrack = track);
+    		$$invalidate(1, showTracksPanel = false);
     	}
 
     	const writable_props = [];
@@ -1595,7 +1700,7 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("App", $$slots, []);
-    	const click_handler = track => $$invalidate(0, selectedTrack = track);
+    	const click_handler = () => $$invalidate(1, showTracksPanel = true);
 
     	$$self.$capture_state = () => ({
     		onMount,
@@ -1603,20 +1708,31 @@ var app = (function () {
     		TrackSummary,
     		tracks,
     		selectedTrack,
+    		showTracksPanel,
     		addTrack,
     		removeTrack,
+    		selectTrack,
     		$tracks
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("selectedTrack" in $$props) $$invalidate(0, selectedTrack = $$props.selectedTrack);
+    		if ("showTracksPanel" in $$props) $$invalidate(1, showTracksPanel = $$props.showTracksPanel);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [selectedTrack, $tracks, addTrack, click_handler];
+    	return [
+    		selectedTrack,
+    		showTracksPanel,
+    		$tracks,
+    		addTrack,
+    		removeTrack,
+    		selectTrack,
+    		click_handler
+    	];
     }
 
     class App extends SvelteComponentDev {
@@ -1634,7 +1750,7 @@ var app = (function () {
     }
 
     var app = new App({
-    	target: document.body
+    	target: document.getElementById('app')
     });
 
     return app;
