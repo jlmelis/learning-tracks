@@ -1282,7 +1282,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (70:2) {#each $tracks as track}
+    // (40:3) {#each $tracks as track}
     function create_each_block$1(ctx) {
     	let current;
 
@@ -1338,14 +1338,14 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(70:2) {#each $tracks as track}",
+    		source: "(40:3) {#each $tracks as track}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (81:2) {#if selectedTrack}
+    // (51:3) {#if selectedTrack}
     function create_if_block$1(ctx) {
     	let current;
 
@@ -1385,7 +1385,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(81:2) {#if selectedTrack}",
+    		source: "(51:3) {#if selectedTrack}",
     		ctx
     	});
 
@@ -1393,7 +1393,8 @@ var app = (function () {
     }
 
     function create_fragment$2(ctx) {
-    	let main;
+    	let section;
+    	let div3;
     	let div1;
     	let div0;
     	let span;
@@ -1421,7 +1422,8 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			main = element("main");
+    			section = element("section");
+    			div3 = element("div");
     			div1 = element("div");
     			div0 = element("div");
     			span = element("span");
@@ -1438,28 +1440,31 @@ var app = (function () {
     			t3 = space();
     			div2 = element("div");
     			if (if_block) if_block.c();
-    			add_location(span, file$2, 61, 3, 920);
+    			add_location(span, file$2, 31, 4, 583);
     			attr_dev(i, "class", "iconify");
     			attr_dev(i, "data-icon", "fa-solid:plus");
     			attr_dev(i, "data-inline", "false");
-    			add_location(i, file$2, 63, 4, 1007);
+    			add_location(i, file$2, 33, 5, 672);
     			attr_dev(a, "href", "#");
     			attr_dev(a, "class", "button is-small");
-    			add_location(a, file$2, 62, 3, 946);
-    			add_location(div0, file$2, 60, 2, 911);
+    			add_location(a, file$2, 32, 4, 610);
+    			add_location(div0, file$2, 30, 3, 573);
     			attr_dev(div1, "class", "column is-one-quarter");
-    			add_location(div1, file$2, 59, 1, 873);
+    			add_location(div1, file$2, 29, 2, 534);
     			attr_dev(div2, "class", "column");
-    			add_location(div2, file$2, 79, 1, 1365);
-    			attr_dev(main, "class", "columns");
-    			add_location(main, file$2, 58, 0, 848);
+    			add_location(div2, file$2, 49, 2, 1046);
+    			attr_dev(div3, "class", "columns");
+    			add_location(div3, file$2, 28, 1, 509);
+    			attr_dev(section, "class", "section");
+    			add_location(section, file$2, 27, 0, 482);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, main, anchor);
-    			append_dev(main, div1);
+    			insert_dev(target, section, anchor);
+    			append_dev(section, div3);
+    			append_dev(div3, div1);
     			append_dev(div1, div0);
     			append_dev(div0, span);
     			append_dev(div0, t1);
@@ -1471,8 +1476,8 @@ var app = (function () {
     				each_blocks[i].m(div1, null);
     			}
 
-    			append_dev(main, t3);
-    			append_dev(main, div2);
+    			append_dev(div3, t3);
+    			append_dev(div3, div2);
     			if (if_block) if_block.m(div2, null);
     			current = true;
     			dispose = listen_dev(a, "click", /*addTrack*/ ctx[2], false, false, false);
@@ -1547,7 +1552,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(main);
+    			if (detaching) detach_dev(section);
     			destroy_each(each_blocks, detaching);
     			if (if_block) if_block.d();
     			dispose();

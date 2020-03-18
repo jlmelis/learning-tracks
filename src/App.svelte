@@ -23,64 +23,36 @@
 
 <style>
 	
-
-	.trackList {
-		justify-content:left;
-		margin-top: 10px;
-		width: 25%;
-	}
-
-	.trackDetail {
-		justify-content: right;
-		width: 75%;
-	}
-
-	button {
-		font-size: 100%;
-		font-family: inherit;
-		border: 0;
-		padding: 0;
-		background: none;
-	}
-
-	/* .iconify {
-		cursor: pointer;
-		height: 1.5em;
-		width: 2em;
-		color: grey;
-	}
-
-	.iconify:hover {
-		color: black;
-	} */
-
 </style>
 
-<main class="columns">	
-	<div class="column is-one-quarter">
-		<div>
-			<span>My Tracks</span>
-			<a href="#" class="button is-small" on:click={addTrack}>
-				<i class="iconify" 
-				  data-icon="fa-solid:plus" 
-				  data-inline="false"></i>
-			</a>
-		</div>
-
-		{#each $tracks as track}
-			<TrackSummary on:click={() => selectedTrack = track} 
-				on:removeTrack={removeTrack}
-				id={track.id}
-				active={selectedTrack === track}
-				name={track.name} 
-				description={track.description} />		
-		{/each}
-	</div>
-
-	<div class="column">
-		{#if selectedTrack}
-			<Track track={selectedTrack} />
-		{/if}
-	</div>
+<section class="section">
+	<div class="columns">	
+		<div class="column is-one-quarter">
+			<div>
+				<span>My Tracks</span>
+				<a href="#" class="button is-small" on:click={addTrack}>
+					<i class="iconify" 
+					  data-icon="fa-solid:plus" 
+					  data-inline="false"></i>
+				</a>
+			</div>
 	
-</main>
+			{#each $tracks as track}
+				<TrackSummary on:click={() => selectedTrack = track} 
+					on:removeTrack={removeTrack}
+					id={track.id}
+					active={selectedTrack === track}
+					name={track.name} 
+					description={track.description} />		
+			{/each}
+		</div>
+	
+		<div class="column">
+			{#if selectedTrack}
+				<Track track={selectedTrack} />
+			{/if}
+		</div>
+		
+	</div>
+</section>
+
