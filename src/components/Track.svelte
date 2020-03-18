@@ -73,41 +73,13 @@
 			</div>
 		{/if}
 	</div>
-	<!-- <div class="panel">
-		{#if edit}
-			<div>
-				<input bind:this={nameInput} 
-					bind:value={track.name} 
-					on:keydown={onEnter} 
-					use:selectTextOnFocus/>
-				<input bind:this={nameInput} 
-					bind:value={track.description} 
-					on:keydown={onEnter} 
-					use:selectTextOnFocus/>
-				<a href="#" class="button" on:click="{updateTrack}">
-					<i class="iconify" 
-						data-icon="fa-solid:check" 
-						data-inline="false"></i>
-				</a>
-			</div>			
-		{:else}
-			<p class="panel-heading">{track.name}</p>
-			<span> ({track.description})</span>
-			<a href="#" class="button is-small" on:click="{editTrack}">
-				<i class="iconify" 
-					data-icon="fa-solid:pencil-alt" 
-					data-inline="false"></i>
-			</a>
-		{/if}
-	</div> -->
-		
 	
-		{#if track.links}
-			{#each track.links as link}
-				<div class="panel-block">
-					<a href='{link.href}'>{link.name}</a>
-				</div>
-			{/each}
-		{/if}
+	{#if track.links}
+		{#each track.links as link}
+			<div class="panel-block">
+				<a href='{link.href}'>{link.name}</a>
+			</div>
+		{/each}
+	{/if}
 	
 </div>
