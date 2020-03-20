@@ -10,11 +10,11 @@ function createTracks() {
 				description: 'Learning svelte',
 				links: [
 					{
-						name: 'Official tutorial',
+						title: 'Official tutorial',
 						href: 'https://svelte.dev/tutorial/basics'
 					},
 					{
-						name: 'Scotch IO',
+						title: 'Scotch IO',
 						href: 'https://svelte.dev/tutorial/basics'
 					}
 				]
@@ -25,7 +25,7 @@ function createTracks() {
 				description: 'learning node',
 				links: [
 					{
-						name: 'W3 Schools',
+						title: 'W3 Schools',
 						href: 'https://www.w3schools.com/nodejs/'
 					}
 				]

@@ -1,10 +1,25 @@
 <script>
-	import { onMount } from 'svelte';
+	import { beforeUpdate, onMount } from 'svelte';
 	import Track from './components/Track.svelte';
 	import TrackSummary from './components/TrackSummary.svelte';
 	import { tracks } from './stores.js';
 		
-	tracks.useLocalStorage();
+	
+
+	//TODO: remove or find better 
+	//being used to reset local storage if breaking changes are made
+	//in development
+	onMount(() => {
+		let json = localStorage.getItem('tracksLastUpdate');
+		let updateVer = 1;
+		if (!json || json != updateVer) {
+			localStorage.setItem('tracksLastUpdate', updateVer);
+			localStorage.removeItem('tracks');
+		} 
+
+		tracks.useLocalStorage();
+		
+	});
 	
 	let selectedTrack;
 	let search = '';
@@ -48,7 +63,7 @@
 					<input class="input" 
 						bind:value={search}
 						type="text" 
-						placeholder="Search" >
+						placeholder="filter or create new" >
 					<span class="icon is-left">
 						<i class="iconify" 
 							data-icon="fa-solid:search" 

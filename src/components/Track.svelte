@@ -6,7 +6,9 @@
 	export let track;
 	
 	let edit;
-	let nameInput
+	let nameInput;
+	let linkTitle;
+	let linkUrl;
 
 	const dispatch = createEventDispatcher();
 
@@ -25,6 +27,13 @@
 	function updateTrack() {
 		tracks.updateTrack(track);
 		edit = false;
+	}
+
+	function addLink() {
+		track.links = [...track.links, {title: linkTitle, url: linkUrl}];
+		tracks.updateTrack(track);
+		linkTitle = '';
+		linkUrl = '';
 	}
 
 	function onEnter(event) {
@@ -69,11 +78,21 @@
 			</div>
 		{/if}
 	</div>
-	
+	<div class="panel-block">
+		<div class="level">
+			<input class="input" bind:value={linkTitle} placeholder="title" />
+			<input class="input" bind:value={linkUrl} placeholder="url" />
+			<button class="button is-small" on:click={addLink}>
+				<i class="iconify" 
+					data-icon="fa-solid:plus" 
+					data-inline="false"></i>
+			</button>
+		</div>
+	</div>
 	{#if track.links}
 		{#each track.links as link}
 			<div class="panel-block">
-				<a href='{link.href}'>{link.name}</a>
+				<a href='{link.href}'>{link.title}</a>
 			</div>
 		{/each}
 	{/if}
