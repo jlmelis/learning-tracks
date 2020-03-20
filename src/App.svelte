@@ -3,60 +3,52 @@
 	import Track from './components/Track.svelte';
 	import TrackSummary from './components/TrackSummary.svelte';
 	import { tracks } from './stores.js';
-	
-	
+		
 	tracks.useLocalStorage();
 	
-
 	let selectedTrack;
-	let showTracksPanel = true;
+	let search = '';
 
 	function addTrack() {
-		console.log('changes are working');
-		tracks.addNew();
+		tracks.addNew(search);
 		selectedTrack = $tracks[$tracks.length -1];
+		search = '';
 	}
 
 	function removeTrack(event) {
-		selectedTrack = {};
+		selectedTrack = null;
 		tracks.removeTrack(event.detail.id);
-		showTracksPanel = true;
 	}
 	
 	function selectTrack(track) {
 		selectedTrack = track;
-		showTracksPanel = false;
 	}
+
+	$: filteredTracks = $tracks.filter(t => 
+			t.name.toLowerCase().includes(search.toLowerCase()) ||
+			t.description.toLowerCase().includes(search.toLowerCase())		
+		);
+	
 </script>
 
-<style>
-	
-</style>
 
 <div class="container is-fluid">
-	{#if !showTracksPanel}
+	{#if selectedTrack}
 		<div>
-			<a href="#" class="button" on:click="{() => showTracksPanel = true}">
+			<button class="button" on:click="{() => selectedTrack = null }">
 				Pick track
-			</a>
+			</button>
 			<Track on:removeTrack={removeTrack} track={selectedTrack} />		
 		</div>
 		
 	{:else}
 		<div class="panel">
 			<div class="panel-heading">
-				<span>Tracks</span>
-				<a href="#" class="button is-small" on:click={addTrack}>
-					<i class="iconify" 
-							data-icon="fa-solid:plus" 
-							data-inline="false" 
-							aria-hidden="true"/>
-				</a>
-			</div>
-			
-			<div class="panel-block">
 				<p class="control has-icons-left">
-					<input class="input" type="text" placeholder="Search">
+					<input class="input" 
+						bind:value={search}
+						type="text" 
+						placeholder="Search" >
 					<span class="icon is-left">
 						<i class="iconify" 
 							data-icon="fa-solid:search" 
@@ -64,9 +56,14 @@
 							aria-hidden="true"/>
 					</span>
 				</p>
+				{#if search.length > 0}
+					<button class="button" on:click={addTrack}>
+						Create: {search}
+					</button>
+				{/if}
 			</div>
 
-			{#each $tracks as track}
+			{#each filteredTracks as track}
 				<div class="panel-block">
 					<TrackSummary on:click={selectTrack(track)} 
 						id={track.id}

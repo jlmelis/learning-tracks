@@ -236,8 +236,6 @@ var app = (function () {
             block.o(local);
         }
     }
-
-    const globals = (typeof window !== 'undefined' ? window : global);
     function create_component(block) {
         block && block.c();
     }
@@ -526,9 +524,9 @@ var app = (function () {
     				localStorage.setItem('tracks', JSON.stringify(current));
     			});
     		},
-    		addNew: () => update(n => [...n, {
+    		addNew: (name) => update(n => [...n, {
     			id: n.length,
-    			name: 'New Track', 
+    			name: name, 
     			description: 'learn something new!', 
     			links: []}]),
     		removeTrack: (id) => update(n => n.filter(t => t.id !== id)),
@@ -562,7 +560,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (59:2) {:else}
+    // (55:2) {:else}
     function create_else_block(ctx) {
     	let div;
     	let span0;
@@ -575,10 +573,10 @@ var app = (function () {
     	let t3;
     	let t4;
     	let t5;
-    	let a0;
+    	let button0;
     	let i0;
     	let t6;
-    	let a1;
+    	let button1;
     	let i1;
     	let dispose;
 
@@ -593,28 +591,26 @@ var app = (function () {
     			t3 = text(t3_value);
     			t4 = text(")");
     			t5 = space();
-    			a0 = element("a");
+    			button0 = element("button");
     			i0 = element("i");
     			t6 = space();
-    			a1 = element("a");
+    			button1 = element("button");
     			i1 = element("i");
-    			add_location(span0, file, 60, 4, 1208);
-    			add_location(span1, file, 61, 4, 1238);
+    			add_location(span0, file, 56, 4, 1189);
+    			add_location(span1, file, 57, 4, 1219);
     			attr_dev(i0, "class", "iconify");
     			attr_dev(i0, "data-icon", "fa-solid:pencil-alt");
     			attr_dev(i0, "data-inline", "false");
-    			add_location(i0, file, 63, 5, 1343);
-    			attr_dev(a0, "href", "#");
-    			attr_dev(a0, "class", "button is-small");
-    			add_location(a0, file, 62, 4, 1278);
+    			add_location(i0, file, 59, 5, 1320);
+    			attr_dev(button0, "class", "button is-small");
+    			add_location(button0, file, 58, 4, 1259);
     			attr_dev(i1, "class", "iconify");
     			attr_dev(i1, "data-icon", "fa-solid:trash");
     			attr_dev(i1, "data-inline", "false");
-    			add_location(i1, file, 68, 5, 1511);
-    			attr_dev(a1, "href", "#");
-    			attr_dev(a1, "class", "button is-small");
-    			add_location(a1, file, 67, 4, 1446);
-    			add_location(div, file, 59, 3, 1198);
+    			add_location(i1, file, 64, 5, 1489);
+    			attr_dev(button1, "class", "button is-small");
+    			add_location(button1, file, 63, 4, 1428);
+    			add_location(div, file, 55, 3, 1179);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -626,15 +622,15 @@ var app = (function () {
     			append_dev(span1, t3);
     			append_dev(span1, t4);
     			append_dev(div, t5);
-    			append_dev(div, a0);
-    			append_dev(a0, i0);
+    			append_dev(div, button0);
+    			append_dev(button0, i0);
     			append_dev(div, t6);
-    			append_dev(div, a1);
-    			append_dev(a1, i1);
+    			append_dev(div, button1);
+    			append_dev(button1, i1);
 
     			dispose = [
-    				listen_dev(a0, "click", /*editTrack*/ ctx[4], false, false, false),
-    				listen_dev(a1, "click", /*removeTrack*/ ctx[3], false, false, false)
+    				listen_dev(button0, "click", /*editTrack*/ ctx[4], false, false, false),
+    				listen_dev(button1, "click", /*removeTrack*/ ctx[3], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
@@ -651,14 +647,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(59:2) {:else}",
+    		source: "(55:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (43:2) {#if edit}
+    // (39:2) {#if edit}
     function create_if_block_1(ctx) {
     	let div;
     	let input0;
@@ -667,7 +663,7 @@ var app = (function () {
     	let input1;
     	let selectTextOnFocus_action_1;
     	let t1;
-    	let a;
+    	let button;
     	let i;
     	let dispose;
 
@@ -678,20 +674,19 @@ var app = (function () {
     			t0 = space();
     			input1 = element("input");
     			t1 = space();
-    			a = element("a");
+    			button = element("button");
     			i = element("i");
     			attr_dev(input0, "class", "input");
-    			add_location(input0, file, 44, 4, 745);
+    			add_location(input0, file, 40, 4, 725);
     			attr_dev(input1, "class", "input");
-    			add_location(input1, file, 48, 4, 879);
+    			add_location(input1, file, 44, 4, 859);
     			attr_dev(i, "class", "iconify");
     			attr_dev(i, "data-icon", "fa-solid:check");
     			attr_dev(i, "data-inline", "false");
-    			add_location(i, file, 53, 5, 1078);
-    			attr_dev(a, "href", "#");
-    			attr_dev(a, "class", "button");
-    			add_location(a, file, 52, 4, 1020);
-    			add_location(div, file, 43, 3, 735);
+    			add_location(i, file, 49, 5, 1054);
+    			attr_dev(button, "class", "button");
+    			add_location(button, file, 48, 4, 1000);
+    			add_location(div, file, 39, 3, 715);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -703,8 +698,8 @@ var app = (function () {
     			/*input1_binding*/ ctx[11](input1);
     			set_input_value(input1, /*track*/ ctx[0].description);
     			append_dev(div, t1);
-    			append_dev(div, a);
-    			append_dev(a, i);
+    			append_dev(div, button);
+    			append_dev(button, i);
 
     			dispose = [
     				listen_dev(input0, "input", /*input0_input_handler*/ ctx[10]),
@@ -713,7 +708,7 @@ var app = (function () {
     				listen_dev(input1, "input", /*input1_input_handler*/ ctx[12]),
     				listen_dev(input1, "keydown", /*onEnter*/ ctx[6], false, false, false),
     				action_destroyer(selectTextOnFocus_action_1 = selectTextOnFocus.call(null, input1)),
-    				listen_dev(a, "click", /*updateTrack*/ ctx[5], false, false, false)
+    				listen_dev(button, "click", /*updateTrack*/ ctx[5], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
@@ -737,14 +732,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(43:2) {#if edit}",
+    		source: "(39:2) {#if edit}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (77:1) {#if track.links}
+    // (73:1) {#if track.links}
     function create_if_block(ctx) {
     	let each_1_anchor;
     	let each_value = /*track*/ ctx[0].links;
@@ -805,14 +800,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(77:1) {#if track.links}",
+    		source: "(73:1) {#if track.links}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (78:2) {#each track.links as link}
+    // (74:2) {#each track.links as link}
     function create_each_block(ctx) {
     	let div;
     	let a;
@@ -828,9 +823,9 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			attr_dev(a, "href", a_href_value = /*link*/ ctx[13].href);
-    			add_location(a, file, 79, 4, 1715);
+    			add_location(a, file, 75, 4, 1698);
     			attr_dev(div, "class", "panel-block");
-    			add_location(div, file, 78, 3, 1685);
+    			add_location(div, file, 74, 3, 1668);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -854,7 +849,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(78:2) {#each track.links as link}",
+    		source: "(74:2) {#each track.links as link}",
     		ctx
     	});
 
@@ -884,9 +879,9 @@ var app = (function () {
     			t = space();
     			if (if_block1) if_block1.c();
     			attr_dev(div0, "class", "panel-heading");
-    			add_location(div0, file, 41, 1, 691);
+    			add_location(div0, file, 37, 1, 671);
     			attr_dev(div1, "class", "panel");
-    			add_location(div1, file, 40, 0, 661);
+    			add_location(div1, file, 36, 0, 641);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1270,35 +1265,29 @@ var app = (function () {
     }
 
     /* src/App.svelte generated by Svelte v3.19.2 */
-
-    const { console: console_1 } = globals;
     const file$2 = "src/App.svelte";
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[7] = list[i];
+    	child_ctx[9] = list[i];
     	return child_ctx;
     }
 
-    // (45:1) {:else}
+    // (44:1) {:else}
     function create_else_block$1(ctx) {
-    	let div2;
-    	let div0;
-    	let span0;
-    	let t1;
-    	let a;
-    	let i0;
-    	let t2;
     	let div1;
+    	let div0;
     	let p;
     	let input;
-    	let t3;
-    	let span1;
-    	let i1;
-    	let t4;
+    	let t0;
+    	let span;
+    	let i;
+    	let t1;
+    	let t2;
     	let current;
     	let dispose;
-    	let each_value = /*$tracks*/ ctx[2];
+    	let if_block = /*search*/ ctx[1].length > 0 && create_if_block_1$1(ctx);
+    	let each_value = /*filteredTracks*/ ctx[2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -1312,81 +1301,79 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div2 = element("div");
-    			div0 = element("div");
-    			span0 = element("span");
-    			span0.textContent = "Tracks";
-    			t1 = space();
-    			a = element("a");
-    			i0 = element("i");
-    			t2 = space();
     			div1 = element("div");
+    			div0 = element("div");
     			p = element("p");
     			input = element("input");
-    			t3 = space();
-    			span1 = element("span");
-    			i1 = element("i");
-    			t4 = space();
+    			t0 = space();
+    			span = element("span");
+    			i = element("i");
+    			t1 = space();
+    			if (if_block) if_block.c();
+    			t2 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			add_location(span0, file$2, 47, 4, 952);
-    			attr_dev(i0, "class", "iconify");
-    			attr_dev(i0, "data-icon", "fa-solid:plus");
-    			attr_dev(i0, "data-inline", "false");
-    			attr_dev(i0, "aria-hidden", "true");
-    			add_location(i0, file$2, 49, 5, 1038);
-    			attr_dev(a, "href", "#");
-    			attr_dev(a, "class", "button is-small");
-    			add_location(a, file$2, 48, 4, 976);
-    			attr_dev(div0, "class", "panel-heading");
-    			add_location(div0, file$2, 46, 3, 920);
     			attr_dev(input, "class", "input");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "Search");
-    			add_location(input, file$2, 58, 5, 1244);
-    			attr_dev(i1, "class", "iconify");
-    			attr_dev(i1, "data-icon", "fa-solid:search");
-    			attr_dev(i1, "data-inline", "false");
-    			attr_dev(i1, "aria-hidden", "true");
-    			add_location(i1, file$2, 60, 6, 1338);
-    			attr_dev(span1, "class", "icon is-left");
-    			add_location(span1, file$2, 59, 5, 1304);
+    			add_location(input, file$2, 47, 5, 1061);
+    			attr_dev(i, "class", "iconify");
+    			attr_dev(i, "data-icon", "fa-solid:search");
+    			attr_dev(i, "data-inline", "false");
+    			attr_dev(i, "aria-hidden", "true");
+    			add_location(i, file$2, 52, 6, 1196);
+    			attr_dev(span, "class", "icon is-left");
+    			add_location(span, file$2, 51, 5, 1162);
     			attr_dev(p, "class", "control has-icons-left");
-    			add_location(p, file$2, 57, 4, 1204);
-    			attr_dev(div1, "class", "panel-block");
-    			add_location(div1, file$2, 56, 3, 1174);
-    			attr_dev(div2, "class", "panel");
-    			add_location(div2, file$2, 45, 2, 897);
+    			add_location(p, file$2, 46, 4, 1021);
+    			attr_dev(div0, "class", "panel-heading");
+    			add_location(div0, file$2, 45, 3, 989);
+    			attr_dev(div1, "class", "panel");
+    			add_location(div1, file$2, 44, 2, 966);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div2, anchor);
-    			append_dev(div2, div0);
-    			append_dev(div0, span0);
-    			append_dev(div0, t1);
-    			append_dev(div0, a);
-    			append_dev(a, i0);
-    			append_dev(div2, t2);
-    			append_dev(div2, div1);
-    			append_dev(div1, p);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div0, p);
     			append_dev(p, input);
-    			append_dev(p, t3);
-    			append_dev(p, span1);
-    			append_dev(span1, i1);
-    			append_dev(div2, t4);
+    			set_input_value(input, /*search*/ ctx[1]);
+    			append_dev(p, t0);
+    			append_dev(p, span);
+    			append_dev(span, i);
+    			append_dev(div0, t1);
+    			if (if_block) if_block.m(div0, null);
+    			append_dev(div1, t2);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div2, null);
+    				each_blocks[i].m(div1, null);
     			}
 
     			current = true;
-    			dispose = listen_dev(a, "click", /*addTrack*/ ctx[3], false, false, false);
+    			dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[8]);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$tracks, selectedTrack, selectTrack*/ 37) {
-    				each_value = /*$tracks*/ ctx[2];
+    			if (dirty & /*search*/ 2 && input.value !== /*search*/ ctx[1]) {
+    				set_input_value(input, /*search*/ ctx[1]);
+    			}
+
+    			if (/*search*/ ctx[1].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_1$1(ctx);
+    					if_block.c();
+    					if_block.m(div0, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*filteredTracks, selectedTrack, selectTrack*/ 37) {
+    				each_value = /*filteredTracks*/ ctx[2];
     				validate_each_argument(each_value);
     				let i;
 
@@ -1400,7 +1387,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div2, null);
+    						each_blocks[i].m(div1, null);
     					}
     				}
 
@@ -1432,7 +1419,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div2);
+    			if (detaching) detach_dev(div1);
+    			if (if_block) if_block.d();
     			destroy_each(each_blocks, detaching);
     			dispose();
     		}
@@ -1442,17 +1430,17 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(45:1) {:else}",
+    		source: "(44:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (37:1) {#if !showTracksPanel}
+    // (36:1) {#if selectedTrack}
     function create_if_block$1(ctx) {
     	let div;
-    	let a;
+    	let button;
     	let t1;
     	let current;
     	let dispose;
@@ -1467,22 +1455,21 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div = element("div");
-    			a = element("a");
-    			a.textContent = "Pick track";
+    			button = element("button");
+    			button.textContent = "Pick track";
     			t1 = space();
     			create_component(track.$$.fragment);
-    			attr_dev(a, "href", "#");
-    			attr_dev(a, "class", "button");
-    			add_location(a, file$2, 38, 3, 715);
-    			add_location(div, file$2, 37, 2, 706);
+    			attr_dev(button, "class", "button");
+    			add_location(button, file$2, 37, 3, 784);
+    			add_location(div, file$2, 36, 2, 775);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			append_dev(div, a);
+    			append_dev(div, button);
     			append_dev(div, t1);
     			mount_component(track, div, null);
     			current = true;
-    			dispose = listen_dev(a, "click", /*click_handler*/ ctx[6], false, false, false);
+    			dispose = listen_dev(button, "click", /*click_handler*/ ctx[7], false, false, false);
     		},
     		p: function update(ctx, dirty) {
     			const track_changes = {};
@@ -1509,14 +1496,55 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(37:1) {#if !showTracksPanel}",
+    		source: "(36:1) {#if selectedTrack}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (69:3) {#each $tracks as track}
+    // (59:4) {#if search.length > 0}
+    function create_if_block_1$1(ctx) {
+    	let button;
+    	let t0;
+    	let t1;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			button = element("button");
+    			t0 = text("Create: ");
+    			t1 = text(/*search*/ ctx[1]);
+    			attr_dev(button, "class", "button");
+    			add_location(button, file$2, 59, 5, 1363);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, button, anchor);
+    			append_dev(button, t0);
+    			append_dev(button, t1);
+    			dispose = listen_dev(button, "click", /*addTrack*/ ctx[3], false, false, false);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*search*/ 2) set_data_dev(t1, /*search*/ ctx[1]);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(button);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$1.name,
+    		type: "if",
+    		source: "(59:4) {#if search.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (66:3) {#each filteredTracks as track}
     function create_each_block$1(ctx) {
     	let div;
     	let t;
@@ -1524,16 +1552,16 @@ var app = (function () {
 
     	const tracksummary = new TrackSummary({
     			props: {
-    				id: /*track*/ ctx[7].id,
-    				active: /*selectedTrack*/ ctx[0] === /*track*/ ctx[7],
-    				name: /*track*/ ctx[7].name,
-    				description: /*track*/ ctx[7].description
+    				id: /*track*/ ctx[9].id,
+    				active: /*selectedTrack*/ ctx[0] === /*track*/ ctx[9],
+    				name: /*track*/ ctx[9].name,
+    				description: /*track*/ ctx[9].description
     			},
     			$$inline: true
     		});
 
     	tracksummary.$on("click", function () {
-    		if (is_function(/*selectTrack*/ ctx[5](/*track*/ ctx[7]))) /*selectTrack*/ ctx[5](/*track*/ ctx[7]).apply(this, arguments);
+    		if (is_function(/*selectTrack*/ ctx[5](/*track*/ ctx[9]))) /*selectTrack*/ ctx[5](/*track*/ ctx[9]).apply(this, arguments);
     	});
 
     	const block = {
@@ -1542,7 +1570,7 @@ var app = (function () {
     			create_component(tracksummary.$$.fragment);
     			t = space();
     			attr_dev(div, "class", "panel-block");
-    			add_location(div, file$2, 69, 4, 1515);
+    			add_location(div, file$2, 66, 4, 1505);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1553,10 +1581,10 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
     			const tracksummary_changes = {};
-    			if (dirty & /*$tracks*/ 4) tracksummary_changes.id = /*track*/ ctx[7].id;
-    			if (dirty & /*selectedTrack, $tracks*/ 5) tracksummary_changes.active = /*selectedTrack*/ ctx[0] === /*track*/ ctx[7];
-    			if (dirty & /*$tracks*/ 4) tracksummary_changes.name = /*track*/ ctx[7].name;
-    			if (dirty & /*$tracks*/ 4) tracksummary_changes.description = /*track*/ ctx[7].description;
+    			if (dirty & /*filteredTracks*/ 4) tracksummary_changes.id = /*track*/ ctx[9].id;
+    			if (dirty & /*selectedTrack, filteredTracks*/ 5) tracksummary_changes.active = /*selectedTrack*/ ctx[0] === /*track*/ ctx[9];
+    			if (dirty & /*filteredTracks*/ 4) tracksummary_changes.name = /*track*/ ctx[9].name;
+    			if (dirty & /*filteredTracks*/ 4) tracksummary_changes.description = /*track*/ ctx[9].description;
     			tracksummary.$set(tracksummary_changes);
     		},
     		i: function intro(local) {
@@ -1578,7 +1606,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(69:3) {#each $tracks as track}",
+    		source: "(66:3) {#each filteredTracks as track}",
     		ctx
     	});
 
@@ -1594,7 +1622,7 @@ var app = (function () {
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (!/*showTracksPanel*/ ctx[1]) return 0;
+    		if (/*selectedTrack*/ ctx[0]) return 0;
     		return 1;
     	}
 
@@ -1606,7 +1634,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			attr_dev(div, "class", "container is-fluid");
-    			add_location(div, file$2, 35, 0, 647);
+    			add_location(div, file$2, 34, 0, 719);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1670,37 +1698,40 @@ var app = (function () {
     function instance$2($$self, $$props, $$invalidate) {
     	let $tracks;
     	validate_store(tracks, "tracks");
-    	component_subscribe($$self, tracks, $$value => $$invalidate(2, $tracks = $$value));
+    	component_subscribe($$self, tracks, $$value => $$invalidate(6, $tracks = $$value));
     	tracks.useLocalStorage();
     	let selectedTrack;
-    	let showTracksPanel = true;
+    	let search = "";
 
     	function addTrack() {
-    		console.log("changes are working");
-    		tracks.addNew();
+    		tracks.addNew(search);
     		$$invalidate(0, selectedTrack = $tracks[$tracks.length - 1]);
+    		$$invalidate(1, search = "");
     	}
 
     	function removeTrack(event) {
-    		$$invalidate(0, selectedTrack = {});
+    		$$invalidate(0, selectedTrack = null);
     		tracks.removeTrack(event.detail.id);
-    		$$invalidate(1, showTracksPanel = true);
     	}
 
     	function selectTrack(track) {
     		$$invalidate(0, selectedTrack = track);
-    		$$invalidate(1, showTracksPanel = false);
     	}
 
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<App> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("App", $$slots, []);
-    	const click_handler = () => $$invalidate(1, showTracksPanel = true);
+    	const click_handler = () => $$invalidate(0, selectedTrack = null);
+
+    	function input_input_handler() {
+    		search = this.value;
+    		$$invalidate(1, search);
+    	}
 
     	$$self.$capture_state = () => ({
     		onMount,
@@ -1708,30 +1739,42 @@ var app = (function () {
     		TrackSummary,
     		tracks,
     		selectedTrack,
-    		showTracksPanel,
+    		search,
     		addTrack,
     		removeTrack,
     		selectTrack,
-    		$tracks
+    		$tracks,
+    		filteredTracks
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("selectedTrack" in $$props) $$invalidate(0, selectedTrack = $$props.selectedTrack);
-    		if ("showTracksPanel" in $$props) $$invalidate(1, showTracksPanel = $$props.showTracksPanel);
+    		if ("search" in $$props) $$invalidate(1, search = $$props.search);
+    		if ("filteredTracks" in $$props) $$invalidate(2, filteredTracks = $$props.filteredTracks);
     	};
+
+    	let filteredTracks;
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$tracks, search*/ 66) {
+    			 $$invalidate(2, filteredTracks = $tracks.filter(t => t.name.toLowerCase().includes(search.toLowerCase()) || t.description.toLowerCase().includes(search.toLowerCase())));
+    		}
+    	};
+
     	return [
     		selectedTrack,
-    		showTracksPanel,
-    		$tracks,
+    		search,
+    		filteredTracks,
     		addTrack,
     		removeTrack,
     		selectTrack,
-    		click_handler
+    		$tracks,
+    		click_handler,
+    		input_input_handler
     	];
     }
 

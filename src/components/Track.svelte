@@ -34,10 +34,6 @@
 	}
 </script>
 
-<style>
-	
-</style>
-
 <div on:click class="panel">
 	<div class="panel-heading">
 		{#if edit}
@@ -50,26 +46,26 @@
 					bind:value={track.description} 
 					on:keydown={onEnter} 
 					use:selectTextOnFocus/>
-				<a href="#" class="button" on:click="{updateTrack}">
+				<button class="button" on:click="{updateTrack}">
 					<i class="iconify" 
 						data-icon="fa-solid:check" 
 						data-inline="false"></i>
-				</a>
+				</button>
 			</div>			
 		{:else}
 			<div>
 				<span>{track.name}</span>
 				<span> ({track.description})</span>
-				<a href="#" class="button is-small" on:click="{editTrack}">
+				<button class="button is-small" on:click="{editTrack}">
 					<i class="iconify" 
 						data-icon="fa-solid:pencil-alt" 
 						data-inline="false"></i>
-				</a>
-				<a href="#" class="button is-small" on:click={removeTrack}>
+				</button>
+				<button class="button is-small" on:click={removeTrack}>
 					<i class="iconify" 
 						data-icon="fa-solid:trash" 
 						data-inline="false"></i>
-				</a>
+				</button>
 			</div>
 		{/if}
 	</div>

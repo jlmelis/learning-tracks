@@ -47,9 +47,9 @@ function createTracks() {
 				localStorage.setItem('tracks', JSON.stringify(current));
 			});
 		},
-		addNew: () => update(n => [...n, {
+		addNew: (name) => update(n => [...n, {
 			id: n.length,
-			name: 'New Track', 
+			name: name, 
 			description: 'learn something new!', 
 			links: []}]),
 		removeTrack: (id) => update(n => n.filter(t => t.id !== id)),
