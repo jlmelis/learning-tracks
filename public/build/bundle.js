@@ -490,10 +490,12 @@ var app = (function () {
     				description: 'Learning svelte',
     				links: [
     					{
+    						id: 0,
     						title: 'Official tutorial',
     						href: 'https://svelte.dev/tutorial/basics'
     					},
     					{
+    						id: 1,
     						title: 'Scotch IO',
     						href: 'https://svelte.dev/tutorial/basics'
     					}
@@ -505,6 +507,7 @@ var app = (function () {
     				description: 'learning node',
     				links: [
     					{
+    						id: 0,
     						title: 'W3 Schools',
     						href: 'https://www.w3schools.com/nodejs/'
     					}
@@ -559,11 +562,11 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[18] = list[i];
+    	child_ctx[19] = list[i];
     	return child_ctx;
     }
 
-    // (64:2) {:else}
+    // (75:2) {:else}
     function create_else_block(ctx) {
     	let div;
     	let span0;
@@ -599,21 +602,21 @@ var app = (function () {
     			t6 = space();
     			button1 = element("button");
     			i1 = element("i");
-    			add_location(span0, file, 65, 4, 1377);
-    			add_location(span1, file, 66, 4, 1407);
+    			add_location(span0, file, 76, 4, 1838);
+    			add_location(span1, file, 77, 4, 1868);
     			attr_dev(i0, "class", "iconify");
     			attr_dev(i0, "data-icon", "fa-solid:pencil-alt");
     			attr_dev(i0, "data-inline", "false");
-    			add_location(i0, file, 68, 5, 1508);
+    			add_location(i0, file, 79, 5, 1969);
     			attr_dev(button0, "class", "button is-small");
-    			add_location(button0, file, 67, 4, 1447);
+    			add_location(button0, file, 78, 4, 1908);
     			attr_dev(i1, "class", "iconify");
     			attr_dev(i1, "data-icon", "fa-solid:trash");
     			attr_dev(i1, "data-inline", "false");
-    			add_location(i1, file, 73, 5, 1677);
+    			add_location(i1, file, 84, 5, 2138);
     			attr_dev(button1, "class", "button is-small");
-    			add_location(button1, file, 72, 4, 1616);
-    			add_location(div, file, 64, 3, 1367);
+    			add_location(button1, file, 83, 4, 2077);
+    			add_location(div, file, 75, 3, 1828);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -650,14 +653,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(64:2) {:else}",
+    		source: "(75:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (48:2) {#if edit}
+    // (59:2) {#if edit}
     function create_if_block_1(ctx) {
     	let div;
     	let input0;
@@ -680,36 +683,36 @@ var app = (function () {
     			button = element("button");
     			i = element("i");
     			attr_dev(input0, "class", "input");
-    			add_location(input0, file, 49, 4, 913);
+    			add_location(input0, file, 60, 4, 1374);
     			attr_dev(input1, "class", "input");
-    			add_location(input1, file, 53, 4, 1047);
+    			add_location(input1, file, 64, 4, 1508);
     			attr_dev(i, "class", "iconify");
     			attr_dev(i, "data-icon", "fa-solid:check");
     			attr_dev(i, "data-inline", "false");
-    			add_location(i, file, 58, 5, 1242);
+    			add_location(i, file, 69, 5, 1703);
     			attr_dev(button, "class", "button");
-    			add_location(button, file, 57, 4, 1188);
-    			add_location(div, file, 48, 3, 903);
+    			add_location(button, file, 68, 4, 1649);
+    			add_location(div, file, 59, 3, 1364);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, input0);
-    			/*input0_binding*/ ctx[12](input0);
+    			/*input0_binding*/ ctx[13](input0);
     			set_input_value(input0, /*track*/ ctx[0].name);
     			append_dev(div, t0);
     			append_dev(div, input1);
-    			/*input1_binding*/ ctx[14](input1);
+    			/*input1_binding*/ ctx[15](input1);
     			set_input_value(input1, /*track*/ ctx[0].description);
     			append_dev(div, t1);
     			append_dev(div, button);
     			append_dev(button, i);
 
     			dispose = [
-    				listen_dev(input0, "input", /*input0_input_handler*/ ctx[13]),
-    				listen_dev(input0, "keydown", /*onEnter*/ ctx[9], false, false, false),
+    				listen_dev(input0, "input", /*input0_input_handler*/ ctx[14]),
+    				listen_dev(input0, "keydown", /*onEnter*/ ctx[10], false, false, false),
     				action_destroyer(selectTextOnFocus_action = selectTextOnFocus.call(null, input0)),
-    				listen_dev(input1, "input", /*input1_input_handler*/ ctx[15]),
-    				listen_dev(input1, "keydown", /*onEnter*/ ctx[9], false, false, false),
+    				listen_dev(input1, "input", /*input1_input_handler*/ ctx[16]),
+    				listen_dev(input1, "keydown", /*onEnter*/ ctx[10], false, false, false),
     				action_destroyer(selectTextOnFocus_action_1 = selectTextOnFocus.call(null, input1)),
     				listen_dev(button, "click", /*updateTrack*/ ctx[7], false, false, false)
     			];
@@ -725,8 +728,8 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			/*input0_binding*/ ctx[12](null);
-    			/*input1_binding*/ ctx[14](null);
+    			/*input0_binding*/ ctx[13](null);
+    			/*input1_binding*/ ctx[15](null);
     			run_all(dispose);
     		}
     	};
@@ -735,14 +738,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(48:2) {#if edit}",
+    		source: "(59:2) {#if edit}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (92:1) {#if track.links}
+    // (103:1) {#if track.links}
     function create_if_block(ctx) {
     	let each_1_anchor;
     	let each_value = /*track*/ ctx[0].links;
@@ -769,7 +772,7 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*track*/ 1) {
+    			if (dirty & /*removeLink, track*/ 513) {
     				each_value = /*track*/ ctx[0].links;
     				validate_each_argument(each_value);
     				let i;
@@ -803,21 +806,25 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(92:1) {#if track.links}",
+    		source: "(103:1) {#if track.links}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (93:2) {#each track.links as link}
+    // (104:2) {#each track.links as link}
     function create_each_block(ctx) {
     	let div;
     	let a;
-    	let t0_value = /*link*/ ctx[18].title + "";
+    	let t0_value = /*link*/ ctx[19].title + "";
     	let t0;
     	let a_href_value;
     	let t1;
+    	let button;
+    	let i;
+    	let t2;
+    	let dispose;
 
     	const block = {
     		c: function create() {
@@ -825,26 +832,51 @@ var app = (function () {
     			a = element("a");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(a, "href", a_href_value = /*link*/ ctx[18].href);
-    			add_location(a, file, 94, 4, 2240);
+    			button = element("button");
+    			i = element("i");
+    			t2 = space();
+    			attr_dev(a, "href", a_href_value = /*link*/ ctx[19].href);
+    			add_location(a, file, 105, 4, 2701);
+    			attr_dev(i, "class", "iconify");
+    			attr_dev(i, "data-icon", "fa-solid:trash");
+    			attr_dev(i, "data-inline", "false");
+    			add_location(i, file, 107, 5, 2813);
+    			attr_dev(button, "class", "button is-small");
+    			add_location(button, file, 106, 4, 2744);
     			attr_dev(div, "class", "panel-block");
-    			add_location(div, file, 93, 3, 2210);
+    			add_location(div, file, 104, 3, 2671);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, a);
     			append_dev(a, t0);
     			append_dev(div, t1);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*track*/ 1 && t0_value !== (t0_value = /*link*/ ctx[18].title + "")) set_data_dev(t0, t0_value);
+    			append_dev(div, button);
+    			append_dev(button, i);
+    			append_dev(div, t2);
 
-    			if (dirty & /*track*/ 1 && a_href_value !== (a_href_value = /*link*/ ctx[18].href)) {
+    			dispose = listen_dev(
+    				button,
+    				"click",
+    				function () {
+    					if (is_function(/*removeLink*/ ctx[9](/*link*/ ctx[19].id))) /*removeLink*/ ctx[9](/*link*/ ctx[19].id).apply(this, arguments);
+    				},
+    				false,
+    				false,
+    				false
+    			);
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if (dirty & /*track*/ 1 && t0_value !== (t0_value = /*link*/ ctx[19].title + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*track*/ 1 && a_href_value !== (a_href_value = /*link*/ ctx[19].href)) {
     				attr_dev(a, "href", a_href_value);
     			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
+    			dispose();
     		}
     	};
 
@@ -852,7 +884,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(93:2) {#each track.links as link}",
+    		source: "(104:2) {#each track.links as link}",
     		ctx
     	});
 
@@ -900,25 +932,25 @@ var app = (function () {
     			t3 = space();
     			if (if_block1) if_block1.c();
     			attr_dev(div0, "class", "panel-heading");
-    			add_location(div0, file, 46, 1, 859);
+    			add_location(div0, file, 57, 1, 1320);
     			attr_dev(input0, "class", "input");
     			attr_dev(input0, "placeholder", "title");
-    			add_location(input0, file, 82, 3, 1854);
+    			add_location(input0, file, 93, 3, 2315);
     			attr_dev(input1, "class", "input");
     			attr_dev(input1, "placeholder", "url");
-    			add_location(input1, file, 83, 3, 1924);
+    			add_location(input1, file, 94, 3, 2385);
     			attr_dev(i, "class", "iconify");
     			attr_dev(i, "data-icon", "fa-solid:plus");
     			attr_dev(i, "data-inline", "false");
-    			add_location(i, file, 85, 4, 2046);
+    			add_location(i, file, 96, 4, 2507);
     			attr_dev(button, "class", "button is-small");
-    			add_location(button, file, 84, 3, 1990);
+    			add_location(button, file, 95, 3, 2451);
     			attr_dev(div1, "class", "level");
-    			add_location(div1, file, 81, 2, 1831);
+    			add_location(div1, file, 92, 2, 2292);
     			attr_dev(div2, "class", "panel-block");
-    			add_location(div2, file, 80, 1, 1803);
+    			add_location(div2, file, 91, 1, 2264);
     			attr_dev(div3, "class", "panel");
-    			add_location(div3, file, 45, 0, 829);
+    			add_location(div3, file, 56, 0, 1290);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -942,10 +974,10 @@ var app = (function () {
     			if (if_block1) if_block1.m(div3, null);
 
     			dispose = [
-    				listen_dev(input0, "input", /*input0_input_handler_1*/ ctx[16]),
-    				listen_dev(input1, "input", /*input1_input_handler_1*/ ctx[17]),
+    				listen_dev(input0, "input", /*input0_input_handler_1*/ ctx[17]),
+    				listen_dev(input1, "input", /*input1_input_handler_1*/ ctx[18]),
     				listen_dev(button, "click", /*addLink*/ ctx[8], false, false, false),
-    				listen_dev(div3, "click", /*click_handler*/ ctx[11], false, false, false)
+    				listen_dev(div3, "click", /*click_handler*/ ctx[12], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
@@ -1030,10 +1062,34 @@ var app = (function () {
     	}
 
     	function addLink() {
-    		$$invalidate(0, track.links = [...track.links, { title: linkTitle, url: linkUrl }], track);
+    		// TODO: is this causing two renders?
+    		// look into possibility of using storefunction to update store
+    		// as opposed to updating item then updating store.
+    		$$invalidate(
+    			0,
+    			track.links = [
+    				...track.links,
+    				{
+    					id: track.links.length + 1,
+    					title: linkTitle,
+    					url: linkUrl
+    				}
+    			],
+    			track
+    		);
+
     		tracks.updateTrack(track);
     		$$invalidate(3, linkTitle = "");
     		$$invalidate(4, linkUrl = "");
+    	}
+
+    	function removeLink(id) {
+    		// TODO: is this causing two renders?
+    		// look into possibility of using storefunction to update store
+    		// as opposed to updating item then updating store.
+    		$$invalidate(0, track.links = track.links.filter(t => t.id != id), track);
+
+    		tracks.updateTrack(track);
     	}
 
     	function onEnter(event) {
@@ -1106,6 +1162,7 @@ var app = (function () {
     		editTrack,
     		updateTrack,
     		addLink,
+    		removeLink,
     		onEnter
     	});
 
@@ -1131,6 +1188,7 @@ var app = (function () {
     		editTrack,
     		updateTrack,
     		addLink,
+    		removeLink,
     		onEnter,
     		dispatch,
     		click_handler,
@@ -1195,13 +1253,13 @@ var app = (function () {
     			t1 = space();
     			div1 = element("div");
     			t2 = text(/*description*/ ctx[1]);
-    			add_location(span, file$1, 36, 8, 511);
-    			add_location(div0, file$1, 35, 4, 497);
-    			attr_dev(div1, "class", "desription svelte-1adn88e");
-    			add_location(div1, file$1, 38, 4, 546);
-    			attr_dev(div2, "class", "summary svelte-1adn88e");
+    			add_location(span, file$1, 28, 8, 404);
+    			add_location(div0, file$1, 27, 4, 390);
+    			attr_dev(div1, "class", "desription svelte-1bl8hev");
+    			add_location(div1, file$1, 30, 4, 439);
+    			attr_dev(div2, "class", "summary svelte-1bl8hev");
     			toggle_class(div2, "active", /*active*/ ctx[2]);
-    			add_location(div2, file$1, 34, 0, 448);
+    			add_location(div2, file$1, 26, 0, 341);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");

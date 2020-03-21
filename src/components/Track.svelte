@@ -30,10 +30,21 @@
 	}
 
 	function addLink() {
-		track.links = [...track.links, {title: linkTitle, url: linkUrl}];
+		// TODO: is this causing two renders?
+		// look into possibility of using storefunction to update store
+		// as opposed to updating item then updating store.
+		track.links = [...track.links, {id: track.links.length + 1, title: linkTitle, url: linkUrl}];
 		tracks.updateTrack(track);
 		linkTitle = '';
 		linkUrl = '';
+	}
+
+	function removeLink(id) {
+		// TODO: is this causing two renders?
+		// look into possibility of using storefunction to update store
+		// as opposed to updating item then updating store.
+		track.links = track.links.filter(t => t.id != id);
+		tracks.updateTrack(track);
 	}
 
 	function onEnter(event) {
@@ -93,6 +104,11 @@
 		{#each track.links as link}
 			<div class="panel-block">
 				<a href='{link.href}'>{link.title}</a>
+				<button class="button is-small" on:click={removeLink(link.id)}>
+					<i class="iconify"
+						data-icon="fa-solid:trash"
+						data-inline="false"></i>
+				</button>
 			</div>
 		{/each}
 	{/if}

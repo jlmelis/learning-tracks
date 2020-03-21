@@ -22,14 +22,6 @@
         color: cornflowerblue;
     }
 
-    button {
-		font-size: 100%;
-		font-family: inherit;
-		border: 0;
-		padding: 0;
-		background: none;
-	}
-
 </style>
 
 <div class="summary" class:active on:click> 
