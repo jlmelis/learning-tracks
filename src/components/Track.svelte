@@ -2,6 +2,8 @@
 	import { tick, createEventDispatcher } from 'svelte';
 	import { tracks } from '../stores.js';
 	import { selectTextOnFocus } from '../actions/inputActions.js';
+	import TrackLink from './TrackLink.svelte';
+	import Confirmation from './Confirmation.svelte';
 
 	export let track;
 	
@@ -9,6 +11,7 @@
 	let nameInput;
 	let linkTitle;
 	let linkUrl;
+	let showConfirmation;
 
 	const dispatch = createEventDispatcher();
 
@@ -39,11 +42,11 @@
 		linkUrl = '';
 	}
 
-	function removeLink(id) {
+	function removeLink(event) {
 		// TODO: is this causing two renders?
 		// look into possibility of using storefunction to update store
 		// as opposed to updating item then updating store.
-		track.links = track.links.filter(t => t.id != id);
+		track.links = track.links.filter(t => t.id != event.detail.id);
 		tracks.updateTrack(track);
 	}
 
@@ -52,6 +55,11 @@
 			updateTrack();
 		}
 	}
+
+	function toggleConfirmation() {
+		showConfirmation = !showConfirmation;
+	}
+
 </script>
 
 <div on:click class="panel">
@@ -66,7 +74,7 @@
 					bind:value={track.description} 
 					on:keydown={onEnter} 
 					use:selectTextOnFocus/>
-				<button class="button" on:click="{updateTrack}">
+				<button class="button" on:click={updateTrack}>
 					<i class="iconify" 
 						data-icon="fa-solid:check" 
 						data-inline="false"></i>
@@ -76,12 +84,12 @@
 			<div>
 				<span>{track.name}</span>
 				<span> ({track.description})</span>
-				<button class="button is-small" on:click="{editTrack}">
+				<button class="button is-small" on:click={editTrack}>
 					<i class="iconify" 
 						data-icon="fa-solid:pencil-alt" 
 						data-inline="false"></i>
 				</button>
-				<button class="button is-small" on:click={removeTrack}>
+				<button class="button is-small" on:click={toggleConfirmation}>
 					<i class="iconify" 
 						data-icon="fa-solid:trash" 
 						data-inline="false"></i>
@@ -103,14 +111,14 @@
 	{#if track.links}
 		{#each track.links as link}
 			<div class="panel-block">
-				<a href='{link.href}'>{link.title}</a>
-				<button class="button is-small" on:click={removeLink(link.id)}>
-					<i class="iconify"
-						data-icon="fa-solid:trash"
-						data-inline="false"></i>
-				</button>
-			</div>
+				<TrackLink link={link} on:remove={removeLink} />
+			</div> 
 		{/each}
 	{/if}
 	
 </div>
+
+<Confirmation active="{showConfirmation}" 
+	message="{`Are you sure you want to delete the '${track.name}' track?`}"
+	on:cancel="{toggleConfirmation}" 
+	on:confirm="{removeTrack}" />
