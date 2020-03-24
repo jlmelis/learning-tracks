@@ -1,10 +1,9 @@
 <script>
-	import { beforeUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
+	import Navbar from './components/Navbar.svelte'
 	import Track from './components/Track.svelte';
 	import TrackSummary from './components/TrackSummary.svelte';
 	import { tracks } from './stores.js';
-		
-	
 
 	//TODO: remove or find better 
 	//being used to reset local storage if breaking changes are made
@@ -46,48 +45,53 @@
 	
 </script>
 
-
-<div class="container is-fluid">
-	{#if selectedTrack}
-		<div>
-			<button class="button" on:click="{() => selectedTrack = null }">
-				Pick track
-			</button>
-			<Track on:removeTrack={removeTrack} track={selectedTrack} />		
-		</div>
-		
-	{:else}
-		<div class="panel">
-			<div class="panel-heading">
-				<p class="control has-icons-left">
-					<input class="input" 
-						bind:value={search}
-						type="text" 
-						placeholder="filter or create new" >
-					<span class="icon is-left">
-						<i class="iconify" 
-							data-icon="fa-solid:search" 
-							data-inline="false" 
-							aria-hidden="true"/>
-					</span>
-				</p>
-				{#if search.length > 0}
-					<button class="button" on:click={addTrack}>
-						Create: {search}
-					</button>
-				{/if}
-			</div>
-
-			{#each filteredTracks as track}
-				<div class="panel-block">
-					<TrackSummary on:click={selectTrack(track)} 
-						id={track.id}
-						active={selectedTrack === track}
-						name={track.name} 
-						description={track.description} />
-				</div>	
-			{/each}
-		</div>
-
-	{/if}
+<div class="section">
+	<Navbar></Navbar>
 </div>
+
+<div class="section">
+	<div class="container is-fluid">
+		{#if selectedTrack}
+			<div>
+				<button class="button" on:click="{() => selectedTrack = null }">
+					Pick track
+				</button>
+				<Track on:removeTrack={removeTrack} track={selectedTrack} />		
+			</div>
+			
+		{:else}
+			<div class="panel">
+				<div class="panel-heading">
+					<p class="control has-icons-left">
+						<input class="input" 
+							bind:value={search}
+							type="text" 
+							placeholder="filter or create new" >
+						<span class="icon is-left">
+							<i class="iconify" 
+								data-icon="fa-solid:search" 
+								data-inline="false" 
+								aria-hidden="true"></i>
+						</span>
+					</p>
+					{#if search.length > 0}
+						<button class="button" on:click={addTrack}>
+							Create: {search}
+						</button>
+					{/if}
+				</div>
+	
+				{#each filteredTracks as track}
+					<div class="panel-block">
+						<TrackSummary on:click={selectTrack(track)} 
+							active={selectedTrack === track}
+							name={track.name} 
+							description={track.description} />
+					</div>	
+				{/each}
+			</div>
+	
+		{/if}
+	</div>
+</div>
+
