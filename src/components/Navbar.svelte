@@ -1,22 +1,25 @@
 <script>
-    let src = 'images/LTLogo.png';
+    import About from './About.svelte';
 
-    console.log('in navbar: ' + src);
+    let src = '/images/LTLogo.png';
+
+    //TODO: decide if the about component should live with the 
+    // navbar or the app component
+    let showAbout;
+
+    function toggleAbout() {
+		showAbout = !showAbout;
+	}
 </script>
 
-
-
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item">
-            <image {src} width="300" alt="Learning Tracks Logo"></image>
-        </a>
-        
+    <div class="navbar-brand">   
+        <img {src} width="300" alt="Learning Tracks Logo">
     </div>
 
     <div class="navbar-menu is-active">
         <div class="navbar-start">
-            <a class="navbar-item">
+            <a href="#" class="navbar-item" on:click={toggleAbout}>
                 About
             </a>
         </div>
@@ -29,3 +32,6 @@
         </div>
     </div>
 </nav>
+
+
+<About active={showAbout} on:cancel={toggleAbout} ></About>

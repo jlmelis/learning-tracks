@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import Navbar from './components/Navbar.svelte'
+	import Navbar from './components/Navbar.svelte';
 	import Track from './components/Track.svelte';
 	import TrackSummary from './components/TrackSummary.svelte';
 	import { tracks } from './stores.js';
@@ -16,8 +16,7 @@
 			localStorage.removeItem('tracks');
 		} 
 
-		tracks.useLocalStorage();
-		
+		tracks.useLocalStorage();	
 	});
 	
 	let selectedTrack;
@@ -45,9 +44,10 @@
 	
 </script>
 
-<div class="section">
+<section class="section">
 	<Navbar></Navbar>
-</div>
+</section>
+
 
 <div class="section">
 	<div class="container is-fluid">
@@ -57,8 +57,7 @@
 					Pick track
 				</button>
 				<Track on:removeTrack={removeTrack} track={selectedTrack} />		
-			</div>
-			
+			</div>			
 		{:else}
 			<div class="panel">
 				<div class="panel-heading">
@@ -94,4 +93,3 @@
 		{/if}
 	</div>
 </div>
-
