@@ -118,7 +118,7 @@
 	
 </div>
 
-<Confirmation active="{showConfirmation}" 
+<Confirmation active={showConfirmation} 
 	message="{`Are you sure you want to delete the '${track.name}' track?`}"
-	on:cancel="{toggleConfirmation}" 
-	on:confirm="{removeTrack}" />
+	on:cancel={toggleConfirmation} 
+	on:confirm={removeTrack} />

@@ -590,96 +590,149 @@ var app = (function () {
 
     function create_fragment$1(ctx) {
     	let nav;
+    	let div1;
     	let div0;
     	let img;
     	let img_src_value;
     	let t0;
-    	let div4;
-    	let div1;
-    	let a;
+    	let button0;
+    	let span0;
+    	let t1;
+    	let span1;
     	let t2;
-    	let div3;
+    	let span2;
+    	let t3;
+    	let div5;
     	let div2;
-    	let button;
+    	let a;
+    	let t5;
+    	let div4;
+    	let div3;
+    	let button1;
     	let strong;
-    	let t4;
+    	let t7;
     	let current;
     	let dispose;
 
     	const about = new About({
-    			props: { active: /*showAbout*/ ctx[0] },
+    			props: { active: /*showAbout*/ ctx[1] },
     			$$inline: true
     		});
 
-    	about.$on("cancel", /*toggleAbout*/ ctx[2]);
+    	about.$on("cancel", /*toggleAbout*/ ctx[3]);
 
     	const block = {
     		c: function create() {
     			nav = element("nav");
+    			div1 = element("div");
     			div0 = element("div");
     			img = element("img");
     			t0 = space();
-    			div4 = element("div");
-    			div1 = element("div");
+    			button0 = element("button");
+    			span0 = element("span");
+    			t1 = space();
+    			span1 = element("span");
+    			t2 = space();
+    			span2 = element("span");
+    			t3 = space();
+    			div5 = element("div");
+    			div2 = element("div");
     			a = element("a");
     			a.textContent = "About";
-    			t2 = space();
+    			t5 = space();
+    			div4 = element("div");
     			div3 = element("div");
-    			div2 = element("div");
-    			button = element("button");
+    			button1 = element("button");
     			strong = element("strong");
     			strong.textContent = "Login";
-    			t4 = space();
+    			t7 = space();
     			create_component(about.$$.fragment);
-    			if (img.src !== (img_src_value = /*src*/ ctx[1])) attr_dev(img, "src", img_src_value);
-    			attr_dev(img, "width", "300");
+    			if (img.src !== (img_src_value = /*src*/ ctx[2])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Learning Tracks Logo");
-    			add_location(img, file$1, 16, 8, 398);
-    			attr_dev(div0, "class", "navbar-brand");
-    			add_location(div0, file$1, 15, 4, 360);
+    			attr_dev(img, "width", "300");
+    			add_location(img, file$1, 26, 12, 581);
+    			attr_dev(div0, "href", "http://learning-tracks.netlify.com");
+    			attr_dev(div0, "id", "logo");
+    			add_location(div0, file$1, 25, 8, 511);
+    			attr_dev(span0, "aria-hidden", "true");
+    			add_location(span0, file$1, 34, 12, 879);
+    			attr_dev(span1, "aria-hidden", "true");
+    			add_location(span1, file$1, 35, 12, 924);
+    			attr_dev(span2, "aria-hidden", "true");
+    			add_location(span2, file$1, 36, 12, 969);
+    			attr_dev(button0, "class", "navbar-burger burger");
+    			attr_dev(button0, "data-target", "navMenu");
+    			attr_dev(button0, "aria-label", "menu");
+    			attr_dev(button0, "aria-expanded", "false");
+    			toggle_class(button0, "is-active", /*showMenu*/ ctx[0]);
+    			add_location(button0, file$1, 28, 8, 655);
+    			attr_dev(div1, "class", "navbar-brand");
+    			add_location(div1, file$1, 24, 4, 472);
     			attr_dev(a, "href", "#");
     			attr_dev(a, "class", "navbar-item");
-    			add_location(a, file$1, 21, 12, 548);
-    			attr_dev(div1, "class", "navbar-start");
-    			add_location(div1, file$1, 20, 8, 509);
-    			add_location(strong, file$1, 28, 20, 798);
-    			attr_dev(button, "class", "button is-light");
-    			add_location(button, file$1, 27, 16, 745);
-    			attr_dev(div2, "class", "navbar-item");
-    			add_location(div2, file$1, 26, 12, 703);
-    			attr_dev(div3, "class", "navbar-end");
-    			add_location(div3, file$1, 25, 8, 666);
-    			attr_dev(div4, "class", "navbar-menu is-active");
-    			add_location(div4, file$1, 19, 4, 465);
+    			add_location(a, file$1, 44, 12, 1155);
+    			attr_dev(div2, "class", "navbar-start");
+    			add_location(div2, file$1, 43, 8, 1116);
+    			add_location(strong, file$1, 51, 20, 1405);
+    			attr_dev(button1, "class", "button is-light");
+    			add_location(button1, file$1, 50, 16, 1352);
+    			attr_dev(div3, "class", "navbar-item");
+    			add_location(div3, file$1, 49, 12, 1310);
+    			attr_dev(div4, "class", "navbar-end");
+    			add_location(div4, file$1, 48, 8, 1273);
+    			attr_dev(div5, "class", "navbar-menu");
+    			attr_dev(div5, "id", "navMenu");
+    			toggle_class(div5, "is-active", /*showMenu*/ ctx[0]);
+    			add_location(div5, file$1, 42, 4, 1042);
     			attr_dev(nav, "class", "navbar is-fixed-top");
     			attr_dev(nav, "role", "navigation");
     			attr_dev(nav, "aria-label", "main navigation");
-    			add_location(nav, file$1, 14, 0, 275);
+    			add_location(nav, file$1, 23, 0, 387);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, nav, anchor);
-    			append_dev(nav, div0);
+    			append_dev(nav, div1);
+    			append_dev(div1, div0);
     			append_dev(div0, img);
-    			append_dev(nav, t0);
-    			append_dev(nav, div4);
-    			append_dev(div4, div1);
-    			append_dev(div1, a);
-    			append_dev(div4, t2);
+    			append_dev(div1, t0);
+    			append_dev(div1, button0);
+    			append_dev(button0, span0);
+    			append_dev(button0, t1);
+    			append_dev(button0, span1);
+    			append_dev(button0, t2);
+    			append_dev(button0, span2);
+    			append_dev(nav, t3);
+    			append_dev(nav, div5);
+    			append_dev(div5, div2);
+    			append_dev(div2, a);
+    			append_dev(div5, t5);
+    			append_dev(div5, div4);
     			append_dev(div4, div3);
-    			append_dev(div3, div2);
-    			append_dev(div2, button);
-    			append_dev(button, strong);
-    			insert_dev(target, t4, anchor);
+    			append_dev(div3, button1);
+    			append_dev(button1, strong);
+    			insert_dev(target, t7, anchor);
     			mount_component(about, target, anchor);
     			current = true;
-    			dispose = listen_dev(a, "click", /*toggleAbout*/ ctx[2], false, false, false);
+
+    			dispose = [
+    				listen_dev(button0, "click", /*toggleMenu*/ ctx[4], false, false, false),
+    				listen_dev(a, "click", /*toggleAbout*/ ctx[3], false, false, false)
+    			];
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*showMenu*/ 1) {
+    				toggle_class(button0, "is-active", /*showMenu*/ ctx[0]);
+    			}
+
+    			if (dirty & /*showMenu*/ 1) {
+    				toggle_class(div5, "is-active", /*showMenu*/ ctx[0]);
+    			}
+
     			const about_changes = {};
-    			if (dirty & /*showAbout*/ 1) about_changes.active = /*showAbout*/ ctx[0];
+    			if (dirty & /*showAbout*/ 2) about_changes.active = /*showAbout*/ ctx[1];
     			about.$set(about_changes);
     		},
     		i: function intro(local) {
@@ -693,9 +746,9 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(nav);
-    			if (detaching) detach_dev(t4);
+    			if (detaching) detach_dev(t7);
     			destroy_component(about, detaching);
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -712,13 +765,18 @@ var app = (function () {
 
     function instance$1($$self, $$props, $$invalidate) {
     	let src = "/images/LTLogo.png";
+    	let showMenu;
 
     	//TODO: decide if the about component should live with the 
     	// navbar or the app component
     	let showAbout;
 
     	function toggleAbout() {
-    		$$invalidate(0, showAbout = !showAbout);
+    		$$invalidate(1, showAbout = !showAbout);
+    	}
+
+    	function toggleMenu() {
+    		$$invalidate(0, showMenu = !showMenu);
     	}
 
     	const writable_props = [];
@@ -729,18 +787,27 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Navbar", $$slots, []);
-    	$$self.$capture_state = () => ({ About, src, showAbout, toggleAbout });
+
+    	$$self.$capture_state = () => ({
+    		About,
+    		src,
+    		showMenu,
+    		showAbout,
+    		toggleAbout,
+    		toggleMenu
+    	});
 
     	$$self.$inject_state = $$props => {
-    		if ("src" in $$props) $$invalidate(1, src = $$props.src);
-    		if ("showAbout" in $$props) $$invalidate(0, showAbout = $$props.showAbout);
+    		if ("src" in $$props) $$invalidate(2, src = $$props.src);
+    		if ("showMenu" in $$props) $$invalidate(0, showMenu = $$props.showMenu);
+    		if ("showAbout" in $$props) $$invalidate(1, showAbout = $$props.showAbout);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [showAbout, src, toggleAbout];
+    	return [showMenu, showAbout, src, toggleAbout, toggleMenu];
     }
 
     class Navbar extends SvelteComponentDev {
@@ -2220,20 +2287,20 @@ var app = (function () {
     			attr_dev(input, "class", "input");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "filter or create new");
-    			add_location(input, file$6, 64, 6, 1553);
+    			add_location(input, file$6, 64, 6, 1552);
     			attr_dev(i, "class", "iconify");
     			attr_dev(i, "data-icon", "fa-solid:search");
     			attr_dev(i, "data-inline", "false");
     			attr_dev(i, "aria-hidden", "true");
-    			add_location(i, file$6, 69, 7, 1707);
+    			add_location(i, file$6, 69, 7, 1706);
     			attr_dev(span, "class", "icon is-left");
-    			add_location(span, file$6, 68, 6, 1672);
+    			add_location(span, file$6, 68, 6, 1671);
     			attr_dev(p, "class", "control has-icons-left");
-    			add_location(p, file$6, 63, 5, 1512);
+    			add_location(p, file$6, 63, 5, 1511);
     			attr_dev(div0, "class", "panel-heading");
-    			add_location(div0, file$6, 62, 4, 1479);
+    			add_location(div0, file$6, 62, 4, 1478);
     			attr_dev(div1, "class", "panel");
-    			add_location(div1, file$6, 61, 3, 1455);
+    			add_location(div1, file$6, 61, 3, 1454);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -2417,7 +2484,7 @@ var app = (function () {
     			t0 = text("Create: ");
     			t1 = text(/*search*/ ctx[1]);
     			attr_dev(button, "class", "button");
-    			add_location(button, file$6, 76, 6, 1884);
+    			add_location(button, file$6, 76, 6, 1883);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -2470,7 +2537,7 @@ var app = (function () {
     			create_component(tracksummary.$$.fragment);
     			t = space();
     			attr_dev(div, "class", "panel-block");
-    			add_location(div, file$6, 83, 5, 2033);
+    			add_location(div, file$6, 83, 5, 2032);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);

@@ -53,7 +53,7 @@
 	<div class="container is-fluid">
 		{#if selectedTrack}
 			<div>
-				<button class="button" on:click="{() => selectedTrack = null }">
+				<button class="button" on:click="{() => selectedTrack = null}">
 					Pick track
 				</button>
 				<Track on:removeTrack={removeTrack} track={selectedTrack} />		

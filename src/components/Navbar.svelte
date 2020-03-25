@@ -2,6 +2,7 @@
     import About from './About.svelte';
 
     let src = '/images/LTLogo.png';
+    let showMenu;
 
     //TODO: decide if the about component should live with the 
     // navbar or the app component
@@ -9,15 +10,37 @@
 
     function toggleAbout() {
 		showAbout = !showAbout;
-	}
+    }
+    
+    function toggleMenu() {
+        showMenu = !showMenu;
+    }
 </script>
 
+<style>
+   
+</style>
+
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">   
-        <img {src} width="300" alt="Learning Tracks Logo">
+    <div class="navbar-brand">    
+        <div href="http://learning-tracks.netlify.com" id="logo">
+            <img {src} alt="Learning Tracks Logo" width="300">
+        </div>
+        <button class="navbar-burger burger" 
+            data-target="navMenu" 
+            aria-label="menu" 
+            aria-expanded="false"
+            on:click={toggleMenu}
+            class:is-active={showMenu}>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
     </div>
 
-    <div class="navbar-menu is-active">
+    
+
+    <div class="navbar-menu" id="navMenu" class:is-active={showMenu}>
         <div class="navbar-start">
             <a href="#" class="navbar-item" on:click={toggleAbout}>
                 About
@@ -34,4 +57,4 @@
 </nav>
 
 
-<About active={showAbout} on:cancel={toggleAbout} ></About>
+<About active={showAbout} on:cancel={toggleAbout}></About>

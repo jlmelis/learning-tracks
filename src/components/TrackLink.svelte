@@ -27,7 +27,7 @@
     </button>
 </div>
 
-<Confirmation active="{showConfirmation}" 
+<Confirmation active={showConfirmation} 
     message="{`Are you sure you want to delete the '${link.title}' link?`}"
-	on:cancel="{toggleConfirmation}" 
-	on:confirm="{removeLink}" />
+	on:cancel={toggleConfirmation} 
+	on:confirm={removeLink} />

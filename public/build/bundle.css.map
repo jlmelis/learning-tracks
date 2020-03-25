@@ -2,11 +2,13 @@
   "version": 3,
   "file": "bundle.css",
   "sources": [
-    "../../TrackSummary.svelte"
+    "../../TrackSummary.svelte",
+    "../../Navbar.svelte"
   ],
   "sourcesContent": [
-    "<script>\n    \n    //export let id; \n    export let name;\n    export let description;\n    export let active;\n\n</script>\n\n<style>\n    .summary {\n        margin-top: 10px;\n        cursor: pointer;\n    }\n\n    .desription {\n        margin-left: 10px;\n        font-style: italic;\n    }\n\n    .active {\n        color: cornflowerblue;\n    }\n\n</style>\n\n<div class=\"summary\" class:active on:click> \n    <div>\n        <span>{name}</span>\n    </div>\n    <div class=\"desription\">\n        {description}\n    </div>\n    \n</div>"
+    "<script>\n    \n    //export let id; \n    export let name;\n    export let description;\n    export let active;\n\n</script>\n\n<style>\n    .summary {\n        margin-top: 10px;\n        cursor: pointer;\n    }\n\n    .desription {\n        margin-left: 10px;\n        font-style: italic;\n    }\n\n    .active {\n        color: cornflowerblue;\n    }\n\n</style>\n\n<div class=\"summary\" class:active on:click> \n    <div>\n        <span>{name}</span>\n    </div>\n    <div class=\"desription\">\n        {description}\n    </div>\n    \n</div>",
+    "<script>\n    import About from './About.svelte';\n\n    let src = '/images/LTLogo.png';\n\n    //TODO: decide if the about component should live with the \n    // navbar or the app component\n    let showAbout;\n\n    function toggleAbout() {\n\t\tshowAbout = !showAbout;\n\t}\n</script>\n\n<style>\n    .navbar {\n        height: 10rem;\n    }\n    \n</style>\n\n<nav class=\"navbar is-fixed-top\" role=\"navigation\" aria-label=\"main navigation\">\n    <div class=\"navbar-brand\">    \n        <div href=\"http://learning-tracks.netlify.com\" class=\"navbar-item\" id=\"logo\">\n            <img {src} alt=\"Learning Tracks Logo\" width=\"300\">\n        </div>\n        <button class=\"navbar-burger burger\" data-target=\"navMenu\" aria-label=\"menu\" aria-expanded=\"false\">\n            <span aria-hidden=\"true\"></span>\n            <span aria-hidden=\"true\"></span>\n            <span aria-hidden=\"true\"></span>\n        </button>\n    </div>\n\n    \n\n    <div class=\"navbar-menu is-active\" id=\"navMenu\">\n        <div class=\"navbar-start\">\n            <a href=\"#\" class=\"navbar-item\" on:click={toggleAbout}>\n                About\n            </a>\n        </div>\n        <div class=\"navbar-end\">\n            <div class=\"navbar-item\">\n                <button class=\"button is-light\">\n                    <strong>Login</strong>\n                </button>\n            </div>\n        </div>\n    </div>\n</nav>\n\n\n<About active={showAbout} on:cancel={toggleAbout}></About>"
   ],
   "names": [],
-  "mappings": "AAUI,QAAQ,eAAC,CAAC,AACN,UAAU,CAAE,IAAI,CAChB,MAAM,CAAE,OAAO,AACnB,CAAC,AAED,WAAW,eAAC,CAAC,AACT,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,MAAM,AACtB,CAAC,AAED,OAAO,eAAC,CAAC,AACL,KAAK,CAAE,cAAc,AACzB,CAAC"
+  "mappings": "AAUI,QAAQ,eAAC,CAAC,AACN,UAAU,CAAE,IAAI,CAChB,MAAM,CAAE,OAAO,AACnB,CAAC,AAED,WAAW,eAAC,CAAC,AACT,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,MAAM,AACtB,CAAC,AAED,OAAO,eAAC,CAAC,AACL,KAAK,CAAE,cAAc,AACzB,CAAC;ACPD,OAAO,eAAC,CAAC,AACL,MAAM,CAAE,KAAK,AACjB,CAAC"
 }
