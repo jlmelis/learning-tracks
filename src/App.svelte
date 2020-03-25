@@ -46,6 +46,14 @@
 
 <section class="section">
 	<Navbar></Navbar>
+	{#if selectedTrack}
+		<nav class="breadcrumb" aria-label="breadcrumbs">
+			<ul>
+				<li><a href="#" on:click="{() => selectedTrack = null}">Tracks</a></li>
+				<li class="is-active"><a href ="#">{selectedTrack.name}</a></li>
+			</ul>
+		</nav>
+	{/if}
 </section>
 
 
@@ -53,9 +61,6 @@
 	<div class="container is-fluid">
 		{#if selectedTrack}
 			<div>
-				<button class="button" on:click="{() => selectedTrack = null}">
-					Pick track
-				</button>
 				<Track on:removeTrack={removeTrack} track={selectedTrack} />		
 			</div>			
 		{:else}

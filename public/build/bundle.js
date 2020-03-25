@@ -2241,7 +2241,74 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (61:2) {:else}
+    // (49:1) {#if selectedTrack}
+    function create_if_block_2(ctx) {
+    	let nav;
+    	let ul;
+    	let li0;
+    	let a0;
+    	let t1;
+    	let li1;
+    	let a1;
+    	let t2_value = /*selectedTrack*/ ctx[0].name + "";
+    	let t2;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			nav = element("nav");
+    			ul = element("ul");
+    			li0 = element("li");
+    			a0 = element("a");
+    			a0.textContent = "Tracks";
+    			t1 = space();
+    			li1 = element("li");
+    			a1 = element("a");
+    			t2 = text(t2_value);
+    			attr_dev(a0, "href", "#");
+    			add_location(a0, file$6, 51, 8, 1252);
+    			add_location(li0, file$6, 51, 4, 1248);
+    			attr_dev(a1, "href", "#");
+    			add_location(a1, file$6, 52, 26, 1346);
+    			attr_dev(li1, "class", "is-active");
+    			add_location(li1, file$6, 52, 4, 1324);
+    			add_location(ul, file$6, 50, 3, 1239);
+    			attr_dev(nav, "class", "breadcrumb");
+    			attr_dev(nav, "aria-label", "breadcrumbs");
+    			add_location(nav, file$6, 49, 2, 1186);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, nav, anchor);
+    			append_dev(nav, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, a0);
+    			append_dev(ul, t1);
+    			append_dev(ul, li1);
+    			append_dev(li1, a1);
+    			append_dev(a1, t2);
+    			dispose = listen_dev(a0, "click", /*click_handler*/ ctx[7], false, false, false);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*selectedTrack*/ 1 && t2_value !== (t2_value = /*selectedTrack*/ ctx[0].name + "")) set_data_dev(t2, t2_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(nav);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2.name,
+    		type: "if",
+    		source: "(49:1) {#if selectedTrack}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (66:2) {:else}
     function create_else_block$1(ctx) {
     	let div1;
     	let div0;
@@ -2287,20 +2354,20 @@ var app = (function () {
     			attr_dev(input, "class", "input");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "filter or create new");
-    			add_location(input, file$6, 64, 6, 1552);
+    			add_location(input, file$6, 69, 6, 1705);
     			attr_dev(i, "class", "iconify");
     			attr_dev(i, "data-icon", "fa-solid:search");
     			attr_dev(i, "data-inline", "false");
     			attr_dev(i, "aria-hidden", "true");
-    			add_location(i, file$6, 69, 7, 1706);
+    			add_location(i, file$6, 74, 7, 1859);
     			attr_dev(span, "class", "icon is-left");
-    			add_location(span, file$6, 68, 6, 1671);
+    			add_location(span, file$6, 73, 6, 1824);
     			attr_dev(p, "class", "control has-icons-left");
-    			add_location(p, file$6, 63, 5, 1511);
+    			add_location(p, file$6, 68, 5, 1664);
     			attr_dev(div0, "class", "panel-heading");
-    			add_location(div0, file$6, 62, 4, 1478);
+    			add_location(div0, file$6, 67, 4, 1631);
     			attr_dev(div1, "class", "panel");
-    			add_location(div1, file$6, 61, 3, 1454);
+    			add_location(div1, file$6, 66, 3, 1607);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -2398,20 +2465,17 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(61:2) {:else}",
+    		source: "(66:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (54:2) {#if selectedTrack}
+    // (62:2) {#if selectedTrack}
     function create_if_block$1(ctx) {
     	let div;
-    	let button;
-    	let t1;
     	let current;
-    	let dispose;
 
     	const track = new Track({
     			props: { track: /*selectedTrack*/ ctx[0] },
@@ -2423,21 +2487,13 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div = element("div");
-    			button = element("button");
-    			button.textContent = "Pick track";
-    			t1 = space();
     			create_component(track.$$.fragment);
-    			attr_dev(button, "class", "button");
-    			add_location(button, file$6, 55, 4, 1267);
-    			add_location(div, file$6, 54, 3, 1257);
+    			add_location(div, file$6, 62, 3, 1508);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			append_dev(div, button);
-    			append_dev(div, t1);
     			mount_component(track, div, null);
     			current = true;
-    			dispose = listen_dev(button, "click", /*click_handler*/ ctx[7], false, false, false);
     		},
     		p: function update(ctx, dirty) {
     			const track_changes = {};
@@ -2456,7 +2512,6 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     			destroy_component(track);
-    			dispose();
     		}
     	};
 
@@ -2464,14 +2519,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(54:2) {#if selectedTrack}",
+    		source: "(62:2) {#if selectedTrack}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (76:5) {#if search.length > 0}
+    // (81:5) {#if search.length > 0}
     function create_if_block_1$1(ctx) {
     	let button;
     	let t0;
@@ -2484,7 +2539,7 @@ var app = (function () {
     			t0 = text("Create: ");
     			t1 = text(/*search*/ ctx[1]);
     			attr_dev(button, "class", "button");
-    			add_location(button, file$6, 76, 6, 1883);
+    			add_location(button, file$6, 81, 6, 2036);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -2505,14 +2560,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(76:5) {#if search.length > 0}",
+    		source: "(81:5) {#if search.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (83:4) {#each filteredTracks as track}
+    // (88:4) {#each filteredTracks as track}
     function create_each_block$1(ctx) {
     	let div;
     	let t;
@@ -2537,7 +2592,7 @@ var app = (function () {
     			create_component(tracksummary.$$.fragment);
     			t = space();
     			attr_dev(div, "class", "panel-block");
-    			add_location(div, file$6, 83, 5, 2032);
+    			add_location(div, file$6, 88, 5, 2185);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2572,7 +2627,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(83:4) {#each filteredTracks as track}",
+    		source: "(88:4) {#each filteredTracks as track}",
     		ctx
     	});
 
@@ -2581,13 +2636,15 @@ var app = (function () {
 
     function create_fragment$6(ctx) {
     	let section;
-    	let t;
+    	let t0;
+    	let t1;
     	let div1;
     	let div0;
     	let current_block_type_index;
-    	let if_block;
+    	let if_block1;
     	let current;
     	const navbar = new Navbar({ $$inline: true });
+    	let if_block0 = /*selectedTrack*/ ctx[0] && create_if_block_2(ctx);
     	const if_block_creators = [create_if_block$1, create_else_block$1];
     	const if_blocks = [];
 
@@ -2597,22 +2654,24 @@ var app = (function () {
     	}
 
     	current_block_type_index = select_block_type(ctx);
-    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    	if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
     	const block = {
     		c: function create() {
     			section = element("section");
     			create_component(navbar.$$.fragment);
-    			t = space();
+    			t0 = space();
+    			if (if_block0) if_block0.c();
+    			t1 = space();
     			div1 = element("div");
     			div0 = element("div");
-    			if_block.c();
+    			if_block1.c();
     			attr_dev(section, "class", "section");
     			add_location(section, file$6, 46, 0, 1118);
     			attr_dev(div0, "class", "container is-fluid");
-    			add_location(div0, file$6, 52, 1, 1199);
+    			add_location(div0, file$6, 60, 1, 1450);
     			attr_dev(div1, "class", "section");
-    			add_location(div1, file$6, 51, 0, 1176);
+    			add_location(div1, file$6, 59, 0, 1427);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2620,13 +2679,28 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
     			mount_component(navbar, section, null);
-    			insert_dev(target, t, anchor);
+    			append_dev(section, t0);
+    			if (if_block0) if_block0.m(section, null);
+    			insert_dev(target, t1, anchor);
     			insert_dev(target, div1, anchor);
     			append_dev(div1, div0);
     			if_blocks[current_block_type_index].m(div0, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
+    			if (/*selectedTrack*/ ctx[0]) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+    				} else {
+    					if_block0 = create_if_block_2(ctx);
+    					if_block0.c();
+    					if_block0.m(section, null);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
+
     			let previous_block_index = current_block_type_index;
     			current_block_type_index = select_block_type(ctx);
 
@@ -2640,32 +2714,33 @@ var app = (function () {
     				});
 
     				check_outros();
-    				if_block = if_blocks[current_block_type_index];
+    				if_block1 = if_blocks[current_block_type_index];
 
-    				if (!if_block) {
-    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    					if_block.c();
+    				if (!if_block1) {
+    					if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block1.c();
     				}
 
-    				transition_in(if_block, 1);
-    				if_block.m(div0, null);
+    				transition_in(if_block1, 1);
+    				if_block1.m(div0, null);
     			}
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(navbar.$$.fragment, local);
-    			transition_in(if_block);
+    			transition_in(if_block1);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(navbar.$$.fragment, local);
-    			transition_out(if_block);
+    			transition_out(if_block1);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(section);
     			destroy_component(navbar);
-    			if (detaching) detach_dev(t);
+    			if (if_block0) if_block0.d();
+    			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(div1);
     			if_blocks[current_block_type_index].d();
     		}
