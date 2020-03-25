@@ -44,6 +44,14 @@
 	
 </script>
 
+<style>
+	.clearSearch {
+		pointer-events: initial;
+		cursor: pointer;
+	}
+
+</style>
+
 <section class="section">
 	<Navbar></Navbar>
 	{#if selectedTrack}
@@ -71,12 +79,18 @@
 							bind:value={search}
 							type="text" 
 							placeholder="filter or create new" >
-						<span class="icon is-left">
-							<i class="iconify" 
-								data-icon="fa-solid:search" 
-								data-inline="false" 
-								aria-hidden="true"></i>
-						</span>
+						{#if search.length === 0}
+							<span class="icon is-left">
+								<i class="iconify" 
+									data-icon="fa-solid:search" 
+									data-inline="false" 
+									aria-hidden="true"></i>
+							</span>
+						{:else}
+							<span class="icon is-left" on:click="{() => search = ''}">
+								<i class="delete"></i>
+							</span>
+						{/if}
 					</p>
 					{#if search.length > 0}
 						<button class="button" on:click={addTrack}>

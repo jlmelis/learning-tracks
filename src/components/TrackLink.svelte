@@ -20,11 +20,7 @@
 
 <div>
     <a href='{link.href}'>{link.title}</a>
-    <button class="button is-small" on:click={toggleConfirmation}>
-        <i class="iconify"
-            data-icon="fa-solid:trash"
-            data-inline="false"></i>
-    </button>
+    <i class="delete is-small" on:click={toggleConfirmation}></i>
 </div>
 
 <Confirmation active={showConfirmation} 

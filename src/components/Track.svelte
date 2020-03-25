@@ -12,6 +12,7 @@
 	let linkTitle;
 	let linkUrl;
 	let showConfirmation;
+	let showAddLink;
 
 	const dispatch = createEventDispatcher();
 
@@ -40,6 +41,7 @@
 		tracks.updateTrack(track);
 		linkTitle = '';
 		linkUrl = '';
+		toggleShowAddLink();
 	}
 
 	function removeLink(event) {
@@ -58,6 +60,10 @@
 
 	function toggleConfirmation() {
 		showConfirmation = !showConfirmation;
+	}
+
+	function toggleShowAddLink() {
+		showAddLink = !showAddLink;
 	}
 
 </script>
@@ -81,32 +87,21 @@
 				</button>
 			</div>			
 		{:else}
-			<div>
-				<span>{track.name}</span>
-				<span> ({track.description})</span>
-				<button class="button is-small" on:click={editTrack}>
-					<i class="iconify" 
-						data-icon="fa-solid:pencil-alt" 
-						data-inline="false"></i>
-				</button>
-				<button class="button is-small" on:click={toggleConfirmation}>
-					<i class="iconify" 
-						data-icon="fa-solid:trash" 
-						data-inline="false"></i>
-				</button>
+			<div on:dblclick={editTrack} class="level"> 
+				<div class="level-left">
+					<span>{track.name}</span>
+					<span> ({track.description})</span>
+					<i class="delete is-small" on:click={toggleConfirmation}></i>
+				</div>
+				<div class="level-right">
+					<button class="button is-small" on:click={toggleShowAddLink}>
+						<i class="iconify" 
+							data-icon="fa-solid:plus" 
+							data-inline="false"></i>
+					</button>
+				</div>
 			</div>
 		{/if}
-	</div>
-	<div class="panel-block">
-		<div class="level">
-			<input class="input" bind:value={linkTitle} placeholder="title" />
-			<input class="input" bind:value={linkUrl} placeholder="url" />
-			<button class="button is-small" on:click={addLink}>
-				<i class="iconify" 
-					data-icon="fa-solid:plus" 
-					data-inline="false"></i>
-			</button>
-		</div>
 	</div>
 	{#if track.links}
 		{#each track.links as link}
@@ -116,6 +111,22 @@
 		{/each}
 	{/if}
 	
+</div>
+
+<!-- TODO: Move to component-->
+<div class="modal" class:is-active={showAddLink}>
+	<div class="modal-background" on:click={toggleShowAddLink}></div>
+	<div class="modal-content">
+		<div class="box">
+			<h3 class="title">Add new link</h3>
+			<input class="input" bind:value={linkTitle} placeholder="title" />
+			<input class="input" bind:value={linkUrl} placeholder="url" />
+			<button class="button is-primary" on:click={addLink}>
+				Save
+			</button>
+		</div>
+	</div>
+	<div class="modal-close is-large" aria-label="close" on:click={toggleShowAddLink}></div>
 </div>
 
 <Confirmation active={showConfirmation} 
