@@ -1,4 +1,3 @@
-/* eslint-disable a11y-invalid-attribute */
 <script>
 	import { onMount } from 'svelte';
 	import Navbar from './components/Navbar.svelte';
