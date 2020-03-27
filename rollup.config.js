@@ -22,6 +22,16 @@ export default {
 			// a separate file - better for performance
 			css: css => {
 				css.write('public/build/bundle.css');
+			},
+			// Warnings are normally passed straight to Rollup. You can
+			// optionally handle them here, for example to squelch
+			// warnings with a particular code
+			onwarn: (warning, handler) => {
+				// silencing warnings about anchor tags with #
+				if (warning.code === 'a11y-invalid-attribute') return; 
+
+				// let Rollup handle all other warnings normally
+				handler(warning);
 			}
 		}),
 

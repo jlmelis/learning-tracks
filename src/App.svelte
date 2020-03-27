@@ -1,3 +1,4 @@
+/* eslint-disable a11y-invalid-attribute */
 <script>
 	import { onMount } from 'svelte';
 	import Navbar from './components/Navbar.svelte';
@@ -44,20 +45,12 @@
 	
 </script>
 
-<style>
-	.clearSearch {
-		pointer-events: initial;
-		cursor: pointer;
-	}
-
-</style>
-
 <section class="section">
 	<Navbar></Navbar>
 	{#if selectedTrack}
 		<nav class="breadcrumb" aria-label="breadcrumbs">
 			<ul>
-				<li><a href="#" on:click="{() => selectedTrack = null}">Tracks</a></li>
+				<li><a href="#" on:click="{() => selectedTrack = null}">Tracks</a></li> 
 				<li class="is-active"><a href ="#">{selectedTrack.name}</a></li>
 			</ul>
 		</nav>

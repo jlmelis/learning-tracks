@@ -1,6 +1,6 @@
 export function selectTextOnFocus(node) {
   
-    const handleFocus = event => {
+    const handleFocus = () => {
       node && typeof node.select === 'function' && node.select()
     }
     

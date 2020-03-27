@@ -939,7 +939,7 @@ var app = (function () {
 
     function selectTextOnFocus(node) {
       
-        const handleFocus = event => {
+        const handleFocus = () => {
           node && typeof node.select === 'function' && node.select();
         };
         
@@ -1376,22 +1376,22 @@ var app = (function () {
     			div1 = element("div");
     			button = element("button");
     			i1 = element("i");
-    			add_location(span0, file$4, 91, 5, 2225);
-    			add_location(span1, file$4, 92, 5, 2256);
+    			add_location(span0, file$4, 91, 5, 2236);
+    			add_location(span1, file$4, 92, 5, 2267);
     			attr_dev(i0, "class", "delete is-small");
-    			add_location(i0, file$4, 93, 5, 2297);
+    			add_location(i0, file$4, 93, 5, 2308);
     			attr_dev(div0, "class", "level-left");
-    			add_location(div0, file$4, 90, 4, 2195);
+    			add_location(div0, file$4, 90, 4, 2206);
     			attr_dev(i1, "class", "iconify");
     			attr_dev(i1, "data-icon", "fa-solid:plus");
     			attr_dev(i1, "data-inline", "false");
-    			add_location(i1, file$4, 97, 6, 2473);
+    			add_location(i1, file$4, 97, 6, 2484);
     			attr_dev(button, "class", "button is-small");
-    			add_location(button, file$4, 96, 5, 2405);
+    			add_location(button, file$4, 96, 5, 2416);
     			attr_dev(div1, "class", "level-right");
-    			add_location(div1, file$4, 95, 4, 2374);
+    			add_location(div1, file$4, 95, 4, 2385);
     			attr_dev(div2, "class", "level");
-    			add_location(div2, file$4, 89, 3, 2146);
+    			add_location(div2, file$4, 89, 3, 2157);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -1460,16 +1460,16 @@ var app = (function () {
     			button = element("button");
     			i = element("i");
     			attr_dev(input0, "class", "input");
-    			add_location(input0, file$4, 74, 4, 1694);
+    			add_location(input0, file$4, 74, 4, 1705);
     			attr_dev(input1, "class", "input");
-    			add_location(input1, file$4, 78, 4, 1828);
+    			add_location(input1, file$4, 78, 4, 1839);
     			attr_dev(i, "class", "iconify");
     			attr_dev(i, "data-icon", "fa-solid:check");
     			attr_dev(i, "data-inline", "false");
-    			add_location(i, file$4, 83, 5, 2021);
+    			add_location(i, file$4, 83, 5, 2032);
     			attr_dev(button, "class", "button");
-    			add_location(button, file$4, 82, 4, 1969);
-    			add_location(div, file$4, 73, 3, 1684);
+    			add_location(button, file$4, 82, 4, 1980);
+    			add_location(div, file$4, 73, 3, 1695);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1637,7 +1637,7 @@ var app = (function () {
     			create_component(tracklink.$$.fragment);
     			t = space();
     			attr_dev(div, "class", "panel-block");
-    			add_location(div, file$4, 107, 3, 2663);
+    			add_location(div, file$4, 107, 3, 2674);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1746,31 +1746,31 @@ var app = (function () {
     			t9 = space();
     			create_component(confirmation.$$.fragment);
     			attr_dev(div0, "class", "panel-heading");
-    			add_location(div0, file$4, 71, 1, 1640);
+    			add_location(div0, file$4, 71, 1, 1651);
     			attr_dev(div1, "class", "panel");
-    			add_location(div1, file$4, 70, 0, 1610);
+    			add_location(div1, file$4, 70, 0, 1621);
     			attr_dev(div2, "class", "modal-background");
-    			add_location(div2, file$4, 117, 1, 2863);
+    			add_location(div2, file$4, 117, 1, 2874);
     			attr_dev(h3, "class", "title");
-    			add_location(h3, file$4, 120, 3, 2981);
+    			add_location(h3, file$4, 120, 3, 2992);
     			attr_dev(input0, "class", "input");
     			attr_dev(input0, "placeholder", "title");
-    			add_location(input0, file$4, 121, 3, 3020);
+    			add_location(input0, file$4, 121, 3, 3031);
     			attr_dev(input1, "class", "input");
     			attr_dev(input1, "placeholder", "url");
-    			add_location(input1, file$4, 122, 3, 3090);
+    			add_location(input1, file$4, 122, 3, 3101);
     			attr_dev(button, "class", "button is-primary");
-    			add_location(button, file$4, 123, 3, 3156);
+    			add_location(button, file$4, 123, 3, 3167);
     			attr_dev(div3, "class", "box");
-    			add_location(div3, file$4, 119, 2, 2960);
+    			add_location(div3, file$4, 119, 2, 2971);
     			attr_dev(div4, "class", "modal-content");
-    			add_location(div4, file$4, 118, 1, 2930);
+    			add_location(div4, file$4, 118, 1, 2941);
     			attr_dev(div5, "class", "modal-close is-large");
     			attr_dev(div5, "aria-label", "close");
-    			add_location(div5, file$4, 128, 1, 3250);
+    			add_location(div5, file$4, 128, 1, 3261);
     			attr_dev(div6, "class", "modal");
     			toggle_class(div6, "is-active", /*showAddLink*/ ctx[6]);
-    			add_location(div6, file$4, 116, 0, 2812);
+    			add_location(div6, file$4, 116, 0, 2823);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2284,7 +2284,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (57:1) {#if selectedTrack}
+    // (50:1) {#if selectedTrack}
     function create_if_block_3(ctx) {
     	let nav;
     	let ul;
@@ -2309,16 +2309,16 @@ var app = (function () {
     			a1 = element("a");
     			t2 = text(t2_value);
     			attr_dev(a0, "href", "#");
-    			add_location(a0, file$6, 59, 8, 1336);
-    			add_location(li0, file$6, 59, 4, 1332);
+    			add_location(a0, file$6, 52, 8, 1296);
+    			add_location(li0, file$6, 52, 4, 1292);
     			attr_dev(a1, "href", "#");
-    			add_location(a1, file$6, 60, 26, 1430);
+    			add_location(a1, file$6, 53, 26, 1391);
     			attr_dev(li1, "class", "is-active");
-    			add_location(li1, file$6, 60, 4, 1408);
-    			add_location(ul, file$6, 58, 3, 1323);
+    			add_location(li1, file$6, 53, 4, 1369);
+    			add_location(ul, file$6, 51, 3, 1283);
     			attr_dev(nav, "class", "breadcrumb");
     			attr_dev(nav, "aria-label", "breadcrumbs");
-    			add_location(nav, file$6, 57, 2, 1270);
+    			add_location(nav, file$6, 50, 2, 1230);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, nav, anchor);
@@ -2344,14 +2344,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(57:1) {#if selectedTrack}",
+    		source: "(50:1) {#if selectedTrack}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (74:2) {:else}
+    // (67:2) {:else}
     function create_else_block$1(ctx) {
     	let div1;
     	let div0;
@@ -2402,13 +2402,13 @@ var app = (function () {
     			attr_dev(input, "class", "input");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "filter or create new");
-    			add_location(input, file$6, 77, 6, 1789);
+    			add_location(input, file$6, 70, 6, 1750);
     			attr_dev(p, "class", "control has-icons-left");
-    			add_location(p, file$6, 76, 5, 1748);
+    			add_location(p, file$6, 69, 5, 1709);
     			attr_dev(div0, "class", "panel-heading");
-    			add_location(div0, file$6, 75, 4, 1715);
+    			add_location(div0, file$6, 68, 4, 1676);
     			attr_dev(div1, "class", "panel");
-    			add_location(div1, file$6, 74, 3, 1691);
+    			add_location(div1, file$6, 67, 3, 1652);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -2518,14 +2518,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(74:2) {:else}",
+    		source: "(67:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (70:2) {#if selectedTrack}
+    // (63:2) {#if selectedTrack}
     function create_if_block$1(ctx) {
     	let div;
     	let current;
@@ -2541,7 +2541,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(track.$$.fragment);
-    			add_location(div, file$6, 70, 3, 1592);
+    			add_location(div, file$6, 63, 3, 1553);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2572,14 +2572,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(70:2) {#if selectedTrack}",
+    		source: "(63:2) {#if selectedTrack}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (89:6) {:else}
+    // (82:6) {:else}
     function create_else_block_1(ctx) {
     	let span;
     	let i;
@@ -2590,9 +2590,9 @@ var app = (function () {
     			span = element("span");
     			i = element("i");
     			attr_dev(i, "class", "delete");
-    			add_location(i, file$6, 90, 8, 2201);
+    			add_location(i, file$6, 83, 8, 2162);
     			attr_dev(span, "class", "icon is-left");
-    			add_location(span, file$6, 89, 7, 2134);
+    			add_location(span, file$6, 82, 7, 2095);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -2610,14 +2610,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(89:6) {:else}",
+    		source: "(82:6) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (82:6) {#if search.length === 0}
+    // (75:6) {#if search.length === 0}
     function create_if_block_2(ctx) {
     	let span;
     	let i;
@@ -2630,9 +2630,9 @@ var app = (function () {
     			attr_dev(i, "data-icon", "fa-solid:search");
     			attr_dev(i, "data-inline", "false");
     			attr_dev(i, "aria-hidden", "true");
-    			add_location(i, file$6, 83, 8, 1977);
+    			add_location(i, file$6, 76, 8, 1938);
     			attr_dev(span, "class", "icon is-left");
-    			add_location(span, file$6, 82, 7, 1941);
+    			add_location(span, file$6, 75, 7, 1902);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -2648,14 +2648,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(82:6) {#if search.length === 0}",
+    		source: "(75:6) {#if search.length === 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (95:5) {#if search.length > 0}
+    // (88:5) {#if search.length > 0}
     function create_if_block_1$1(ctx) {
     	let button;
     	let t0;
@@ -2668,7 +2668,7 @@ var app = (function () {
     			t0 = text("Create: ");
     			t1 = text(/*search*/ ctx[1]);
     			attr_dev(button, "class", "button");
-    			add_location(button, file$6, 95, 6, 2296);
+    			add_location(button, file$6, 88, 6, 2257);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -2689,14 +2689,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(95:5) {#if search.length > 0}",
+    		source: "(88:5) {#if search.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (102:4) {#each filteredTracks as track}
+    // (95:4) {#each filteredTracks as track}
     function create_each_block$1(ctx) {
     	let div;
     	let t;
@@ -2721,7 +2721,7 @@ var app = (function () {
     			create_component(tracksummary.$$.fragment);
     			t = space();
     			attr_dev(div, "class", "panel-block");
-    			add_location(div, file$6, 102, 5, 2445);
+    			add_location(div, file$6, 95, 5, 2406);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2756,7 +2756,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(102:4) {#each filteredTracks as track}",
+    		source: "(95:4) {#each filteredTracks as track}",
     		ctx
     	});
 
@@ -2764,9 +2764,10 @@ var app = (function () {
     }
 
     function create_fragment$6(ctx) {
-    	let section;
     	let t0;
+    	let section;
     	let t1;
+    	let t2;
     	let div1;
     	let div0;
     	let current_block_type_index;
@@ -2787,30 +2788,32 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			t0 = text("/* eslint-disable a11y-invalid-attribute */\n\n\n");
     			section = element("section");
     			create_component(navbar.$$.fragment);
-    			t0 = space();
-    			if (if_block0) if_block0.c();
     			t1 = space();
+    			if (if_block0) if_block0.c();
+    			t2 = space();
     			div1 = element("div");
     			div0 = element("div");
     			if_block1.c();
     			attr_dev(section, "class", "section");
-    			add_location(section, file$6, 54, 0, 1202);
+    			add_location(section, file$6, 47, 0, 1162);
     			attr_dev(div0, "class", "container is-fluid");
-    			add_location(div0, file$6, 68, 1, 1534);
+    			add_location(div0, file$6, 61, 1, 1495);
     			attr_dev(div1, "class", "section");
-    			add_location(div1, file$6, 67, 0, 1511);
+    			add_location(div1, file$6, 60, 0, 1472);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
     			insert_dev(target, section, anchor);
     			mount_component(navbar, section, null);
-    			append_dev(section, t0);
+    			append_dev(section, t1);
     			if (if_block0) if_block0.m(section, null);
-    			insert_dev(target, t1, anchor);
+    			insert_dev(target, t2, anchor);
     			insert_dev(target, div1, anchor);
     			append_dev(div1, div0);
     			if_blocks[current_block_type_index].m(div0, null);
@@ -2866,10 +2869,11 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(section);
     			destroy_component(navbar);
     			if (if_block0) if_block0.d();
-    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(t2);
     			if (detaching) detach_dev(div1);
     			if_blocks[current_block_type_index].d();
     		}

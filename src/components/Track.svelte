@@ -20,7 +20,7 @@
 		dispatch('removeTrack', {id: track.id});
 	}
 
-	async function editTrack() {
+	async function editTrack() {           
 		edit = true;
 
 		// using tick to wait for the input to be shown
