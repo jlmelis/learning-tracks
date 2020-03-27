@@ -1,13 +1,13 @@
 export function selectTextOnFocus(node) {
-    const handleFocus = () => {
-        node && typeof node.select === 'function' && node.select();
-    };
+  const handleFocus = () => {
+    node && typeof node.select === 'function' && node.select();
+  };
 
-    node.addEventListener('focus', handleFocus);
+  node.addEventListener('focus', handleFocus);
 
-    return {
-        destroy() {
-            node.removeEventListener('focus', handleFocus);
-        },
-    };
+  return {
+    destroy() {
+      node.removeEventListener('focus', handleFocus);
+    },
+  };
 }

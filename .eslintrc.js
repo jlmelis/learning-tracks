@@ -16,7 +16,17 @@ module.exports = {
         },
     ],
     rules: {
-        // ...
+        semi: ['error', 'always'],
+        indent: ['error', 2],
+        quotes: ['error', 'single'],
+        'no-trailing-spaces': ['error', { "skipBlankLines": true }],
+        curly: ['error', 'all'],
+        'brace-style': [2],
+        'object-curly-spacing': ['error', 'always'],
+        'block-spacing': ['error', 'always'],
+        'no-multi-spaces': ['error'],
+        'comma-dangle': ['error', 'always-multiline'],
+        'eqeqeq': ['error', 'always']
     },
     settings: {
         'svelte3/ignore-warnings': () => {

@@ -17,53 +17,53 @@
 	const dispatch = createEventDispatcher();
 
 	function removeTrack() {
-		dispatch('removeTrack', {id: track.id});
+	  dispatch('removeTrack', { id: track.id });
 	}
 
-	async function editTrack() {           
-		edit = true;
+	async function editTrack() {
+	  edit = true;
 
-		// using tick to wait for the input to be shown
-		await tick();
-		nameInput.focus();
+	  // using tick to wait for the input to be shown
+	  await tick();
+	  nameInput.focus();
 	}
 
 	function updateTrack() {
-		tracks.updateTrack(track);
-		edit = false;
+	  tracks.updateTrack(track);
+	  edit = false;
 	}
 
 	function addLink() {
-		// TODO: is this causing two renders?
-		// look into possibility of using storefunction to update store
-		// as opposed to updating item then updating store.
-		track.links = [...track.links, {id: track.links.length + 1, title: linkTitle, url: linkUrl}];
-		tracks.updateTrack(track);
-		linkTitle = '';
-		linkUrl = '';
-		toggleShowAddLink();
+	  // TODO: is this causing two renders?
+	  // look into possibility of using storefunction to update store
+	  // as opposed to updating item then updating store.
+	  track.links = [...track.links, { id: track.links.length + 1, title: linkTitle, url: linkUrl }];
+	  tracks.updateTrack(track);
+	  linkTitle = '';
+	  linkUrl = '';
+	  toggleShowAddLink();
 	}
 
 	function removeLink(event) {
-		// TODO: is this causing two renders?
-		// look into possibility of using storefunction to update store
-		// as opposed to updating item then updating store.
-		track.links = track.links.filter(t => t.id != event.detail.id);
-		tracks.updateTrack(track);
+	  // TODO: is this causing two renders?
+	  // look into possibility of using storefunction to update store
+	  // as opposed to updating item then updating store.
+	  track.links = track.links.filter(t => t.id !== event.detail.id);
+	  tracks.updateTrack(track);
 	}
 
 	function onEnter(event) {
-		if (event.key === 'Enter') {
-			updateTrack();
-		}
+	  if (event.key === 'Enter') {
+	    updateTrack();
+	  }
 	}
 
 	function toggleConfirmation() {
-		showConfirmation = !showConfirmation;
+	  showConfirmation = !showConfirmation;
 	}
 
 	function toggleShowAddLink() {
-		showAddLink = !showAddLink;
+	  showAddLink = !showAddLink;
 	}
 
 </script>

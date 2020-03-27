@@ -1,18 +1,18 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
 
-    export let active;
-    export let message = 'Are you sure you want to delete?';
+  export let active;
+  export let message = 'Are you sure you want to delete?';
 
-    const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher();
 
-    function cancel() {
-        dispatch('cancel');
-    }
+  function cancel() {
+    dispatch('cancel');
+  }
 
-    function confirm() {
-        dispatch('confirm');
-    }
+  function confirm() {
+    dispatch('confirm');
+  }
 </script>
 
 

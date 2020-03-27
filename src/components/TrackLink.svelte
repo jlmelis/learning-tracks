@@ -1,20 +1,20 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
-    import Confirmation from './Confirmation.svelte';
+  import { createEventDispatcher } from 'svelte';
+  import Confirmation from './Confirmation.svelte';
 
-    export let link;
+  export let link;
 
-    let showConfirmation;
+  let showConfirmation;
 
-    const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher();
 
-    function removeLink() {
-        dispatch('remove', {id: link.id});
-    }
+  function removeLink() {
+    dispatch('remove', { id: link.id });
+  }
 
-    function toggleConfirmation() {
-        showConfirmation = !showConfirmation;
-    }
+  function toggleConfirmation() {
+    showConfirmation = !showConfirmation;
+  }
 
 </script>
 

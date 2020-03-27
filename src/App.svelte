@@ -5,42 +5,42 @@
 	import TrackSummary from './components/TrackSummary.svelte';
 	import { tracks } from './stores.js';
 
-	//TODO: remove or find better 
+	//TODO: remove or find better
 	//being used to reset local storage if breaking changes are made
 	//in development
 	onMount(() => {
-		let json = localStorage.getItem('tracksLastUpdate');
-		let updateVer = 2;
-		if (!json || json != updateVer) {
-			localStorage.setItem('tracksLastUpdate', updateVer);
-			localStorage.removeItem('tracks');
-		} 
+	  let json = localStorage.getItem('tracksLastUpdate');
+	  let updateVer = 2;
+	  if (!json || json !== updateVer) {
+	    localStorage.setItem('tracksLastUpdate', updateVer);
+	    localStorage.removeItem('tracks');
+	  }
 
-		tracks.useLocalStorage();	
+	  tracks.useLocalStorage();
 	});
 	
 	let selectedTrack;
 	let search = '';
 
 	function addTrack() {
-		tracks.addNew(search);
-		selectedTrack = $tracks[$tracks.length -1];
-		search = '';
+	  tracks.addNew(search);
+	  selectedTrack = $tracks[$tracks.length -1];
+	  search = '';
 	}
 
 	function removeTrack(event) {
-		selectedTrack = null;
-		tracks.removeTrack(event.detail.id);
+	  selectedTrack = null;
+	  tracks.removeTrack(event.detail.id);
 	}
 	
 	function selectTrack(track) {
-		selectedTrack = track;
+	  selectedTrack = track;
 	}
 
-	$: filteredTracks = $tracks.filter(t => 
-			t.name.toLowerCase().includes(search.toLowerCase()) ||
-			t.description.toLowerCase().includes(search.toLowerCase())		
-		);
+	$: filteredTracks = $tracks.filter(t =>
+	  t.name.toLowerCase().includes(search.toLowerCase()) ||
+			t.description.toLowerCase().includes(search.toLowerCase()),
+	);
 	
 </script>
 

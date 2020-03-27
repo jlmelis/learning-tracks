@@ -1,20 +1,20 @@
 <script>
-    import About from './About.svelte';
+  import About from './About.svelte';
 
-    let src = '/images/LTLogo.png';
-    let showMenu;
+  let src = '/images/LTLogo.png';
+  let showMenu;
 
-    //TODO: decide if the about component should live with the 
-    // navbar or the app component
-    let showAbout;
+  //TODO: decide if the about component should live with the
+  // navbar or the app component
+  let showAbout;
 
-    function toggleAbout() {
-		showAbout = !showAbout;
-    }
-    
-    function toggleMenu() {
-        showMenu = !showMenu;
-    }
+  function toggleAbout() {
+    showAbout = !showAbout;
+  }
+  
+  function toggleMenu() {
+    showMenu = !showMenu;
+  }
 </script>
 
 <style>

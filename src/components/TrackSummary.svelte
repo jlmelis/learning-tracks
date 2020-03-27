@@ -1,9 +1,9 @@
 <script>
     
-    //export let id; 
-    export let name;
-    export let description;
-    export let active;
+  //export let id;
+  export let name;
+  export let description;
+  export let active;
 
 </script>
 
