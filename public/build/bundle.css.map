@@ -5,7 +5,7 @@
     "../../TrackSummary.svelte"
   ],
   "sourcesContent": [
-    "<script>\n    \n    //export let id; \n    export let name;\n    export let description;\n    export let active;\n\n</script>\n\n<style>\n    .summary {\n        margin-top: 10px;\n        cursor: pointer;\n    }\n\n    .desription {\n        margin-left: 10px;\n        font-style: italic;\n    }\n\n    .active {\n        color: cornflowerblue;\n    }\n\n</style>\n\n<div class=\"summary\" class:active on:click> \n    <div>\n        <span>{name}</span>\n    </div>\n    <div class=\"desription\">\n        {description}\n    </div>\n    \n</div>"
+    "<script>\n    \n  //export let id;\n  export let name;\n  export let description;\n  export let active;\n\n</script>\n\n<style>\n    .summary {\n        margin-top: 10px;\n        cursor: pointer;\n    }\n\n    .desription {\n        margin-left: 10px;\n        font-style: italic;\n    }\n\n    .active {\n        color: cornflowerblue;\n    }\n\n</style>\n\n<div class=\"summary\" class:active on:click> \n    <div>\n        <span>{name}</span>\n    </div>\n    <div class=\"desription\">\n        {description}\n    </div>\n    \n</div>"
   ],
   "names": [],
   "mappings": "AAUI,QAAQ,eAAC,CAAC,AACN,UAAU,CAAE,IAAI,CAChB,MAAM,CAAE,OAAO,AACnB,CAAC,AAED,WAAW,eAAC,CAAC,AACT,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,MAAM,AACtB,CAAC,AAED,OAAO,eAAC,CAAC,AACL,KAAK,CAAE,cAAc,AACzB,CAAC"

@@ -26,7 +26,7 @@ module.exports = {
         'block-spacing': ['error', 'always'],
         'no-multi-spaces': ['error'],
         'comma-dangle': ['error', 'always-multiline'],
-        'eqeqeq': ['error', 'always']
+        eqeqeq: ['error', 'always']
     },
     settings: {
         'svelte3/ignore-warnings': () => {
