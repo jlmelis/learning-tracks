@@ -1,3 +1,4 @@
 .summary.svelte-1bl8hev{margin-top:10px;cursor:pointer}.desription.svelte-1bl8hev{margin-left:10px;font-style:italic}.active.svelte-1bl8hev{color:cornflowerblue}
+.tooltip.svelte-a4o437.svelte-a4o437{position:relative}.tooltiptext.svelte-a4o437.svelte-a4o437{visibility:collapse;position:absolute}.tooltip.svelte-a4o437 .tooltiptext.svelte-a4o437{width:120px;background-color:#555;color:#fff;text-align:center;border-radius:6px;padding:5px 0;bottom:125%;left:50%;z-index:1;margin-left:-60px;opacity:0;transition:opacity 0.3s}.tooltip.svelte-a4o437 .tooltiptext.svelte-a4o437::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border-width:5px;border-style:solid;border-color:#555 transparent transparent transparent}.tooltip.svelte-a4o437:hover .tooltiptext.svelte-a4o437{visibility:visible;opacity:1}
 
 /*# sourceMappingURL=bundle.css.map */

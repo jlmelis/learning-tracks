@@ -18,5 +18,5 @@ export async function handler(event) {
         title: data,
       }),
     }))
-    .catch(error => ({ statusCode: 422, body: String(error) }));
+    .catch(error => ({ statusCode: 404, body: String(error) }));
 }

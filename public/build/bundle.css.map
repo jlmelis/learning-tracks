@@ -2,11 +2,13 @@
   "version": 3,
   "file": "bundle.css",
   "sources": [
-    "../../TrackSummary.svelte"
+    "../../TrackSummary.svelte",
+    "../../ToolTip.svelte"
   ],
   "sourcesContent": [
-    "<script>\n    \n  //export let id;\n  export let name;\n  export let description;\n  export let active;\n\n</script>\n\n<style>\n    .summary {\n        margin-top: 10px;\n        cursor: pointer;\n    }\n\n    .desription {\n        margin-left: 10px;\n        font-style: italic;\n    }\n\n    .active {\n        color: cornflowerblue;\n    }\n\n</style>\n\n<div class=\"summary\" class:active on:click> \n    <div>\n        <span>{name}</span>\n    </div>\n    <div class=\"desription\">\n        {description}\n    </div>\n    \n</div>"
+    "<script>\n    \n  //export let id;\n  export let name;\n  export let description;\n  export let active;\n\n</script>\n\n<style>\n    .summary {\n        margin-top: 10px;\n        cursor: pointer;\n    }\n\n    .desription {\n        margin-left: 10px;\n        font-style: italic;\n    }\n\n    .active {\n        color: cornflowerblue;\n    }\n\n</style>\n\n<div class=\"summary\" class:active on:click> \n    <div>\n        <span>{name}</span>\n    </div>\n    <div class=\"desription\">\n        {description}\n    </div>\n    \n</div>",
+    "<script>\n  export let text;\n  export let active = false;\n</script>\n\n<style>\n.tooltip {\n  position: relative;\n}\n\n.tooltiptext {\n  visibility: collapse; \n  position: absolute;\n}\n\n.tooltip .tooltiptext {\n  width: 120px;\n  background-color: #555;\n  color: #fff;\n  text-align: center;\n  border-radius: 6px;\n  padding: 5px 0;\n  \n  bottom: 125%;\n  left: 50%;\n  z-index: 1;\n  margin-left: -60px;\n  opacity: 0;\n  transition: opacity 0.3s;\n}\n\n.tooltip .tooltiptext::after {\n  content: \"\";\n  position: absolute;\n  top: 100%;\n  left: 50%;\n  margin-left: -5px;\n  border-width: 5px;\n  border-style: solid;\n  border-color: #555 transparent transparent transparent;\n}\n\n.tooltip:hover .tooltiptext {\n  visibility: visible;\n  opacity: 1;\n}\n</style>\n\n<div class:tooltip={active}>\n  <slot></slot>\n  <span class=\"tooltiptext\">{text}</span>\n</div>"
   ],
   "names": [],
-  "mappings": "AAUI,QAAQ,eAAC,CAAC,AACN,UAAU,CAAE,IAAI,CAChB,MAAM,CAAE,OAAO,AACnB,CAAC,AAED,WAAW,eAAC,CAAC,AACT,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,MAAM,AACtB,CAAC,AAED,OAAO,eAAC,CAAC,AACL,KAAK,CAAE,cAAc,AACzB,CAAC"
+  "mappings": "AAUI,QAAQ,eAAC,CAAC,AACN,UAAU,CAAE,IAAI,CAChB,MAAM,CAAE,OAAO,AACnB,CAAC,AAED,WAAW,eAAC,CAAC,AACT,WAAW,CAAE,IAAI,CACjB,UAAU,CAAE,MAAM,AACtB,CAAC,AAED,OAAO,eAAC,CAAC,AACL,KAAK,CAAE,cAAc,AACzB,CAAC;AChBL,QAAQ,4BAAC,CAAC,AACR,QAAQ,CAAE,QAAQ,AACpB,CAAC,AAED,YAAY,4BAAC,CAAC,AACZ,UAAU,CAAE,QAAQ,CACpB,QAAQ,CAAE,QAAQ,AACpB,CAAC,AAED,sBAAQ,CAAC,YAAY,cAAC,CAAC,AACrB,KAAK,CAAE,KAAK,CACZ,gBAAgB,CAAE,IAAI,CACtB,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,MAAM,CAClB,aAAa,CAAE,GAAG,CAClB,OAAO,CAAE,GAAG,CAAC,CAAC,CAEd,MAAM,CAAE,IAAI,CACZ,IAAI,CAAE,GAAG,CACT,OAAO,CAAE,CAAC,CACV,WAAW,CAAE,KAAK,CAClB,OAAO,CAAE,CAAC,CACV,UAAU,CAAE,OAAO,CAAC,IAAI,AAC1B,CAAC,AAED,sBAAQ,CAAC,0BAAY,OAAO,AAAC,CAAC,AAC5B,OAAO,CAAE,EAAE,CACX,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,IAAI,CACT,IAAI,CAAE,GAAG,CACT,WAAW,CAAE,IAAI,CACjB,YAAY,CAAE,GAAG,CACjB,YAAY,CAAE,KAAK,CACnB,YAAY,CAAE,IAAI,CAAC,WAAW,CAAC,WAAW,CAAC,WAAW,AACxD,CAAC,AAED,sBAAQ,MAAM,CAAC,YAAY,cAAC,CAAC,AAC3B,UAAU,CAAE,OAAO,CACnB,OAAO,CAAE,CAAC,AACZ,CAAC"
 }

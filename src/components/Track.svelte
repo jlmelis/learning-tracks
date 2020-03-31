@@ -3,17 +3,15 @@
 	import { tracks } from '../stores.js';
 	import { selectTextOnFocus } from '../actions/inputActions.js';
 	import TrackLink from './TrackLink.svelte';
-	import Confirmation from './Confirmation.svelte';
+  import Confirmation from './Confirmation.svelte';
+  import AddLink from './AddLink.svelte';
 
 	export let track;
 	
 	let edit;
-	let nameInput;
-	let linkTitle;
-  let linkUrl;
-  let linkTitlePlaceholder = 'title';
+  let nameInput;
 	let showConfirmation;
-	let showAddLink;
+  let showAddLink;
 
 	const dispatch = createEventDispatcher();
 
@@ -34,14 +32,16 @@
 	  edit = false;
 	}
 
-	function addLink() {
+	function addLink(event) {
 	  // TODO: is this causing two renders?
 	  // look into possibility of using storefunction to update store
 	  // as opposed to updating item then updating store.
-	  track.links = [...track.links, { id: track.links.length + 1, title: linkTitle, url: linkUrl }];
+    track.links = [...track.links,{
+        id: track.links.length + 1,
+        title: event.detail.linkTitle,
+        url: event.detail.linkUrl,
+      }];
 	  tracks.updateTrack(track);
-	  linkTitle = '';
-	  linkUrl = '';
 	  toggleShowAddLink();
 	}
 
@@ -66,21 +66,6 @@
 	function toggleShowAddLink() {
 	  showAddLink = !showAddLink;
 	}
-
-  //TODO: Move to component
-  function onUrlBlur() {
-    linkTitlePlaceholder = 'loading....';
-    getURLTitle();
-  }
-
-  async function getURLTitle() {
-    const encodedUrl = encodeURI(linkUrl);
-    const response = await fetch(`/.netlify/functions/page-title?url=${encodedUrl}`);
-    const result = await response.json();
-    
-    linkTitle = result.title;
-    linkTitlePlaceholder = 'title';
-  }
 </script>
 
 <div on:click class="panel">
@@ -128,21 +113,9 @@
 	
 </div>
 
-<!-- TODO: Move to component-->
-<div class="modal" class:is-active={showAddLink}>
-	<div class="modal-background" on:click={toggleShowAddLink}></div>
-	<div class="modal-content">
-		<div class="box">
-			<h3 class="title">Add new link</h3>
-      <input class="input" bind:value={linkUrl} on:blur={onUrlBlur} placeholder="url" />
-      <input class="input" bind:value={linkTitle} placeholder="{linkTitlePlaceholder}" />
-			<button class="button is-primary" on:click={addLink}>
-				Save
-			</button>
-		</div>
-	</div>
-	<div class="modal-close is-large" aria-label="close" on:click={toggleShowAddLink}></div>
-</div>
+<AddLink active={showAddLink} 
+  on:cancel={toggleShowAddLink} 
+  on:save={addLink} />
 
 <Confirmation active={showConfirmation} 
 	message="{`Are you sure you want to delete the '${track.name}' track?`}"
