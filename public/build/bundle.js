@@ -1337,11 +1337,11 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[23] = list[i];
+    	child_ctx[26] = list[i];
     	return child_ctx;
     }
 
-    // (89:2) {:else}
+    // (104:2) {:else}
     function create_else_block(ctx) {
     	let div2;
     	let div0;
@@ -1379,22 +1379,22 @@ var app = (function () {
     			div1 = element("div");
     			button = element("button");
     			i1 = element("i");
-    			add_location(span0, file$4, 91, 5, 2256);
-    			add_location(span1, file$4, 92, 5, 2287);
+    			add_location(span0, file$4, 106, 5, 2693);
+    			add_location(span1, file$4, 107, 5, 2724);
     			attr_dev(i0, "class", "delete is-small");
-    			add_location(i0, file$4, 93, 5, 2328);
+    			add_location(i0, file$4, 108, 5, 2765);
     			attr_dev(div0, "class", "level-left");
-    			add_location(div0, file$4, 90, 4, 2226);
+    			add_location(div0, file$4, 105, 4, 2663);
     			attr_dev(i1, "class", "iconify");
     			attr_dev(i1, "data-icon", "fa-solid:plus");
     			attr_dev(i1, "data-inline", "false");
-    			add_location(i1, file$4, 97, 6, 2504);
+    			add_location(i1, file$4, 112, 6, 2941);
     			attr_dev(button, "class", "button is-small");
-    			add_location(button, file$4, 96, 5, 2436);
+    			add_location(button, file$4, 111, 5, 2873);
     			attr_dev(div1, "class", "level-right");
-    			add_location(div1, file$4, 95, 4, 2405);
+    			add_location(div1, file$4, 110, 4, 2842);
     			attr_dev(div2, "class", "level");
-    			add_location(div2, file$4, 89, 3, 2177);
+    			add_location(div2, file$4, 104, 3, 2614);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -1414,9 +1414,9 @@ var app = (function () {
     			append_dev(button, i1);
 
     			dispose = [
-    				listen_dev(i0, "click", /*toggleConfirmation*/ ctx[13], false, false, false),
-    				listen_dev(button, "click", /*toggleShowAddLink*/ ctx[14], false, false, false),
-    				listen_dev(div2, "dblclick", /*editTrack*/ ctx[8], false, false, false)
+    				listen_dev(i0, "click", /*toggleConfirmation*/ ctx[14], false, false, false),
+    				listen_dev(button, "click", /*toggleShowAddLink*/ ctx[15], false, false, false),
+    				listen_dev(div2, "dblclick", /*editTrack*/ ctx[9], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
@@ -1433,14 +1433,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(89:2) {:else}",
+    		source: "(104:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (73:2) {#if edit}
+    // (88:2) {#if edit}
     function create_if_block_1(ctx) {
     	let div;
     	let input0;
@@ -1463,38 +1463,38 @@ var app = (function () {
     			button = element("button");
     			i = element("i");
     			attr_dev(input0, "class", "input");
-    			add_location(input0, file$4, 74, 4, 1725);
+    			add_location(input0, file$4, 89, 4, 2162);
     			attr_dev(input1, "class", "input");
-    			add_location(input1, file$4, 78, 4, 1859);
+    			add_location(input1, file$4, 93, 4, 2296);
     			attr_dev(i, "class", "iconify");
     			attr_dev(i, "data-icon", "fa-solid:check");
     			attr_dev(i, "data-inline", "false");
-    			add_location(i, file$4, 83, 5, 2052);
+    			add_location(i, file$4, 98, 5, 2489);
     			attr_dev(button, "class", "button");
-    			add_location(button, file$4, 82, 4, 2000);
-    			add_location(div, file$4, 73, 3, 1715);
+    			add_location(button, file$4, 97, 4, 2437);
+    			add_location(div, file$4, 88, 3, 2152);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, input0);
-    			/*input0_binding*/ ctx[17](input0);
+    			/*input0_binding*/ ctx[20](input0);
     			set_input_value(input0, /*track*/ ctx[0].name);
     			append_dev(div, t0);
     			append_dev(div, input1);
-    			/*input1_binding*/ ctx[19](input1);
+    			/*input1_binding*/ ctx[22](input1);
     			set_input_value(input1, /*track*/ ctx[0].description);
     			append_dev(div, t1);
     			append_dev(div, button);
     			append_dev(button, i);
 
     			dispose = [
-    				listen_dev(input0, "input", /*input0_input_handler*/ ctx[18]),
-    				listen_dev(input0, "keydown", /*onEnter*/ ctx[12], false, false, false),
+    				listen_dev(input0, "input", /*input0_input_handler*/ ctx[21]),
+    				listen_dev(input0, "keydown", /*onEnter*/ ctx[13], false, false, false),
     				action_destroyer(selectTextOnFocus_action = selectTextOnFocus.call(null, input0)),
-    				listen_dev(input1, "input", /*input1_input_handler*/ ctx[20]),
-    				listen_dev(input1, "keydown", /*onEnter*/ ctx[12], false, false, false),
+    				listen_dev(input1, "input", /*input1_input_handler*/ ctx[23]),
+    				listen_dev(input1, "keydown", /*onEnter*/ ctx[13], false, false, false),
     				action_destroyer(selectTextOnFocus_action_1 = selectTextOnFocus.call(null, input1)),
-    				listen_dev(button, "click", /*updateTrack*/ ctx[9], false, false, false)
+    				listen_dev(button, "click", /*updateTrack*/ ctx[10], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
@@ -1508,8 +1508,8 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			/*input0_binding*/ ctx[17](null);
-    			/*input1_binding*/ ctx[19](null);
+    			/*input0_binding*/ ctx[20](null);
+    			/*input1_binding*/ ctx[22](null);
     			run_all(dispose);
     		}
     	};
@@ -1518,14 +1518,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(73:2) {#if edit}",
+    		source: "(88:2) {#if edit}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (106:1) {#if track.links}
+    // (121:1) {#if track.links}
     function create_if_block(ctx) {
     	let each_1_anchor;
     	let current;
@@ -1558,7 +1558,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*track, removeLink*/ 2049) {
+    			if (dirty & /*track, removeLink*/ 4097) {
     				each_value = /*track*/ ctx[0].links;
     				validate_each_argument(each_value);
     				let i;
@@ -1614,25 +1614,25 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(106:1) {#if track.links}",
+    		source: "(121:1) {#if track.links}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (107:2) {#each track.links as link}
+    // (122:2) {#each track.links as link}
     function create_each_block(ctx) {
     	let div;
     	let t;
     	let current;
 
     	const tracklink = new TrackLink({
-    			props: { link: /*link*/ ctx[23] },
+    			props: { link: /*link*/ ctx[26] },
     			$$inline: true
     		});
 
-    	tracklink.$on("remove", /*removeLink*/ ctx[11]);
+    	tracklink.$on("remove", /*removeLink*/ ctx[12]);
 
     	const block = {
     		c: function create() {
@@ -1640,7 +1640,7 @@ var app = (function () {
     			create_component(tracklink.$$.fragment);
     			t = space();
     			attr_dev(div, "class", "panel-block");
-    			add_location(div, file$4, 107, 3, 2694);
+    			add_location(div, file$4, 122, 3, 3131);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1650,7 +1650,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const tracklink_changes = {};
-    			if (dirty & /*track*/ 1) tracklink_changes.link = /*link*/ ctx[23];
+    			if (dirty & /*track*/ 1) tracklink_changes.link = /*link*/ ctx[26];
     			tracklink.$set(tracklink_changes);
     		},
     		i: function intro(local) {
@@ -1672,7 +1672,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(107:2) {#each track.links as link}",
+    		source: "(122:2) {#each track.links as link}",
     		ctx
     	});
 
@@ -1713,14 +1713,14 @@ var app = (function () {
 
     	const confirmation = new Confirmation({
     			props: {
-    				active: /*showConfirmation*/ ctx[5],
+    				active: /*showConfirmation*/ ctx[6],
     				message: `Are you sure you want to delete the '${/*track*/ ctx[0].name}' track?`
     			},
     			$$inline: true
     		});
 
-    	confirmation.$on("cancel", /*toggleConfirmation*/ ctx[13]);
-    	confirmation.$on("confirm", /*removeTrack*/ ctx[7]);
+    	confirmation.$on("cancel", /*toggleConfirmation*/ ctx[14]);
+    	confirmation.$on("confirm", /*removeTrack*/ ctx[8]);
 
     	const block = {
     		c: function create() {
@@ -1749,31 +1749,31 @@ var app = (function () {
     			t9 = space();
     			create_component(confirmation.$$.fragment);
     			attr_dev(div0, "class", "panel-heading");
-    			add_location(div0, file$4, 71, 1, 1671);
+    			add_location(div0, file$4, 86, 1, 2108);
     			attr_dev(div1, "class", "panel");
-    			add_location(div1, file$4, 70, 0, 1641);
+    			add_location(div1, file$4, 85, 0, 2078);
     			attr_dev(div2, "class", "modal-background");
-    			add_location(div2, file$4, 117, 1, 2894);
+    			add_location(div2, file$4, 132, 1, 3331);
     			attr_dev(h3, "class", "title");
-    			add_location(h3, file$4, 120, 3, 3012);
+    			add_location(h3, file$4, 135, 3, 3449);
     			attr_dev(input0, "class", "input");
-    			attr_dev(input0, "placeholder", "title");
-    			add_location(input0, file$4, 121, 3, 3051);
+    			attr_dev(input0, "placeholder", "url");
+    			add_location(input0, file$4, 136, 6, 3491);
     			attr_dev(input1, "class", "input");
-    			attr_dev(input1, "placeholder", "url");
-    			add_location(input1, file$4, 122, 3, 3121);
+    			attr_dev(input1, "placeholder", /*linkTitlePlaceholder*/ ctx[5]);
+    			add_location(input1, file$4, 137, 6, 3580);
     			attr_dev(button, "class", "button is-primary");
-    			add_location(button, file$4, 123, 3, 3187);
+    			add_location(button, file$4, 138, 3, 3667);
     			attr_dev(div3, "class", "box");
-    			add_location(div3, file$4, 119, 2, 2991);
+    			add_location(div3, file$4, 134, 2, 3428);
     			attr_dev(div4, "class", "modal-content");
-    			add_location(div4, file$4, 118, 1, 2961);
+    			add_location(div4, file$4, 133, 1, 3398);
     			attr_dev(div5, "class", "modal-close is-large");
     			attr_dev(div5, "aria-label", "close");
-    			add_location(div5, file$4, 128, 1, 3281);
+    			add_location(div5, file$4, 143, 1, 3761);
     			attr_dev(div6, "class", "modal");
-    			toggle_class(div6, "is-active", /*showAddLink*/ ctx[6]);
-    			add_location(div6, file$4, 116, 0, 2843);
+    			toggle_class(div6, "is-active", /*showAddLink*/ ctx[7]);
+    			add_location(div6, file$4, 131, 0, 3280);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1793,10 +1793,10 @@ var app = (function () {
     			append_dev(div3, h3);
     			append_dev(div3, t4);
     			append_dev(div3, input0);
-    			set_input_value(input0, /*linkTitle*/ ctx[3]);
+    			set_input_value(input0, /*linkUrl*/ ctx[4]);
     			append_dev(div3, t5);
     			append_dev(div3, input1);
-    			set_input_value(input1, /*linkUrl*/ ctx[4]);
+    			set_input_value(input1, /*linkTitle*/ ctx[3]);
     			append_dev(div3, t6);
     			append_dev(div3, button);
     			append_dev(div6, t8);
@@ -1806,12 +1806,13 @@ var app = (function () {
     			current = true;
 
     			dispose = [
-    				listen_dev(div1, "click", /*click_handler*/ ctx[16], false, false, false),
-    				listen_dev(div2, "click", /*toggleShowAddLink*/ ctx[14], false, false, false),
-    				listen_dev(input0, "input", /*input0_input_handler_1*/ ctx[21]),
-    				listen_dev(input1, "input", /*input1_input_handler_1*/ ctx[22]),
-    				listen_dev(button, "click", /*addLink*/ ctx[10], false, false, false),
-    				listen_dev(div5, "click", /*toggleShowAddLink*/ ctx[14], false, false, false)
+    				listen_dev(div1, "click", /*click_handler*/ ctx[19], false, false, false),
+    				listen_dev(div2, "click", /*toggleShowAddLink*/ ctx[15], false, false, false),
+    				listen_dev(input0, "input", /*input0_input_handler_1*/ ctx[24]),
+    				listen_dev(input0, "blur", /*onUrlBlur*/ ctx[16], false, false, false),
+    				listen_dev(input1, "input", /*input1_input_handler_1*/ ctx[25]),
+    				listen_dev(button, "click", /*addLink*/ ctx[11], false, false, false),
+    				listen_dev(div5, "click", /*toggleShowAddLink*/ ctx[15], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
@@ -1847,20 +1848,24 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if (dirty & /*linkTitle*/ 8 && input0.value !== /*linkTitle*/ ctx[3]) {
-    				set_input_value(input0, /*linkTitle*/ ctx[3]);
+    			if (dirty & /*linkUrl*/ 16 && input0.value !== /*linkUrl*/ ctx[4]) {
+    				set_input_value(input0, /*linkUrl*/ ctx[4]);
     			}
 
-    			if (dirty & /*linkUrl*/ 16 && input1.value !== /*linkUrl*/ ctx[4]) {
-    				set_input_value(input1, /*linkUrl*/ ctx[4]);
+    			if (!current || dirty & /*linkTitlePlaceholder*/ 32) {
+    				attr_dev(input1, "placeholder", /*linkTitlePlaceholder*/ ctx[5]);
     			}
 
-    			if (dirty & /*showAddLink*/ 64) {
-    				toggle_class(div6, "is-active", /*showAddLink*/ ctx[6]);
+    			if (dirty & /*linkTitle*/ 8 && input1.value !== /*linkTitle*/ ctx[3]) {
+    				set_input_value(input1, /*linkTitle*/ ctx[3]);
+    			}
+
+    			if (dirty & /*showAddLink*/ 128) {
+    				toggle_class(div6, "is-active", /*showAddLink*/ ctx[7]);
     			}
 
     			const confirmation_changes = {};
-    			if (dirty & /*showConfirmation*/ 32) confirmation_changes.active = /*showConfirmation*/ ctx[5];
+    			if (dirty & /*showConfirmation*/ 64) confirmation_changes.active = /*showConfirmation*/ ctx[6];
     			if (dirty & /*track*/ 1) confirmation_changes.message = `Are you sure you want to delete the '${/*track*/ ctx[0].name}' track?`;
     			confirmation.$set(confirmation_changes);
     		},
@@ -1904,6 +1909,7 @@ var app = (function () {
     	let nameInput;
     	let linkTitle;
     	let linkUrl;
+    	let linkTitlePlaceholder = "title";
     	let showConfirmation;
     	let showAddLink;
     	const dispatch = createEventDispatcher();
@@ -1965,11 +1971,25 @@ var app = (function () {
     	}
 
     	function toggleConfirmation() {
-    		$$invalidate(5, showConfirmation = !showConfirmation);
+    		$$invalidate(6, showConfirmation = !showConfirmation);
     	}
 
     	function toggleShowAddLink() {
-    		$$invalidate(6, showAddLink = !showAddLink);
+    		$$invalidate(7, showAddLink = !showAddLink);
+    	}
+
+    	//TODO: Move to component
+    	function onUrlBlur() {
+    		$$invalidate(5, linkTitlePlaceholder = "loading....");
+    		getURLTitle();
+    	}
+
+    	async function getURLTitle() {
+    		const encodedUrl = encodeURI(linkUrl);
+    		const response = await fetch(`/.netlify/functions/page-title?url=${encodedUrl}`);
+    		const result = await response.json();
+    		$$invalidate(3, linkTitle = result.title);
+    		$$invalidate(5, linkTitlePlaceholder = "title");
     	}
 
     	const writable_props = ["track"];
@@ -2008,13 +2028,13 @@ var app = (function () {
     	}
 
     	function input0_input_handler_1() {
-    		linkTitle = this.value;
-    		$$invalidate(3, linkTitle);
+    		linkUrl = this.value;
+    		$$invalidate(4, linkUrl);
     	}
 
     	function input1_input_handler_1() {
-    		linkUrl = this.value;
-    		$$invalidate(4, linkUrl);
+    		linkTitle = this.value;
+    		$$invalidate(3, linkTitle);
     	}
 
     	$$self.$set = $$props => {
@@ -2033,6 +2053,7 @@ var app = (function () {
     		nameInput,
     		linkTitle,
     		linkUrl,
+    		linkTitlePlaceholder,
     		showConfirmation,
     		showAddLink,
     		dispatch,
@@ -2043,7 +2064,9 @@ var app = (function () {
     		removeLink,
     		onEnter,
     		toggleConfirmation,
-    		toggleShowAddLink
+    		toggleShowAddLink,
+    		onUrlBlur,
+    		getURLTitle
     	});
 
     	$$self.$inject_state = $$props => {
@@ -2052,8 +2075,9 @@ var app = (function () {
     		if ("nameInput" in $$props) $$invalidate(2, nameInput = $$props.nameInput);
     		if ("linkTitle" in $$props) $$invalidate(3, linkTitle = $$props.linkTitle);
     		if ("linkUrl" in $$props) $$invalidate(4, linkUrl = $$props.linkUrl);
-    		if ("showConfirmation" in $$props) $$invalidate(5, showConfirmation = $$props.showConfirmation);
-    		if ("showAddLink" in $$props) $$invalidate(6, showAddLink = $$props.showAddLink);
+    		if ("linkTitlePlaceholder" in $$props) $$invalidate(5, linkTitlePlaceholder = $$props.linkTitlePlaceholder);
+    		if ("showConfirmation" in $$props) $$invalidate(6, showConfirmation = $$props.showConfirmation);
+    		if ("showAddLink" in $$props) $$invalidate(7, showAddLink = $$props.showAddLink);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2066,6 +2090,7 @@ var app = (function () {
     		nameInput,
     		linkTitle,
     		linkUrl,
+    		linkTitlePlaceholder,
     		showConfirmation,
     		showAddLink,
     		removeTrack,
@@ -2076,7 +2101,9 @@ var app = (function () {
     		onEnter,
     		toggleConfirmation,
     		toggleShowAddLink,
+    		onUrlBlur,
     		dispatch,
+    		getURLTitle,
     		click_handler,
     		input0_binding,
     		input0_input_handler,

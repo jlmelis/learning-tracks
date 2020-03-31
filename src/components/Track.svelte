@@ -10,7 +10,8 @@
 	let edit;
 	let nameInput;
 	let linkTitle;
-	let linkUrl;
+  let linkUrl;
+  let linkTitlePlaceholder = 'title';
 	let showConfirmation;
 	let showAddLink;
 
@@ -66,6 +67,20 @@
 	  showAddLink = !showAddLink;
 	}
 
+  //TODO: Move to component
+  function onUrlBlur() {
+    linkTitlePlaceholder = 'loading....';
+    getURLTitle();
+  }
+
+  async function getURLTitle() {
+    const encodedUrl = encodeURI(linkUrl);
+    const response = await fetch(`/.netlify/functions/page-title?url=${encodedUrl}`);
+    const result = await response.json();
+    
+    linkTitle = result.title;
+    linkTitlePlaceholder = 'title';
+  }
 </script>
 
 <div on:click class="panel">
@@ -119,8 +134,8 @@
 	<div class="modal-content">
 		<div class="box">
 			<h3 class="title">Add new link</h3>
-			<input class="input" bind:value={linkTitle} placeholder="title" />
-			<input class="input" bind:value={linkUrl} placeholder="url" />
+      <input class="input" bind:value={linkUrl} on:blur={onUrlBlur} placeholder="url" />
+      <input class="input" bind:value={linkTitle} placeholder="{linkTitlePlaceholder}" />
 			<button class="button is-primary" on:click={addLink}>
 				Save
 			</button>
