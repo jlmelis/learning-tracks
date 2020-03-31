@@ -18,7 +18,6 @@ module.exports = {
     ],
     rules: {
         semi: ['error', 'always'],
-        indent: ['error', 2],
         quotes: ['error', 'single'],
         'no-trailing-spaces': ['error', { "skipBlankLines": true }],
         curly: ['error', 'all'],
