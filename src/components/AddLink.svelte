@@ -6,7 +6,7 @@
   export let active;
 
   let error;
-	let linkTitle = '';
+  let linkTitle = '';
   let linkUrl = '';
   let linkTitlePlaceholder = 'title';
 
@@ -70,19 +70,19 @@
 </script>
 
 <div class="modal" class:is-active={active}>
-	<div class="modal-background" on:click={cancel}></div>
-	<div class="modal-content">
-		<div class="box">
+  <div class="modal-background" on:click={cancel}></div>
+  <div class="modal-content">
+    <div class="box">
       <h3 class="title">Add new link</h3>
       <ToolTip text={error} active={hasError}>
         <input class="input" class:is-danger={hasError} bind:value={linkUrl} on:blur={onUrlBlur} placeholder="url" />
       </ToolTip>
-      
+
       <input class="input" bind:value={linkTitle} placeholder="{linkTitlePlaceholder}" />
-			<button class="button is-primary" on:click={save} {disabled}>
-				Save
-			</button>
-		</div>
-	</div>
-	<div class="modal-close is-large" aria-label="close" on:click={cancel}></div>
+      <button class="button is-primary" on:click={save} {disabled}>
+        Save
+      </button>
+    </div>
+  </div>
+  <div class="modal-close is-large" aria-label="close" on:click={cancel}></div>
 </div>
