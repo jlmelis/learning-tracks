@@ -19,7 +19,7 @@
 </script>
 
 <div>
-    <a href='{link.href}'>{link.title}</a>
+    <a href={link.url}>{link.title}</a>
     <i class="delete is-small" on:click={toggleConfirmation}></i>
 </div>
 

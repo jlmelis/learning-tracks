@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import ToolTip from './ToolTip.svelte';
+  import { withHttps } from '../utils.js';
 
   export let active;
 
@@ -21,8 +22,9 @@
   }
 
   function save() {
+    console.log(withHttps(linkUrl));
     dispatch('save', {
-      linkUrl: linkUrl,
+      linkUrl: withHttps(linkUrl),
       linkTitle: linkTitle,
     });
     reset();

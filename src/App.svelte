@@ -10,7 +10,7 @@
 	//in development
 	onMount(() => {
 	  let json = localStorage.getItem('tracksLastUpdate');
-    let updateVer = '2';
+    let updateVer = '3';
 
 	  if (!json || json !== updateVer) {
 	    localStorage.setItem('tracksLastUpdate', updateVer);

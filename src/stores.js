@@ -10,12 +10,12 @@ function createTracks() {
         {
           id: 0,
           title: 'Official tutorial',
-          href: 'https://svelte.dev/tutorial/basics',
+          url: 'https://svelte.dev/tutorial/basics',
         },
         {
           id: 1,
           title: 'Scotch IO',
-          href: 'https://svelte.dev/tutorial/basics',
+          url: 'https://svelte.dev/tutorial/basics',
         },
       ],
     },
@@ -27,7 +27,7 @@ function createTracks() {
         {
           id: 0,
           title: 'W3 Schools',
-          href: 'https://www.w3schools.com/nodejs/',
+          url: 'https://www.w3schools.com/nodejs/',
         },
       ],
     },

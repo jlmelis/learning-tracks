@@ -1,7 +1,6 @@
 import cheerio from 'cheerio';
 import axios from 'axios';
-
-const withHttps = url => !/^https?:\/\//i.test(url) ? `https://${url}` : url;
+import { withHttps } from '../src/utils.js';
 
 export async function handler(event) {
   const url = withHttps(decodeURI(event.queryStringParameters.url));

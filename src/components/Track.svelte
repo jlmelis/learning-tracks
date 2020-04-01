@@ -1,7 +1,7 @@
 <script>
 	import { tick, createEventDispatcher } from 'svelte';
 	import { tracks } from '../stores.js';
-	import { selectTextOnFocus } from '../actions/inputActions.js';
+  import { selectTextOnFocus } from '../actions/inputActions.js';
 	import TrackLink from './TrackLink.svelte';
   import Confirmation from './Confirmation.svelte';
   import AddLink from './AddLink.svelte';
@@ -76,7 +76,7 @@
 					bind:value={track.name} 
 					on:keydown={onEnter} 
 					use:selectTextOnFocus/>
-				<input class="input" bind:this={nameInput} 
+				<input class="input" 
 					bind:value={track.description} 
 					on:keydown={onEnter} 
 					use:selectTextOnFocus/>
