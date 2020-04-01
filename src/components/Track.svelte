@@ -69,48 +69,47 @@
 </script>
 
 <div on:click class="panel">
-	<div class="panel-heading">
-		{#if edit}
-			<div>
-				<input class="input" bind:this={nameInput} 
-					bind:value={track.name} 
-					on:keydown={onEnter} 
-					use:selectTextOnFocus/>
-				<input class="input" 
-					bind:value={track.description} 
-					on:keydown={onEnter} 
-					use:selectTextOnFocus/>
-				<button class="button" on:click={updateTrack}>
-					<i class="iconify" 
-						data-icon="fa-solid:check" 
-						data-inline="false"></i>
-				</button>
-			</div>			
-		{:else}
-			<div on:dblclick={editTrack} class="level"> 
-				<div class="level-left">
-					<span>{track.name}</span>
-					<span> ({track.description})</span>
-					<i class="delete is-small" on:click={toggleConfirmation}></i>
-				</div>
-				<div class="level-right">
-					<button class="button is-small" on:click={toggleShowAddLink}>
-						<i class="iconify" 
-							data-icon="fa-solid:plus" 
-							data-inline="false"></i>
-					</button>
-				</div>
-			</div>
-		{/if}
-	</div>
-	{#if track.links}
-		{#each track.links as link}
-			<div class="panel-block">
-				<TrackLink link={link} on:remove={removeLink} />
-			</div> 
-		{/each}
-	{/if}
-	
+  <div class="panel-heading">
+    {#if edit}
+      <div>
+        <input class="input" bind:this={nameInput} 
+          bind:value={track.name} 
+          on:keydown={onEnter} 
+          use:selectTextOnFocus/>
+        <input class="input" 
+          bind:value={track.description} 
+          on:keydown={onEnter} 
+          use:selectTextOnFocus/>
+        <button class="button" on:click={updateTrack}>
+          <i class="iconify" 
+            data-icon="fa-solid:check" 
+            data-inline="false"></i>
+        </button>
+      </div>
+    {:else}
+      <div on:dblclick={editTrack} class="level"> 
+        <div class="level-left">
+          <span>{track.name}</span>
+          <span> ({track.description})</span>
+          <i class="delete is-small" on:click={toggleConfirmation}></i>
+        </div>
+        <div class="level-right">
+          <button class="button is-small" on:click={toggleShowAddLink}>
+            <i class="iconify" 
+              data-icon="fa-solid:plus" 
+              data-inline="false"></i>
+          </button>
+        </div>
+      </div>
+    {/if}
+  </div>
+  {#if track.links}
+    {#each track.links as link}
+      <div class="panel-block">
+        <TrackLink link={link} on:remove={removeLink} />
+      </div> 
+    {/each}
+  {/if}
 </div>
 
 <AddLink active={showAddLink} 
