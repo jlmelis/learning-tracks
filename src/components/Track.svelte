@@ -117,6 +117,6 @@
   on:save={addLink} />
 
 <Confirmation active={showConfirmation} 
-	message="{`Are you sure you want to delete the '${track.name}' track?`}"
-	on:cancel={toggleConfirmation} 
-	on:confirm={removeTrack} />
+  message="{`Are you sure you want to delete the '${track.name}' track?`}"
+  on:cancel={toggleConfirmation} 
+  on:confirm={removeTrack} />
