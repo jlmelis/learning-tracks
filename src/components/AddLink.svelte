@@ -22,7 +22,6 @@
   }
 
   function save() {
-    console.log(withHttps(linkUrl));
     dispatch('save', {
       linkUrl: withHttps(linkUrl),
       linkTitle: linkTitle,
