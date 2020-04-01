@@ -17,6 +17,7 @@ module.exports = {
         },
     ],
     rules: {
+        indent: ['error', 2],
         semi: ['error', 'always'],
         quotes: ['error', 'single'],
         'no-trailing-spaces': ['error', { "skipBlankLines": true }],

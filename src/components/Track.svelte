@@ -1,71 +1,71 @@
 <script>
-	import { tick, createEventDispatcher } from 'svelte';
-	import { tracks } from '../stores.js';
+  import { tick, createEventDispatcher } from 'svelte';
+  import { tracks } from '../stores.js';
   import { selectTextOnFocus } from '../actions/inputActions.js';
-	import TrackLink from './TrackLink.svelte';
+  import TrackLink from './TrackLink.svelte';
   import Confirmation from './Confirmation.svelte';
   import AddLink from './AddLink.svelte';
 
-	export let track;
-	
-	let edit;
+  export let track;
+
+  let edit;
   let nameInput;
-	let showConfirmation;
+  let showConfirmation;
   let showAddLink;
 
-	const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher();
 
-	function removeTrack() {
-	  dispatch('removeTrack', { id: track.id });
-	}
+  function removeTrack() {
+    dispatch('removeTrack', { id: track.id });
+  }
 
-	async function editTrack() {
-	  edit = true;
+  async function editTrack() {
+    edit = true;
 
-	  // using tick to wait for the input to be shown
-	  await tick();
-	  nameInput.focus();
-	}
+    // using tick to wait for the input to be shown
+    await tick();
+    nameInput.focus();
+  }
 
-	function updateTrack() {
-	  tracks.updateTrack(track);
-	  edit = false;
-	}
+  function updateTrack() {
+    tracks.updateTrack(track);
+    edit = false;
+  }
 
-	function addLink(event) {
-	  // TODO: is this causing two renders?
-	  // look into possibility of using storefunction to update store
-	  // as opposed to updating item then updating store.
+  function addLink(event) {
+    // TODO: is this causing two renders?
+    // look into possibility of using storefunction to update store
+    // as opposed to updating item then updating store.
     track.links = [...track.links,{
-        id: track.links.length + 1,
-        title: event.detail.linkTitle,
-        url: event.detail.linkUrl,
-      }];
-	  tracks.updateTrack(track);
-	  toggleShowAddLink();
-	}
+      id: track.links.length + 1,
+      title: event.detail.linkTitle,
+      url: event.detail.linkUrl,
+    }];
+    tracks.updateTrack(track);
+    toggleShowAddLink();
+  }
 
-	function removeLink(event) {
-	  // TODO: is this causing two renders?
-	  // look into possibility of using storefunction to update store
-	  // as opposed to updating item then updating store.
-	  track.links = track.links.filter(t => t.id !== event.detail.id);
-	  tracks.updateTrack(track);
-	}
+  function removeLink(event) {
+    // TODO: is this causing two renders?
+    // look into possibility of using storefunction to update store
+    // as opposed to updating item then updating store.
+    track.links = track.links.filter(t => t.id !== event.detail.id);
+    tracks.updateTrack(track);
+  }
 
-	function onEnter(event) {
-	  if (event.key === 'Enter') {
-	    updateTrack();
-	  }
-	}
+  function onEnter(event) {
+    if (event.key === 'Enter') {
+      updateTrack();
+    }
+  }
 
-	function toggleConfirmation() {
-	  showConfirmation = !showConfirmation;
-	}
+  function toggleConfirmation() {
+    showConfirmation = !showConfirmation;
+  }
 
-	function toggleShowAddLink() {
-	  showAddLink = !showAddLink;
-	}
+  function toggleShowAddLink() {
+    showAddLink = !showAddLink;
+  }
 </script>
 
 <div on:click class="panel">
