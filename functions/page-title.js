@@ -1,6 +1,9 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
-const { withHttps } = require('../src/utils.js');
+//const { withHttps } = require('../src/utils.js');
+
+//TODO: find out how to import this
+const withHttps = url => !/^https?:\/\//i.test(url) ? `https://${url}` : url;
 
 exports.handler = async function handler(event) {
   const url = withHttps(decodeURI(event.queryStringParameters.url));
