@@ -56,8 +56,7 @@
   {/if}
 </section>
 
-
-<div class="section">
+<div>
   <div class="container is-fluid">
     {#if selectedTrack}
       <div>

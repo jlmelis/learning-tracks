@@ -1,11 +1,9 @@
-const cheerio = require('cheerio');
-const axios = require('axios');
-//const { withHttps } = require('../src/utils.js');
+import cheerio from 'cheerio';
+import axios from 'axios';
 
-//TODO: find out how to import this
 const withHttps = url => !/^https?:\/\//i.test(url) ? `https://${url}` : url;
 
-exports.handler = async function handler(event) {
+export async function handler(event) {
   const url = withHttps(decodeURI(event.queryStringParameters.url));
 
   return axios.get(url,
@@ -24,4 +22,4 @@ exports.handler = async function handler(event) {
       }),
     }))
     .catch(error => ({ statusCode: 404, body: String(error) }));
-};
+}
