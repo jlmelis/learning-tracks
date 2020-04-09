@@ -1,52 +1,11 @@
 import { writable } from 'svelte/store';
 
 function createTracks() {
-  const { subscribe, set, update } = writable([
-    {
-      id: 0,
-      name: 'Svelte',
-      description: 'Learning svelte',
-      links: [
-        {
-          id: 0,
-          title: 'Official tutorial',
-          url: 'https://svelte.dev/tutorial/basics',
-        },
-        {
-          id: 1,
-          title: 'Scotch IO',
-          url: 'https://svelte.dev/tutorial/basics',
-        },
-      ],
-    },
-    {
-      id: 1,
-      name: 'Node',
-      description: 'learning node',
-      links: [
-        {
-          id: 0,
-          title: 'W3 Schools',
-          url: 'https://www.w3schools.com/nodejs/',
-        },
-      ],
-    },
-  ]);
+  const { subscribe, set, update } = writable([]);
 
   return {
     subscribe,
     set,
-    useLocalStorage: () => {
-      const json = localStorage.getItem('tracks');
-
-      if (json) {
-        set(JSON.parse(json));
-      }
-
-      subscribe((current) => {
-        localStorage.setItem('tracks', JSON.stringify(current));
-      });
-    },
     addNew: (name) =>
       update((n) => [
         ...n,

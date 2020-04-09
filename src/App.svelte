@@ -4,23 +4,15 @@
   import Track from './components/Track.svelte';
   import TrackSummary from './components/TrackSummary.svelte';
   import { tracks } from './stores.js';
+  import { api } from './utils.js';
 
   let selectedTrack;
   let search = '';
 
-  //TODO: remove or find better
-  //being used to reset local storage if breaking changes are made
-  //in development
-  onMount(() => {
-    let json = localStorage.getItem('tracksLastUpdate');
-    let updateVer = '3';
-
-    if (!json || json !== updateVer) {
-      localStorage.setItem('tracksLastUpdate', updateVer);
-      localStorage.removeItem('tracks');
-    }
-
-    tracks.useLocalStorage();
+  onMount(async () => {
+    const res = await api('all-tracks');
+    
+    tracks.set(res);
   });
 
   function addTrack() {
@@ -34,8 +26,14 @@
     tracks.removeTrack(event.detail.id);
   }
 
-  function selectTrack(track) {
-    selectedTrack = track;
+  async function getTrack(id) {
+    const res = await api('get-track', JSON.stringify({ id: id }));
+    
+    selectedTrack = res;
+  }
+
+  function selectTrack(id) {
+    getTrack(id);
   }
 
   $: filteredTracks = $tracks.filter(t =>
@@ -92,8 +90,7 @@
 
       {#each filteredTracks as track}
         <div class="panel-block">
-          <TrackSummary on:click={selectTrack(track)} 
-          active={selectedTrack === track}
+          <TrackSummary on:click={selectTrack(track.id)} 
           name={track.name} 
           description={track.description} />
         </div>

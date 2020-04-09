@@ -1,0 +1,28 @@
+mutation CreateATrack {
+  createTrack(data: {
+    name: "Svelte"
+    description: "Cybernetically enhanced applications"
+  })
+  {
+    id: _id
+    name
+    description
+  }
+}
+
+mutation CreateLink {
+  createLink(data: {
+    title: "Offical Page"
+    url: "https://svelte.dev"
+    track: { connect: "262351928155963922"}
+  }) {
+    title
+    url
+    track {
+      name
+    }
+  }
+}
+
+
+

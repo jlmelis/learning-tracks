@@ -104,7 +104,7 @@
     {/if}
   </div>
   {#if track.links}
-    {#each track.links as link}
+    {#each track.links.data as link}
       <div class="panel-block">
         <TrackLink link={link} on:remove={removeLink} />
       </div> 

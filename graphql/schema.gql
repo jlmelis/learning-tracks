@@ -1,0 +1,15 @@
+type Track {
+  name: String!
+  description: String
+  links: [Link] @relation
+}
+
+type Link {
+  title: String!
+  url: String!
+  track: Track
+}
+
+type Query {
+  tracks: [Track!]
+}
