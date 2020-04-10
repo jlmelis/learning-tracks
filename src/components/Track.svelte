@@ -32,8 +32,13 @@
     nameInput.focus();
   }
 
-  function updateTrack() {
-    //tracks.updateTrack(track);
+  async function updateTrack() {
+    await api('update-track', {
+      id: track.id,
+      name: track.name,
+      description: track.description,
+    });
+
     edit = false;
   }
 
