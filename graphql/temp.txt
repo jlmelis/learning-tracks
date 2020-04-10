@@ -1,14 +1,4 @@
-mutation CreateATrack {
-  createTrack(data: {
-    name: "Svelte"
-    description: "Cybernetically enhanced applications"
-  })
-  {
-    id: _id
-    name
-    description
-  }
-}
+
 
 
 

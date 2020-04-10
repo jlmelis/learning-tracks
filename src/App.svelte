@@ -10,20 +10,23 @@
   let tracks = [];
 
   onMount(async () => {
-    const res = await api('all-tracks');
-    tracks = res;
-    //tracks.set(res);
+    tracks = await api('all-tracks');
   });
 
-  function addTrack() {
-    tracks.addNew(search);
-    //selectedTrack = $tracks[$tracks.length -1];
+  async function addTrack() {
+    const newTrack =await api('create-track', {
+      name: search,
+      description: 'Learn something new!',
+    });
+    tracks = [...tracks, newTrack];
+    selectedTrack = tracks[tracks.length -1];
     search = '';
   }
 
-  function removeTrack(event) {
+  async function removeTrack(event) {
+    const deletedId = await api('delete-track', { id: event.detail.id });
+    tracks = tracks.filter(t => t.id !== deletedId);
     selectedTrack = null;
-    tracks.removeTrack(event.detail.id);
   }
 
   async function selectTrack(id) {

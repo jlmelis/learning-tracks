@@ -16,6 +16,11 @@
   const dispatch = createEventDispatcher();
 
   function removeTrack() {
+    //HACK - temporary until I write a custom function for cascade deletes
+    track.links.data.forEach(link => {
+      api('delete-link', { id: link.id });
+    });
+
     dispatch('removeTrack', { id: track.id });
   }
 
@@ -45,7 +50,7 @@
 
   async function removeLink(event) {
     const deletedId = await api('delete-link', { id: event.detail.id });
-    track.links.data = track.links.data.filter(t => t.id !== deletedId);
+    track.links.data = track.links.data.filter(l => l.id !== deletedId);
   }
 
   function onEnter(event) {
