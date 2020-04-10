@@ -3,7 +3,7 @@ export const withHttps = url => !/^https?:\/\//i.test(url) ? `https://${url}` : 
 export async function api(endpoint, body) {
   const res = await fetch(`/.netlify/functions/${endpoint}`, {
     method: 'post',
-    body: body,
+    body: JSON.stringify(body),
   });
   
   return await res.json();

@@ -3,21 +3,21 @@
   import Navbar from './components/Navbar.svelte';
   import Track from './components/Track.svelte';
   import TrackSummary from './components/TrackSummary.svelte';
-  import { tracks } from './stores.js';
   import { api } from './utils.js';
 
   let selectedTrack;
   let search = '';
+  let tracks = [];
 
   onMount(async () => {
     const res = await api('all-tracks');
-    
-    tracks.set(res);
+    tracks = res;
+    //tracks.set(res);
   });
 
   function addTrack() {
     tracks.addNew(search);
-    selectedTrack = $tracks[$tracks.length -1];
+    //selectedTrack = $tracks[$tracks.length -1];
     search = '';
   }
 
@@ -26,17 +26,12 @@
     tracks.removeTrack(event.detail.id);
   }
 
-  async function getTrack(id) {
-    const res = await api('get-track', JSON.stringify({ id: id }));
-    
-    selectedTrack = res;
+  async function selectTrack(id) {
+    const track = await api('get-track', { id: id });
+    selectedTrack = track;
   }
 
-  function selectTrack(id) {
-    getTrack(id);
-  }
-
-  $: filteredTracks = $tracks.filter(t =>
+  $: filteredTracks = tracks.filter(t =>
     t.name.toLowerCase().includes(search.toLowerCase()) ||
     t.description.toLowerCase().includes(search.toLowerCase()),
   );

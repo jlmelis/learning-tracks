@@ -15,7 +15,6 @@
   function toggleConfirmation() {
     showConfirmation = !showConfirmation;
   }
-
 </script>
 
 <div>

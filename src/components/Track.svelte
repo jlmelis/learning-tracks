@@ -1,7 +1,7 @@
 <script>
   import { tick, createEventDispatcher } from 'svelte';
-  import { tracks } from '../stores.js';
   import { selectTextOnFocus } from '../actions/inputActions.js';
+  import { api } from '../utils.js';
   import TrackLink from './TrackLink.svelte';
   import Confirmation from './Confirmation.svelte';
   import AddLink from './AddLink.svelte';
@@ -28,29 +28,24 @@
   }
 
   function updateTrack() {
-    tracks.updateTrack(track);
+    //tracks.updateTrack(track);
     edit = false;
   }
 
-  function addLink(event) {
-    // TODO: is this causing two renders?
-    // look into possibility of using storefunction to update store
-    // as opposed to updating item then updating store.
-    track.links = [...track.links,{
-      id: track.links.length + 1,
+  async function addLink(event) {
+    const newLink = await api('create-link', {
       title: event.detail.linkTitle,
       url: event.detail.linkUrl,
-    }];
-    tracks.updateTrack(track);
+      id: track.id,
+    });
+
+    track.links.data = [...track.links.data, newLink];
     toggleShowAddLink();
   }
 
-  function removeLink(event) {
-    // TODO: is this causing two renders?
-    // look into possibility of using storefunction to update store
-    // as opposed to updating item then updating store.
-    track.links = track.links.filter(t => t.id !== event.detail.id);
-    tracks.updateTrack(track);
+  async function removeLink(event) {
+    const deletedId = await api('delete-link', { id: event.detail.id });
+    track.links.data = track.links.data.filter(t => t.id !== deletedId);
   }
 
   function onEnter(event) {

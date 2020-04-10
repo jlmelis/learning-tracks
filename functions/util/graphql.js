@@ -25,6 +25,6 @@ export async function query(query, variables = {}) {
 
 export async function mutate(mutation, variables = {}) {
   const results = await client.mutate({ mutation: mutation, variables: variables });
-
+  
   return results.data;
 }
