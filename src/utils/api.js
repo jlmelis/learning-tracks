@@ -25,7 +25,7 @@ const createTrack = async (name, description) => {
 };
 
 const updateTrack = async (id, name, description) => {
-  await apiHelper('update-track', {
+  return await apiHelper('update-track', {
     id: id,
     name: name,
     description: description,

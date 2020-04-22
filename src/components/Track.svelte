@@ -33,8 +33,9 @@
   }
 
   async function updateTrack() {
-    await api.updateTrack(track.id, track.name, track.description);
+    const updatedTrack = await api.updateTrack(track.id, track.name, track.description);
     edit = false;
+    dispatch('updateTrack', { track: updatedTrack });
   }
 
   async function addLink(event) {

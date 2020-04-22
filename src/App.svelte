@@ -26,6 +26,15 @@
     selectedTrack = null;
   }
 
+  function updateTrack(event) {
+    // TODO: find a cleaner way of doing this
+    const updatedTrack = event.detail.track;
+    tracks = tracks.map(t => t.id === updatedTrack.id ? updatedTrack : t);
+    if (selectedTrack.id === updatedTrack.id) {
+      selectedTrack = updatedTrack;
+    }
+  }
+
   async function selectTrack(id) {
     const track = await api.getTrackById(id);
     selectedTrack = track;
@@ -53,7 +62,7 @@
   <div class="container is-fluid">
     {#if selectedTrack}
       <div>
-        <Track on:removeTrack={removeTrack} track={selectedTrack} />		
+        <Track on:removeTrack={removeTrack} on:updateTrack={updateTrack} track={selectedTrack} />		
       </div>			
     {:else}
       <div class="panel">

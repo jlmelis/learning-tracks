@@ -15,7 +15,9 @@ export async function handler(event) {
           name: $name
           description: $description
         }) {
-          _id
+          id: _id,
+          name,
+          description
         }
       }
     `;
