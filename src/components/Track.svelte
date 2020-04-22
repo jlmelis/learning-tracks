@@ -1,7 +1,7 @@
 <script>
   import { tick, createEventDispatcher } from 'svelte';
   import { selectTextOnFocus } from '../actions/inputActions.js';
-  import { api } from '../utils.js';
+  import api from '../utils/api';
   import TrackLink from './TrackLink.svelte';
   import Confirmation from './Confirmation.svelte';
   import AddLink from './AddLink.svelte';
@@ -18,7 +18,7 @@
   function removeTrack() {
     //HACK - temporary until I write a custom function for cascade deletes
     track.links.data.forEach(link => {
-      api('delete-link', { id: link.id });
+      api.deleteLink(link.id);
     });
 
     dispatch('removeTrack', { id: track.id });
@@ -33,28 +33,19 @@
   }
 
   async function updateTrack() {
-    await api('update-track', {
-      id: track.id,
-      name: track.name,
-      description: track.description,
-    });
-
+    await api.updateTrack(track.id, track.name, track.description);
     edit = false;
   }
 
   async function addLink(event) {
-    const newLink = await api('create-link', {
-      title: event.detail.linkTitle,
-      url: event.detail.linkUrl,
-      id: track.id,
-    });
+    const newLink = await api.createLink(track.id, event.detail.linkTitle, event.detail.linkUrl);
 
     track.links.data = [...track.links.data, newLink];
     toggleShowAddLink();
   }
 
   async function removeLink(event) {
-    const deletedId = await api('delete-link', { id: event.detail.id });
+    const deletedId = await api.deleteLink(event.detail.id);
     track.links.data = track.links.data.filter(l => l.id !== deletedId);
   }
 

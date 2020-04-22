@@ -3,34 +3,31 @@
   import Navbar from './components/Navbar.svelte';
   import Track from './components/Track.svelte';
   import TrackSummary from './components/TrackSummary.svelte';
-  import { api } from './utils.js';
+  import api from './utils/api';
 
   let selectedTrack;
   let search = '';
   let tracks = [];
 
   onMount(async () => {
-    tracks = await api('all-tracks');
+    tracks = await api.getAllTracks();
   });
 
   async function addTrack() {
-    const newTrack =await api('create-track', {
-      name: search,
-      description: 'Learn something new!',
-    });
+    const newTrack = await api.createTrack(search, 'Learn something new!');
     tracks = [...tracks, newTrack];
     selectedTrack = tracks[tracks.length -1];
     search = '';
   }
 
   async function removeTrack(event) {
-    const deletedId = await api('delete-track', { id: event.detail.id });
+    const deletedId = await api.deleteTrack(event.detail.id);
     tracks = tracks.filter(t => t.id !== deletedId);
     selectedTrack = null;
   }
 
   async function selectTrack(id) {
-    const track = await api('get-track', { id: id });
+    const track = await api.getTrackById(id);
     selectedTrack = track;
   }
 

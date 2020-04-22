@@ -8,7 +8,7 @@ export async function handler(event) {
     }
 
     const { title, url, id } = JSON.parse(event.body);
-
+    
     const CREATE_LINK = gql`
       mutation ($title: String!, $url: String!, $id: ID!) {
         createLink(data: {

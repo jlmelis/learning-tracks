@@ -6,7 +6,7 @@ export async function handler(event) {
     if (event.httpMethod !== 'POST') {
       return { statusCode: 405, body: 'Method not allowed' };
     }
-
+    
     const { name, description } = JSON.parse(event.body);
 
     const CREATE_TRACK = gql`
@@ -27,7 +27,7 @@ export async function handler(event) {
         }
       }
     `;
-
+    
     const track = await mutate(CREATE_TRACK, { name, description });
     
     return {
