@@ -48,6 +48,15 @@ const deleteLink = async (id) => {
   return await apiHelper('delete-link', { id: id });
 };
 
+const getPageTitle = async (url) => {
+  const response = await fetch(BASE_URL + `page-title?url=${url}`);
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error('Invalid url supplied');
+  }
+};
+
 export default {
   getAllTracks,
   getTrackById,
@@ -56,4 +65,5 @@ export default {
   deleteTrack,
   createLink,
   deleteLink,
+  getPageTitle,
 };

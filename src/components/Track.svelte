@@ -39,15 +39,32 @@
   }
 
   async function addLink(event) {
-    const newLink = await api.createLink(track.id, event.detail.linkTitle, event.detail.linkUrl);
+    const optimisticLink = {
+      title: event.detail.linkTitle,
+      url: event.detail.linkUrl,
+    };
 
-    track.links.data = [...track.links.data, newLink];
+    track.links.data = [...track.links.data, optimisticLink];
     toggleShowAddLink();
+
+    try {
+      const newLink = await api.createLink(track.id, event.detail.linkTitle, event.detail.linkUrl);
+      track.links.data = track.links.data.map(l => l === optimisticLink ? newLink : l);
+    } catch (error) {
+      // TODO: Handle failure
+    }
   }
 
   async function removeLink(event) {
-    const deletedId = await api.deleteLink(event.detail.id);
-    track.links.data = track.links.data.filter(l => l.id !== deletedId);
+    const deletedLink = track.links.data.find(l => l.id === event.detail.id);
+    
+    track.links.data = track.links.data.filter(l => l.id !== deletedLink.id);
+
+    try {
+      await api.deleteLink(deletedLink.id);
+    } catch (error) {
+      // TODO: Handle failure
+    }
   }
 
   function onEnter(event) {

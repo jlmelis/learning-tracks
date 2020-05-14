@@ -1,7 +1,8 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import ToolTip from './ToolTip.svelte';
-  import { withHttps } from '../utils.js';
+  import { withHttps } from '../utils';
+  import api from '../utils/api';
 
   export let active;
 
@@ -44,28 +45,19 @@
 
   async function getURLTitle() {
     const encodedUrl = encodeURI(linkUrl);
-    const result = await fetch(`/.netlify/functions/page-title?url=${encodedUrl}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Invalid url supplied');
-        }
-      })
-      .catch(e => onError(e));
-    
-    if (result) {
+    try {
+      const result = await api.getPageTitle(encodedUrl);
       error = null;
-      linkTitle = result.title;
+      linkTitle =result.title;
       linkTitlePlaceholder = 'title';
+    } catch (error) {
+      onError(error);
     }
-    
   }
 
   function onError(e) {
     error = e.message;
   }
-
 </script>
 
 <div class="modal" class:is-active={active}>
