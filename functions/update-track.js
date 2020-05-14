@@ -9,15 +9,23 @@ export async function handler(event) {
 
     const { id, name, description } = JSON.parse(event.body);
 
+    //TODO: Is returning the updated track the right way?
     const UPDATE_TRACK = gql`
       mutation ($id: ID!, $name: String!, $description: String) {
         updateTrack(id: $id, data: {
           name: $name
           description: $description
         }) {
-          id: _id,
-          name,
+          id: _id
+          name
           description
+          links {
+            data {
+              id: _id
+              title
+              url
+            }
+          }
         }
       }
     `;
