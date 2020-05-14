@@ -48,7 +48,7 @@
     toggleShowAddLink();
 
     try {
-      const newLink = await api.createLink(track.id, event.detail.linkTitle, event.detail.linkUrl);
+      const newLink = await api.createLink(track.id, ...optimisticLink);
       track.links.data = track.links.data.map(l => l === optimisticLink ? newLink : l);
     } catch (error) {
       // TODO: Handle failure
