@@ -4,15 +4,40 @@
   import Track from './components/Track.svelte';
   import TrackSummary from './components/TrackSummary.svelte';
   import api from './utils/api';
+  import netlifyIdentity from 'netlify-identity-widget';
 
   let selectedTrack;
   let search = '';
   let tracks = [];
 
+  let loggedIn = false;
+  let userName = '';
+
   onMount(async () => {
+    netlifyIdentity.init();
     tracks = await api.getAllTracks();
   });
 
+  function login(){
+    netlifyIdentity.open();
+  }
+
+  netlifyIdentity.on('login', async () => {
+    const currentUser = await netlifyIdentity.currentUser();
+    const token = await currentUser.jwt();
+    userName = currentUser.user_metadata.full_name;
+    loggedIn = true;
+  });
+
+  netlifyIdentity.on('logout', () => {
+    loggedIn = false;
+  });
+
+  function logout() {
+    netlifyIdentity.logout();
+  }
+
+  // TODO: make new component for tracklist
   async function addTrack() {
     const newTrack = await api.createTrack(search, 'Learn something new!');
     tracks = [...tracks, newTrack];
@@ -47,7 +72,7 @@
 </script>
 
 <section class="section">
-  <Navbar></Navbar>
+  <Navbar on:login={login} on:logout={logout} {loggedIn} {userName}></Navbar>
   {#if selectedTrack}
     <nav class="breadcrumb" aria-label="breadcrumbs">
       <ul>

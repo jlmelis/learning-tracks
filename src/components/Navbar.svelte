@@ -1,6 +1,11 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import About from './About.svelte';
 
+  export let loggedIn = false;
+  export let userName;
+
+  const dispatch = createEventDispatcher();
   let src = '/images/LTLogo.png';
   let showMenu;
 
@@ -14,6 +19,14 @@
   
   function toggleMenu() {
     showMenu = !showMenu;
+  }
+
+  function login() {
+    dispatch('login');
+  }
+
+  function logout() {
+    dispatch('logout');
   }
 </script>
 
@@ -42,9 +55,16 @@
     </div>
     <div class="navbar-end">
       <div class="navbar-item">
-        <button class="button is-light">
-          <strong>Login</strong>
-        </button>
+        {#if !loggedIn}
+          <button on:click={login} class="button is-light">
+            <strong>Log In</strong>
+          </button>
+        {:else}
+          <span>Hi {userName} </span>
+          <button on:click={logout} class="button is-light">
+            <strong>Log Out</strong>
+          </button>
+        {/if}
       </div>
     </div>
   </div>
