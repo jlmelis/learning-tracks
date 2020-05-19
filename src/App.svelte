@@ -7,12 +7,16 @@
 
   let selectedTrack;
 
+  // Hack: preventing tracklist from loading before netlifyIdentity has gone through init
+  let identityIsLoaded = false;
+
   onMount(async () => {
     selectedTrack = getContext('selectedTrack');
-    netlifyIdentity.init();
+    await netlifyIdentity.init();
+    identityIsLoaded = true;
   });
 
-  //TODO: Move to login/logout behavior to  navbar compnent since that is where login lives
+  //TODO: decide if the login logic should stay here or move to the navbar/another component
   function login(){
     netlifyIdentity.open();
   }
@@ -42,4 +46,7 @@
   {/if}
 </section>
 
-<TrackList></TrackList>
+<!-- Hack: preventing tracklist from loading before netlifyIdentity has gone through init -->
+{#if identityIsLoaded}
+  <TrackList></TrackList>
+{/if}

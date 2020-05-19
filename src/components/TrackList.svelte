@@ -96,6 +96,11 @@
             </button>
           {/if}
       </div>
+      <p class="panel-tabs">
+        <a class="is-active">All</a>
+        <a href="#">Public</a>
+        <a href="#">My Tracks</a>
+      </p>
 
       {#each filteredTracks as track}
         <div class="panel-block">

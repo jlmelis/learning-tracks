@@ -31,9 +31,9 @@
 
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">    
-    <div href="http://learning-tracks.netlify.com" id="logo">
+    <a href="https://learning-tracks.netlify.app" id="logo">
       <img {src} alt="Learning Tracks Logo" width="300">
-    </div>
+    </a>
     <button class="navbar-burger burger" 
       data-target="navMenu" 
       aria-label="menu" 

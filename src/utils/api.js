@@ -20,8 +20,8 @@ async function apiHelper(endpoint, body) {
 }
 
 const getAllTracks = async () => {
-  const response = await fetch(BASE_URL + 'all-tracks');
-  return await response.json();
+  //const response = await fetch(BASE_URL + 'all-tracks');
+  return await apiHelper('all-tracks', { id: '' });
 };
 
 const getTrackById = async (id) => {
