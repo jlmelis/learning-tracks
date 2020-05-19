@@ -1,8 +1,14 @@
 import { mutate } from './util/graphql';
 import { gql } from 'apollo-boost';
 
-export async function handler(event) {
+export async function handler(event, context) {
   try {
+    const { user } = context.clientContext;
+
+    if (!user) {
+      throw new Error('Not Authorized');
+    }
+
     if (event.httpMethod !== 'POST') {
       return { statusCode: 405, body: 'Method not allowed' };
     }

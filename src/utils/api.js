@@ -1,9 +1,20 @@
+import netlifyIdentity from 'netlify-identity-widget';
+
 const BASE_URL ='/.netlify/functions/';
 
 async function apiHelper(endpoint, body) {
+  const currentUser = await netlifyIdentity.currentUser();
+  let token = '';
+  if (currentUser) {
+    token = await currentUser.jwt();
+  }
+  
   const response = await fetch(BASE_URL + endpoint, {
     method: 'post',
     body: JSON.stringify(body),
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   return await response.json();
 }

@@ -1,9 +1,8 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { loggedInUser } from '../stores';
+  import { isEmpty } from '../utils/helpers';
   import About from './About.svelte';
-
-  export let loggedIn = false;
-  export let userName;
 
   const dispatch = createEventDispatcher();
   let src = '/images/LTLogo.png';
@@ -55,12 +54,12 @@
     </div>
     <div class="navbar-end">
       <div class="navbar-item">
-        {#if !loggedIn}
+        {#if isEmpty($loggedInUser)}
           <button on:click={login} class="button is-light">
             <strong>Log In</strong>
           </button>
         {:else}
-          <span>Hi {userName} </span>
+          <span>Hi {$loggedInUser.user_metadata.full_name} ({$loggedInUser.email})</span>
           <button on:click={logout} class="button is-light">
             <strong>Log Out</strong>
           </button>

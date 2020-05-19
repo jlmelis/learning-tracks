@@ -1,6 +1,8 @@
 <script>
   import { tick, createEventDispatcher } from 'svelte';
   import { selectTextOnFocus } from '../actions/inputActions.js';
+  import { loggedInUser } from '../stores';
+  import { isEmpty } from '../utils/helpers';
   import api from '../utils/api';
   import TrackLink from './TrackLink.svelte';
   import Confirmation from './Confirmation.svelte';
@@ -15,6 +17,8 @@
 
   const dispatch = createEventDispatcher();
 
+  $: loggedIn = !isEmpty($loggedInUser);
+
   function removeTrack() {
     //HACK - temporary until I write a custom function for cascade deletes
     track.links.data.forEach(link => {
@@ -25,6 +29,10 @@
   }
 
   async function editTrack() {
+    if (!loggedIn){
+      return;
+    }
+
     edit = true;
 
     // using tick to wait for the input to be shown
@@ -105,15 +113,19 @@
         <div class="level-left">
           <span>{track.name}</span>
           <span> ({track.description})</span>
-          <i class="delete is-small" on:click={toggleConfirmation}></i>
+          {#if loggedIn}
+            <i class="delete is-small" on:click={toggleConfirmation}></i>
+          {/if}
         </div>
-        <div class="level-right">
-          <button class="button is-small" on:click={toggleShowAddLink}>
-            <i class="iconify" 
-              data-icon="fa-solid:plus" 
-              data-inline="false"></i>
-          </button>
-        </div>
+        {#if loggedIn}
+          <div class="level-right">
+            <button class="button is-small" on:click={toggleShowAddLink}>
+              <i class="iconify" 
+                data-icon="fa-solid:plus" 
+                data-inline="false"></i>
+            </button>
+          </div>
+        {/if}
       </div>
     {/if}
   </div>

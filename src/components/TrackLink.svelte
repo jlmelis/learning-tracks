@@ -1,5 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { loggedInUser } from '../stores';
+  import { isEmpty } from '../utils/helpers';
   import Confirmation from './Confirmation.svelte';
 
   export let link;
@@ -7,6 +9,8 @@
   let showConfirmation;
 
   const dispatch = createEventDispatcher();
+
+  $: loggedIn = !isEmpty($loggedInUser);
 
   function removeLink() {
     dispatch('remove', { id: link.id });
@@ -19,7 +23,9 @@
 
 <div>
     <a href={link.url}>{link.title}</a>
-    <i class="delete is-small" on:click={toggleConfirmation}></i>
+    {#if loggedIn}
+      <i class="delete is-small" on:click={toggleConfirmation}></i>
+    {/if}
 </div>
 
 <Confirmation active={showConfirmation} 

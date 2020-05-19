@@ -1,12 +1,28 @@
 <script>
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
+  import { loggedInUser } from '../stores';
+  import { isEmpty } from '../utils/helpers';
   import Track from './Track.svelte';
   import TrackSummary from './TrackSummary.svelte';
   import api from '../utils/api';
 
   let search = '';
   let tracks = [];
+
+  // reactive variables
+  let filterText;
+  let loggedIn;
+  let filteredTracks;
+
+  $: {
+    loggedIn = !isEmpty($loggedInUser);
+    filterText = loggedIn ? 'filter or create new' : 'filter';
+    filteredTracks = tracks.filter(t =>
+      t.name.toLowerCase().includes(search.toLowerCase()) ||
+      t.description.toLowerCase().includes(search.toLowerCase()),
+    );
+  }
 
   // Using a writable store in the context to share
   // the selected track, and updates, with the parent component.
@@ -45,11 +61,6 @@
     const track = await api.getTrackById(id);
     selectedTrack.set(track);
   }
-
-  $: filteredTracks = tracks.filter(t =>
-    t.name.toLowerCase().includes(search.toLowerCase()) ||
-    t.description.toLowerCase().includes(search.toLowerCase()),
-  );
 </script>
 
 <div>
@@ -65,7 +76,7 @@
             <input class="input" 
             bind:value={search}
             type="text" 
-            placeholder="filter or create new" >
+            placeholder={filterText} >
             {#if search.length === 0}
               <span class="icon is-left">
                 <i class="iconify" 
@@ -79,7 +90,7 @@
               </span>
             {/if}
           </p>
-          {#if search.length > 0}
+          {#if search.length > 0 && loggedIn}
             <button class="button" on:click={addTrack}>
             Create: {search}
             </button>

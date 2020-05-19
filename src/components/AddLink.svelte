@@ -1,8 +1,9 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import ToolTip from './ToolTip.svelte';
-  import { withHttps } from '../utils';
+  import { withHttps } from '../utils/helpers';
   import api from '../utils/api';
+  
 
   export let active;
 
@@ -15,6 +16,8 @@
 
   $: disabled = hasError || linkTitle.length === 0 || linkUrl.length === 0;
 
+  $: fullUrl = withHttps(linkUrl);
+
   const dispatch = createEventDispatcher();
 
   function cancel() {
@@ -24,7 +27,7 @@
 
   function save() {
     dispatch('save', {
-      linkUrl: withHttps(linkUrl),
+      linkUrl: fullUrl,
       linkTitle: linkTitle,
     });
     reset();
@@ -44,7 +47,7 @@
   }
 
   async function getURLTitle() {
-    const encodedUrl = encodeURI(linkUrl);
+    const encodedUrl = encodeURI(fullUrl);
     try {
       const result = await api.getPageTitle(encodedUrl);
       error = null;

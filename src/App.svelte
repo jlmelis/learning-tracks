@@ -1,32 +1,28 @@
 <script>
   import { onMount, getContext } from 'svelte';
+  import { loggedInUser } from './stores';
   import Navbar from './components/Navbar.svelte';
   import TrackList from './components/TrackList.svelte';
   import netlifyIdentity from 'netlify-identity-widget';
 
   let selectedTrack;
 
-  let loggedIn = false;
-  let userName = '';
-
   onMount(async () => {
     selectedTrack = getContext('selectedTrack');
     netlifyIdentity.init();
   });
 
+  //TODO: Move to login/logout behavior to  navbar compnent since that is where login lives
   function login(){
     netlifyIdentity.open();
   }
 
   netlifyIdentity.on('login', async () => {
-    const currentUser = await netlifyIdentity.currentUser();
-    //const token = await currentUser.jwt();
-    userName = currentUser.user_metadata.full_name;
-    loggedIn = true;
+    loggedInUser.set(await netlifyIdentity.currentUser());
   });
 
   netlifyIdentity.on('logout', () => {
-    loggedIn = false;
+    loggedInUser.set({});
   });
 
   function logout() {
@@ -35,7 +31,7 @@
 </script>
 
 <section class="section">
-  <Navbar on:login={login} on:logout={logout} {loggedIn} {userName}></Navbar>
+  <Navbar on:login={login} on:logout={logout}></Navbar>
   {#if $selectedTrack}
     <nav class="breadcrumb" aria-label="breadcrumbs">
       <ul>

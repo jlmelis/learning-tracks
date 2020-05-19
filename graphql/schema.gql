@@ -1,6 +1,8 @@
 type Track {
   name: String!
   description: String
+  userEmail: String!
+  public: Boolean!
   links: [Link] @relation
 }
 
@@ -12,4 +14,6 @@ type Link {
 
 type Query {
   tracks: [Track!]
+  tracksByPublicFlag(public: Boolean!): [Track!]
+  tracksByUserEmail(userEmail: String!): [Track!]
 }
