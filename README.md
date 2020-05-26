@@ -11,4 +11,3 @@ This project is in progress. As such the code may be in various stages of refact
   * Bulma   - used to provide the UI styles (https://bulma.io)
   * FaunaDB - used to provide a GraphQl back end (https://fauna.com/)
   * Netlify - used for hosting and to provide Lambad function capability. (https://netlify.com)
-  * Cypress - used for end to end testing (https://www.cypress.io/)
