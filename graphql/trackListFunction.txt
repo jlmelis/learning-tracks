@@ -1,0 +1,23 @@
+Query(
+  Lambda(
+    ["email", "size", "before", "after"],
+    Let(
+      {
+        union: Union(
+          Match(Index("tracksByUserEmail"), Var("email")),
+          Match(Index("tracksByPublicFlag"), true)
+        ),
+        page: If(
+          Equals(Var("before"), null),
+          If(
+            Equals(Var("after"), null),
+            Paginate(Var("union"), Var("size")),
+            Paginate(Var("union"), Var("after"), Var("size"))
+          ),
+          Paginate(Var("union"), Var("before"), Var("size"))
+        )
+      },
+      Map(Var("page"), Lambda("ref", Get(Var("ref"))))
+    )
+  )
+)

@@ -16,4 +16,5 @@ type Query {
   tracks: [Track!]
   tracksByPublicFlag(public: Boolean!): [Track!]
   tracksByUserEmail(userEmail: String!): [Track!]
+  trackList(userEmail: String): [Track!] @resolver(name: "trackList", paginated: true)
 }
