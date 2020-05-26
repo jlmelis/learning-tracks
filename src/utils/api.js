@@ -19,9 +19,9 @@ async function apiHelper(endpoint, body) {
   return await response.json();
 }
 
-const getAllTracks = async () => {
+const getTrackList = async () => {
   //const response = await fetch(BASE_URL + 'all-tracks');
-  return await apiHelper('all-tracks', { id: '' });
+  return await apiHelper('get-track-list', { id: '' });
 };
 
 const getTrackById = async (id) => {
@@ -69,7 +69,7 @@ const getPageTitle = async (url) => {
 };
 
 export default {
-  getAllTracks,
+  getTrackList,
   getTrackById,
   createTrack,
   updateTrack,

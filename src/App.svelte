@@ -7,13 +7,9 @@
 
   let selectedTrack;
 
-  // Hack: preventing tracklist from loading before netlifyIdentity has gone through init
-  let identityIsLoaded = false;
-
   onMount(async () => {
     selectedTrack = getContext('selectedTrack');
-    await netlifyIdentity.init();
-    identityIsLoaded = true;
+    netlifyIdentity.init();
   });
 
   //TODO: decide if the login logic should stay here or move to the navbar/another component
@@ -46,7 +42,4 @@
   {/if}
 </section>
 
-<!-- Hack: preventing tracklist from loading before netlifyIdentity has gone through init -->
-{#if identityIsLoaded}
-  <TrackList></TrackList>
-{/if}
+<TrackList></TrackList>
