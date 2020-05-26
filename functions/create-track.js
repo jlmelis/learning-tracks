@@ -28,6 +28,8 @@ export async function handler(event, context) {
           id: _id
           name
           description
+          userEmail
+          public
           links {
             data {
               _id

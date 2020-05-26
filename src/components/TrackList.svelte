@@ -10,16 +10,28 @@
 
     let search = '';
     let tracks = [];
+    let selectedTab = 'all';
 
     // reactive variables
     let filterText;
     let loggedIn;
+    let visibleTracks;
     let filteredTracks;
 
     $: {
       loggedIn = !isEmpty($loggedInUser);
       filterText = loggedIn ? 'filter or create new' : 'filter';
-      filteredTracks = tracks.filter(t =>
+      visibleTracks = tracks.filter(t => {
+        if (selectedTab === 'public') {
+          return t.public;
+        } else if (selectedTab === 'mine') {
+          return t.userEmail === $loggedInUser.email;
+        } else {
+          // This would be if 'all' is selected
+          return true;
+        }
+      });
+      filteredTracks = visibleTracks.filter(t =>
         t.name.toLowerCase().includes(search.toLowerCase()) ||
         t.description.toLowerCase().includes(search.toLowerCase()),
       );
@@ -76,6 +88,7 @@
       const track = await api.getTrackById(id);
       selectedTrack.set(track);
     }
+
   </script>
 
   <div>
@@ -111,11 +124,13 @@
               </button>
             {/if}
         </div>
-        <p class="panel-tabs">
-          <a class="is-active">All</a>
-          <a href="#">Public</a>
-          <a href="#">My Tracks</a>
-        </p>
+        {#if loggedIn}
+          <p class="panel-tabs">
+            <a class:is-active={selectedTab === 'all'} on:click={() => selectedTab = 'all'}>All</a>
+            <a class:is-active={selectedTab === 'public'} on:click={() => selectedTab = 'public'}>Public</a>
+            <a class:is-active={selectedTab === 'mine'} on:click={() => selectedTab = 'mine'}>My Tracks</a>
+          </p>
+        {/if}
 
         {#each filteredTracks as track}
           <div class="panel-block">
