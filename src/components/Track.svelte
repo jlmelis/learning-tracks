@@ -20,11 +20,6 @@
   $: loggedIn = !isEmpty($loggedInUser);
 
   function removeTrack() {
-    //HACK - temporary until I write a custom function for cascade deletes
-    track.links.data.forEach(link => {
-      api.deleteLink(link.id);
-    });
-
     dispatch('removeTrack', { id: track.id });
   }
 

@@ -16,5 +16,9 @@ type Query {
   tracks: [Track!]
   tracksByPublicFlag(public: Boolean!): [Track!]
   tracksByUserEmail(userEmail: String!): [Track!]
-  trackList(userEmail: String): [Track!] @resolver(name: "trackList", paginated: true)
+  trackList(userEmail: String): [Track!] @resolver(name: "track_list", paginated: true)
+}
+
+type Mutation {
+  trackCascadeDelete(id: ID!): Track! @resolver(name: "track_cascade_delete")
 }

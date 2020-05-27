@@ -17,7 +17,7 @@ export async function handler(event, context){
 
     const DELETE_TRACK = gql`
       mutation ($id: ID!) {
-        deleteTrack(id: $id){
+        trackCascadeDelete(id: $id){
           id: _id
         }
       }
@@ -27,7 +27,7 @@ export async function handler(event, context){
 
     return {
       statusCode: 200,
-      body: JSON.stringify(deletedId.deleteTrack.id),
+      body: JSON.stringify(deletedId.trackCascadeDelete.id),
     };
     
   } catch (error) {

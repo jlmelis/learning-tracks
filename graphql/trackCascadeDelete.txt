@@ -1,0 +1,17 @@
+Query(
+  Lambda(
+    ["track_id"],
+    Do(
+      Map(
+        Paginate(
+          Match(
+            Index("links_by_track"),
+            Ref(Collection("Track"), Var("track_id"))
+          )
+        ),
+        Lambda("link", Delete(Var("link")))
+      ),
+      Delete(Ref(Collection("Track"), Var("track_id")))
+    )
+  )
+)
