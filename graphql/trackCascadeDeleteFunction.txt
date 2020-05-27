@@ -5,7 +5,7 @@ Query(
       Map(
         Paginate(
           Match(
-            Index("links_by_track"),
+            Index("link_track_by_track"),
             Ref(Collection("Track"), Var("track_id"))
           )
         ),

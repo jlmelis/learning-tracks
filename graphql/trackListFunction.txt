@@ -11,10 +11,10 @@ Query(
           Equals(Var("before"), null),
           If(
             Equals(Var("after"), null),
-            Paginate(Var("union"), Var("size")),
-            Paginate(Var("union"), Var("after"), Var("size"))
+            Paginate(Var("union"), {size: Var("size")}),
+            Paginate(Var("union"), {after: Var("after"), size: Var("size")})
           ),
-          Paginate(Var("union"), Var("before"), Var("size"))
+          Paginate(Var("union"), {before: Var("before"), size: Var("size")})
         )
       },
       Map(Var("page"), Lambda("ref", Get(Var("ref"))))
