@@ -11,6 +11,7 @@
   let search = '';
   let tracks = [];
   let selectedTab = 'all';
+  let loading = false;
 
   // reactive variables
   let filterText;
@@ -64,16 +65,20 @@
   });
 
   async function addTrack() {
+    loading = true;
     const newTrack = await api.createTrack(search, 'Learn something new!');
     tracks = [...tracks, newTrack];
     selectedTrack.set(tracks[tracks.length -1]);
     search = '';
+    loading = false;
   }
 
   async function removeTrack(event) {
+    loading = true;
     const deletedId = await api.deleteTrack(event.detail.id);
     tracks = tracks.filter(t => t.id !== deletedId);
     selectedTrack.set(null);
+    loading = false;
   }
 
   function updateTrack(event) {
@@ -86,8 +91,10 @@
   }
 
   async function selectTrack(id) {
+    loading = true;
     const track = await api.getTrackById(id);
     selectedTrack.set(track);
+    loading = false;
   }
 
 </script>
@@ -144,3 +151,7 @@
     {/if}
   </div>
 </div>
+
+{#if loading}
+  <progress class="progress is-small is-primary" max="100">15%</progress>
+{/if}

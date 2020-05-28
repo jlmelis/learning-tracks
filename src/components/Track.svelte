@@ -131,23 +131,22 @@
   </div>
   {#if canEdit}
     <div class="panel-block">
-      <div on:click={togglePublic}>
+      <span class="toggleSpan" on:click={togglePublic}>
         {#if track.isPublic}
-          <span class="toggleContainer">
+          <span class="toggleSpan">
             <i class="iconify isPublic toggle" 
             data-icon="fa-solid:toggle-on" 
-            data-inline="false"></i>
-            Make private
+            data-inline="false"></i>      
           </span>      
         {:else}
-          <span class="toggleContainer">
+          <span class="toggleSpan">
             <i class="iconify toggle" 
             data-icon="fa-solid:toggle-off" 
-            data-inline="false"></i>
-            Make public
+            data-inline="false"></i>   
           </span>    
         {/if}
-      </div>    
+        Public
+      </span>    
     </div>
   {/if}
   {#if track.links}
@@ -177,8 +176,9 @@
     width: 1.5em;
     margin-right: .5em;
   }
-  .toggleContainer {
+  .toggleSpan {
     display: inline-flex;
     align-items: center;
+    cursor: pointer;
   }
 </style>
