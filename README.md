@@ -10,4 +10,4 @@ This project is in progress. As such the code may be in various stages of refact
   * Svelte  - used for the front end functionality (https://svelte.dev)
   * Bulma   - used to provide the UI styles (https://bulma.io)
   * FaunaDB - used to provide a GraphQl back end (https://fauna.com/)
-  * Netlify - used for hosting and to provide Lambad function capability. (https://netlify.com)
+  * Netlify - used for hosting and to provide Lambda function capability. (https://netlify.com)
