@@ -168,17 +168,17 @@
   on:cancel={toggleConfirmation} 
   on:confirm={removeTrack} />
 
-  <style>
-    .isPublic {
-      color:lawngreen;
-    }
-    .toggle {
-      height: 1.5em;
-      width: 1.5em;
-      margin-right: .5em;
-    }
-    .toggleContainer {
-      display: inline-flex;
-      align-items: center;
-    }
-  </style>
+<style>
+  .isPublic {
+    color:lawngreen;
+  }
+  .toggle {
+    height: 1.5em;
+    width: 1.5em;
+    margin-right: .5em;
+  }
+  .toggleContainer {
+    display: inline-flex;
+    align-items: center;
+  }
+</style>
