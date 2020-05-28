@@ -35,11 +35,12 @@ const createTrack = async (name, description) => {
   });
 };
 
-const updateTrack = async (id, name, description) => {
+const updateTrack = async (id, name, description, isPublic) => {
   return await apiHelper('update-track', {
     id: id,
     name: name,
     description: description,
+    isPublic: isPublic,
   });
 };
 

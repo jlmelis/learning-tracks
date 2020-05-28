@@ -13,21 +13,23 @@ export async function handler(event, context) {
       return { statusCode: 405, body: 'Method not allowed' };
     }
 
-    const { id, name, description } = JSON.parse(event.body);
+    const { id, name, description, isPublic } = JSON.parse(event.body);
     const userEmail = user.email;
 
     //TODO: Is returning the updated track the right way?
     const UPDATE_TRACK = gql`
-      mutation ($id: ID!, $name: String!, $description: String, $userEmail: String!) {
+      mutation ($id: ID!, $name: String!, $description: String, $userEmail: String!, $isPublic: Boolean!) {
         updateTrack(id: $id, data: {
           name: $name
           description: $description
           userEmail: $userEmail
-          public: false
+          isPublic: $isPublic
         }) {
           id: _id
           name
           description
+          userEmail
+          isPublic
           links {
             data {
               id: _id
@@ -39,10 +41,10 @@ export async function handler(event, context) {
       }
     `;
 
-    const track = await mutate(UPDATE_TRACK, { id, name, description, userEmail });
+    const track = await mutate(UPDATE_TRACK, { id, name, description, userEmail, isPublic });
     
     return {
-      statusCode: 201,
+      statusCode: 200,
       body: JSON.stringify(track.updateTrack),
     };
 

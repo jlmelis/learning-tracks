@@ -13,7 +13,7 @@ export async function handler(event, context) {
           name
           description
           userEmail
-          public
+          isPublic
         }
       }
     }

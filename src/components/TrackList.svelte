@@ -23,7 +23,7 @@
       filterText = loggedIn ? 'filter or create new' : 'filter';
       visibleTracks = tracks.filter(t => {
         if (selectedTab === 'public') {
-          return t.public;
+          return t.isPublic;
         } else if (selectedTab === 'mine') {
           return t.userEmail === $loggedInUser.email;
         } else {

@@ -15,6 +15,8 @@ export async function handler(event) {
           id: _id
           name
           description
+          userEmail
+          isPublic
           links {
             data {
               id: _id

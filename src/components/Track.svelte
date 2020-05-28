@@ -36,7 +36,7 @@
   }
 
   async function updateTrack() {
-    const updatedTrack = await api.updateTrack(track.id, track.name, track.description);
+    const updatedTrack = await api.updateTrack(track.id, track.name, track.description, track.isPublic);
     edit = false;
     dispatch('updateTrack', { track: updatedTrack });
   }
@@ -83,6 +83,11 @@
   function toggleShowAddLink() {
     showAddLink = !showAddLink;
   }
+
+  function togglePublic() {
+    track.isPublic = !track.isPublic;
+    updateTrack();
+  }
 </script>
 
 <div on:click class="panel">
@@ -124,6 +129,25 @@
       </div>
     {/if}
   </div>
+  <div class="panel-block">
+    <div on:click={togglePublic}>
+      {#if track.isPublic}
+        <span class="toggleContainer">
+          <i class="iconify isPublic toggle" 
+          data-icon="fa-solid:toggle-on" 
+          data-inline="false"></i>
+          Make private
+        </span>      
+      {:else}
+        <span class="toggleContainer">
+          <i class="iconify toggle" 
+          data-icon="fa-solid:toggle-off" 
+          data-inline="false"></i>
+          Make public
+        </span>    
+      {/if}
+    </div>    
+  </div>
   {#if track.links}
     {#each track.links.data as link}
       <div class="panel-block">
@@ -141,3 +165,18 @@
   message="{`Are you sure you want to delete the '${track.name}' track?`}"
   on:cancel={toggleConfirmation} 
   on:confirm={removeTrack} />
+
+  <style>
+    .isPublic {
+      color:lawngreen;
+    }
+    .toggle {
+      height: 1.5em;
+      width: 1.5em;
+      margin-right: .5em;
+    }
+    .toggleContainer {
+      display: inline-flex;
+      align-items: center;
+    }
+  </style>

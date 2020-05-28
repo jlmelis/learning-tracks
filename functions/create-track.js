@@ -22,14 +22,14 @@ export async function handler(event, context) {
           name: $name
           description: $description
           userEmail: $userEmail
-          public: false
+          isPublic: false
         })
         {
           id: _id
           name
           description
           userEmail
-          public
+          isPublic
           links {
             data {
               _id
