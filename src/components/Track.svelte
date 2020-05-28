@@ -17,14 +17,14 @@
 
   const dispatch = createEventDispatcher();
 
-  $: loggedIn = !isEmpty($loggedInUser);
+  $: canEdit = !isEmpty($loggedInUser) && $loggedInUser.email === track.userEmail;
 
   function removeTrack() {
     dispatch('removeTrack', { id: track.id });
   }
 
   async function editTrack() {
-    if (!loggedIn){
+    if (!canEdit){
       return;
     }
 
@@ -113,11 +113,11 @@
         <div class="level-left">
           <span>{track.name}</span>
           <span> ({track.description})</span>
-          {#if loggedIn}
+          {#if canEdit}
             <i class="delete is-small" on:click={toggleConfirmation}></i>
           {/if}
         </div>
-        {#if loggedIn}
+        {#if canEdit}
           <div class="level-right">
             <button class="button is-small" on:click={toggleShowAddLink}>
               <i class="iconify" 
@@ -129,29 +129,31 @@
       </div>
     {/if}
   </div>
-  <div class="panel-block">
-    <div on:click={togglePublic}>
-      {#if track.isPublic}
-        <span class="toggleContainer">
-          <i class="iconify isPublic toggle" 
-          data-icon="fa-solid:toggle-on" 
-          data-inline="false"></i>
-          Make private
-        </span>      
-      {:else}
-        <span class="toggleContainer">
-          <i class="iconify toggle" 
-          data-icon="fa-solid:toggle-off" 
-          data-inline="false"></i>
-          Make public
-        </span>    
-      {/if}
-    </div>    
-  </div>
+  {#if canEdit}
+    <div class="panel-block">
+      <div on:click={togglePublic}>
+        {#if track.isPublic}
+          <span class="toggleContainer">
+            <i class="iconify isPublic toggle" 
+            data-icon="fa-solid:toggle-on" 
+            data-inline="false"></i>
+            Make private
+          </span>      
+        {:else}
+          <span class="toggleContainer">
+            <i class="iconify toggle" 
+            data-icon="fa-solid:toggle-off" 
+            data-inline="false"></i>
+            Make public
+          </span>    
+        {/if}
+      </div>    
+    </div>
+  {/if}
   {#if track.links}
     {#each track.links.data as link}
       <div class="panel-block">
-        <TrackLink link={link} on:remove={removeLink} />
+        <TrackLink link={link} on:remove={removeLink} {canEdit} />
       </div> 
     {/each}
   {/if}

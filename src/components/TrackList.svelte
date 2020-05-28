@@ -60,6 +60,7 @@
 
     netlifyIdentity.on('logout', async () =>{
       tracks = await api.getTrackList();
+      selectedTab = 'all';
     });
 
     async function addTrack() {
