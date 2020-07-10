@@ -19,7 +19,7 @@
 </script>
 
 <div>
-    <a href={link.url}>{link.title}</a>
+    <a href={link.url} target="_blank">{link.title}</a>
     {#if canEdit}
       <i class="delete is-small" on:click={toggleConfirmation}></i>
     {/if}

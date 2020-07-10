@@ -51,6 +51,9 @@
       <a href="#" class="navbar-item" on:click={toggleAbout}>
         About
       </a>
+      <a href="https://github.com/jlmelis/learning-tracks" class="navbar-item" target="_blank">
+        <span class="iconify icon" data-icon="ant-design:github-filled" data-inline="false"></span>
+      </a>
     </div>
     <div class="navbar-end">
       <div class="navbar-item">
