@@ -2,6 +2,7 @@
   import { onMount, getContext } from 'svelte';
   import { loggedInUser } from './stores';
   import Navbar from './components/Navbar.svelte';
+  import LoadingBar from './components/LoadingBar.svelte';
   import TrackList from './components/TrackList.svelte';
   import netlifyIdentity from 'netlify-identity-widget';
 
@@ -43,3 +44,5 @@
 </section>
 
 <TrackList></TrackList>
+
+<LoadingBar></LoadingBar>

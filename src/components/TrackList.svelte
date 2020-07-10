@@ -2,7 +2,7 @@
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import netlifyIdentity from 'netlify-identity-widget';
-  import { loggedInUser } from '../stores';
+  import { loggedInUser, isLoading } from '../stores';
   import { isEmpty } from '../utils/helpers';
   import Track from './Track.svelte';
   import TrackSummary from './TrackSummary.svelte';
@@ -11,7 +11,6 @@
   let search = '';
   let tracks = [];
   let selectedTab = 'all';
-  let loading = false;
 
   // reactive variables
   let filterText;
@@ -65,20 +64,20 @@
   });
 
   async function addTrack() {
-    loading = true;
+    isLoading.set(true);
     const newTrack = await api.createTrack(search, 'Learn something new!');
     tracks = [...tracks, newTrack];
     selectedTrack.set(tracks[tracks.length -1]);
     search = '';
-    loading = false;
+    isLoading.set(false);
   }
 
   async function removeTrack(event) {
-    loading = true;
+    isLoading.set(true);
     const deletedId = await api.deleteTrack(event.detail.id);
     tracks = tracks.filter(t => t.id !== deletedId);
     selectedTrack.set(null);
-    loading = false;
+    isLoading.set(false);
   }
 
   function updateTrack(event) {
@@ -91,10 +90,10 @@
   }
 
   async function selectTrack(id) {
-    loading = true;
+    isLoading.set(true);
     const track = await api.getTrackById(id);
     selectedTrack.set(track);
-    loading = false;
+    isLoading.set(false);
   }
 
 </script>
@@ -151,7 +150,3 @@
     {/if}
   </div>
 </div>
-
-{#if loading}
-  <progress class="progress is-small is-primary" max="100">15%</progress>
-{/if}
