@@ -107,6 +107,11 @@
             data-icon="fa-solid:check" 
             data-inline="false"></i>
         </button>
+        <button class="button" on:click={ () => edit = false}>
+          <i class="iconify" 
+            data-icon="fa-solid:times" 
+            data-inline="false"></i>
+        </button>
       </div>
     {:else}
       <div on:dblclick={editTrack} class="level"> 
