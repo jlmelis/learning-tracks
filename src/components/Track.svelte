@@ -112,7 +112,9 @@
       <div on:dblclick={editTrack} class="level"> 
         <div class="level-left">
           <span>{track.name}</span>
-          <span> ({track.description})</span>
+          {#if track.description.trim().length > 0 }
+            <span> ({track.description})</span>
+          {/if}
           {#if canEdit}
             <i class="delete is-small" on:click={toggleConfirmation}></i>
           {/if}
