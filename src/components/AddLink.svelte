@@ -104,4 +104,8 @@
   .title {
     cursor: default;
   }
+
+  .modal-content {
+    overflow: hidden;
+  }
 </style>
