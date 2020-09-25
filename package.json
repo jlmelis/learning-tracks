@@ -31,7 +31,7 @@
         "encoding": "^0.1.12",
         "graphql": "^15.0.0",
         "netlify-identity-widget": "^1.6.0",
-        "node-fetch": "^2.6.0",
+        "node-fetch": "^2.6.1",
         "sirv-cli": "^0.4.4"
     }
 }
